@@ -14,6 +14,6 @@ export default defineConfig({
     dedupe: ['react', 'react-dom'],
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react/jsx-runtime'],
+    exclude: ['react', 'react-dom', 'react-dom/client', 'framer-motion'],
   },
 })
