@@ -1,0 +1,19 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 269.805 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="0" y="0" width="269.805" height="150"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(13.41px);clip-path:url(#bgblur_0_638_8035_clip_path);height:100%;width:100%"></div></foreignObject><g id="Rectangle 240647938" filter="url(#filter0_d_638_8035)" data-figma-bg-blur-radius="26.8201">
+<path d="M38 46C38 39.3726 43.3726 34 50 34H199.677C206.304 34 211.677 39.3726 211.677 46V47.2049C211.677 50.2008 212.798 53.0884 214.819 55.3L228 69.7241H212.727L211.997 96.329C211.819 102.826 206.501 108 200.002 108H50C43.3726 108 38 102.627 38 96V46Z" fill="var(--fill-0, #06060A)" shape-rendering="crispEdges"/>
+<path d="M199.677 32.5L200.025 32.5049C207.32 32.6897 213.177 38.6607 213.177 46V47.2051C213.177 49.8264 214.157 52.353 215.926 54.2881L229.107 68.7119L231.402 71.2246H214.187L213.496 96.3701C213.296 103.679 207.313 109.5 200.002 109.5H50C42.5442 109.5 36.5 103.456 36.5 96V46C36.5 38.5442 42.5442 32.5 50 32.5H199.677Z" stroke="var(--stroke-0, white)" stroke-opacity="0.08" stroke-width="3" shape-rendering="crispEdges"/>
+</g>
+<defs>
+<filter id="filter0_d_638_8035" x="0" y="0" width="269.805" height="150" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="17.5"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_638_8035"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_638_8035" result="shape"/>
+</filter>
+<clipPath id="bgblur_0_638_8035_clip_path" transform="translate(0 0)"><path d="M38 46C38 39.3726 43.3726 34 50 34H199.677C206.304 34 211.677 39.3726 211.677 46V47.2049C211.677 50.2008 212.798 53.0884 214.819 55.3L228 69.7241H212.727L211.997 96.329C211.819 102.826 206.501 108 200.002 108H50C43.3726 108 38 102.627 38 96V46Z"/>
+</clipPath></defs>
+</svg>
