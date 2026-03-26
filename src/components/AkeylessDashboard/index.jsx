@@ -1,0 +1,685 @@
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+// SVG assets from Figma
+import iconSession from "../../assets/svg/icon-session.svg";
+import iconBlocked from "../../assets/svg/icon-blocked.svg";
+import iconActions from "../../assets/svg/icon-actions.svg";
+import iconRisk from "../../assets/svg/icon-risk.svg";
+import awsLogo from "../../assets/svg/aws-logo.svg";
+import mssqlLogo from "../../assets/svg/mssql-logo.svg";
+import gcpLogo from "../../assets/svg/gcp-logo.svg";
+import windowsLogo from "../../assets/svg/windows-logo.svg";
+import k8sLogo from "../../assets/svg/k8s-logo.svg";
+import hubspotLogo from "../../assets/svg/hubspot-logo.svg";
+import postgresSvg from "../../assets/svg/postgres-logo.svg";
+import dubleUser from "../../assets/svg/duble-user.svg";
+import groupMachine from "../../assets/svg/group-machine.svg";
+import vector4 from "../../assets/svg/vector4.svg";
+import figpie from "../../assets/svg/figpie.svg";
+import ellipseGlow from "../../assets/svg/ellipse-glow.svg";
+import passwordGauge from "../../assets/svg/password-gauge.svg";
+import donutSecrets from "../../assets/svg/donut-secrets.svg";
+import certChart from "../../assets/svg/cert-chart.svg";
+import forensicTimeline from "../../assets/svg/forensic-timeline.svg";
+import dotsIcon from "../../assets/svg/dots-icon.svg";
+import refreshIcon from "../../assets/svg/refresh-icon.svg";
+import searchIconSvg from "../../assets/svg/search-icon-correct.svg";
+import k8sLogoCorrect from "../../assets/svg/k8s-logo-correct.svg";
+import mysqlLogo from "../../assets/svg/mysql-logo.svg";
+
+const ANIM_DELAY = 400;
+const ANIM_DURATION = 7000;
+
+function lerp(from, to, t) {
+  return from + (to - from) * t;
+}
+
+function easeOut(t) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function sliceProgress(progress, start, end) {
+  if (progress <= start) return 0;
+  if (progress >= end) return 1;
+  return easeOut((progress - start) / (end - start));
+}
+
+const TABLE_ROWS = [
+  { id: "AAM-HS-1776673121", user: "testuser@example.com", risk: 9,  target: "HubSpot",  logo: hubspotLogo,   status: "Active",   date: "Mar 17, 2026 17:58:41" },
+  { id: "AAM-HS-1778673100", user: "testuser@example.com", risk: 54, target: "HubSpot",  logo: hubspotLogo,   status: "Blocked",  date: "Mar 17, 2026 17:58:20" },
+  { id: "AAM-HS-1773673074", user: "testuser@example.com", risk: 17, target: "MYSQL",    logo: mysqlLogo,     status: "Active",   date: "Mar 17, 2026 17:57:54" },
+  { id: "AAM-HS-1773678924", user: "testuser@example.com", risk: 25, target: "K8s",      logo: k8sLogoCorrect,status: "Inactive", date: "Mar 16, 2026 18:35:24" },
+  { id: "AAM-HS-1773678905", user: "testuser@example.com", risk: 45, target: "Postgres", logo: postgresSvg,   status: "Blocked",  date: "Mar 16, 2026 18:17:49" },
+];
+
+const STATUS_COLORS = {
+  Active:   { bg: "bg-emerald-100", text: "text-emerald-700" },
+  Blocked:  { bg: "bg-red-100",     text: "text-red-600" },
+  Inactive: { bg: "bg-gray-100",    text: "text-gray-500" },
+};
+
+function StatusBadge({ status }) {
+  const c = STATUS_COLORS[status];
+  return (
+    <span className={`inline-flex items-center px-[6px] py-[2px] rounded-[4px] text-[7px] font-semibold ${c.bg} ${c.text}`}>
+      {status}
+    </span>
+  );
+}
+
+function AnimatedNumber({ value, progress }) {
+  const displayed = Math.round(lerp(0, value, progress));
+  return <span>{displayed.toLocaleString()}</span>;
+}
+
+// Horizontal progress bar
+function HBar({ value, max, color, progress }) {
+  const pct = (value / max) * 100 * progress;
+  return (
+    <div className="h-[6px] rounded-full bg-gray-100 overflow-hidden w-full">
+      <div
+        className="h-full rounded-full transition-none"
+        style={{ width: `${pct}%`, backgroundColor: color }}
+      />
+    </div>
+  );
+}
+
+export default function AkeylessDashboard() {
+  const [progress, setProgress] = useState(0);
+  const rafRef = useRef(null);
+
+  useEffect(() => {
+    let startTime = null;
+    const delay = setTimeout(() => {
+      const tick = (ts) => {
+        if (!startTime) startTime = ts;
+        const t = Math.min((ts - startTime) / ANIM_DURATION, 1);
+        setProgress(t);
+        if (t < 1) rafRef.current = requestAnimationFrame(tick);
+      };
+      rafRef.current = requestAnimationFrame(tick);
+    }, ANIM_DELAY);
+
+    return () => {
+      clearTimeout(delay);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  // Section progress slices
+  const p = {
+    cards:      sliceProgress(progress, 0,    0.15),
+    table:      sliceProgress(progress, 0.08, 0.45),
+    forensic:   sliceProgress(progress, 0.15, 0.5),
+    identity:   sliceProgress(progress, 0.25, 0.6),
+    landscape:  sliceProgress(progress, 0.3,  0.65),
+    vault:      sliceProgress(progress, 0.35, 0.7),
+    riskbar:    sliceProgress(progress, 0.4,  0.7),
+    certchart:  sliceProgress(progress, 0.45, 0.75),
+    secrets:    sliceProgress(progress, 0.5,  0.8),
+    encryption: sliceProgress(progress, 0.55, 0.85),
+    password:   sliceProgress(progress, 0.6,  0.9),
+  };
+
+  const FORENSIC_STAGE = progress < 0.3 ? 0 : progress < 0.55 ? 1 : 2;
+
+  return (
+    <div
+      className="relative overflow-hidden"
+      style={{
+        width: 1057,
+        height: 712,
+        borderRadius: 22,
+        background: "rgba(252,252,252,0.96)",
+        backdropFilter: "blur(14px)",
+        border: "1px solid rgba(255,255,255,0.3)",
+        boxShadow: "0 20px 80px rgba(0,0,0,0.15)",
+        fontFamily: "'Poppins', sans-serif",
+      }}
+    >
+      {/* ─── TOP SECTION: Stat cards + table ─── */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="absolute"
+        style={{ left: 18, top: 18, width: 527, height: 292 }}
+      >
+        {/* Card container */}
+        <div
+          className="absolute inset-0 rounded-[11px]"
+          style={{ background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+        />
+
+        {/* Stat cards row */}
+        <div className="absolute flex gap-[6px]" style={{ left: 14, top: 14, width: 497, height: 49 }}>
+          {[
+            { icon: iconSession,  value: 14,  label: "Active Session",         color: "#05D9C2" },
+            { icon: iconBlocked,  value: 7,   label: "Blocked Requests",       color: "#FD2B11" },
+            { icon: iconActions,  value: 23,  label: "Total Actions",          color: "#05D9C2" },
+            { icon: iconRisk,     value: 31,  label: "Average Risk Score",     color: "#F3982E", sub: "53 - 81.9.5" },
+          ].map((card, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
+              className="flex-1 rounded-[10px] p-[7px] flex flex-col gap-[3px]"
+              style={{ background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.06)" }}
+            >
+              <div className="flex items-start gap-[5px]">
+                <img src={card.icon} alt="" style={{ width: 20, height: 20, flexShrink: 0 }} />
+                <div className="flex flex-col">
+                  <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 17 }}>
+                    <AnimatedNumber value={card.value} progress={p.cards} />
+                  </span>
+                  <span className="text-[#111]" style={{ fontSize: 7 }}>{card.label}</span>
+                  {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 6 }}>{card.sub}</span>}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Table title + filter bar */}
+        <div className="absolute flex items-center gap-[5px]" style={{ left: 14, top: 73, right: 14 }}>
+          <span className="font-semibold text-[#0E0D1E] shrink-0" style={{ fontSize: 10 }}>Agentic Access Overview</span>
+
+          {/* Filter icon button */}
+          <div className="flex items-center justify-center rounded-[5px] shrink-0"
+            style={{ width: 22, height: 22, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
+            {/* Inline filter funnel SVG */}
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M0.5 1.5h9M2 5h6M3.5 8.5h3" stroke="#727272" strokeWidth="1.2" strokeLinecap="round"/>
+            </svg>
+          </div>
+
+          {/* Refresh icon button */}
+          <div className="flex items-center justify-center rounded-[5px] shrink-0"
+            style={{ width: 22, height: 22, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
+            <img src={refreshIcon} alt="refresh" style={{ width: 14, height: 14 }} />
+          </div>
+
+          {/* DB tabs */}
+          <div className="flex gap-[3px] items-center ml-auto">
+            {[
+              { label: "MySQL",      logo: mysqlLogo },
+              { label: "Kubernetes", logo: k8sLogoCorrect },
+              { label: "AWS",        logo: awsLogo },
+              { label: "Postgres",   logo: postgresSvg, dropdown: true },
+            ].map((tab) => (
+              <div key={tab.label} className="flex items-center gap-[3px] rounded-[5px] px-[5px]"
+                style={{ height: 22, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
+                <img src={tab.logo} alt={tab.label} style={{ width: 12, height: 12, objectFit: "contain" }} />
+                <span style={{ fontSize: 7, color: "#111" }}>{tab.label}</span>
+                {tab.dropdown && (
+                  <svg width="7" height="5" viewBox="0 0 7 5" fill="none">
+                    <path d="M1 1l2.5 2.5L6 1" stroke="#727272" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
+              </div>
+            ))}
+
+            {/* Search */}
+            <div className="flex items-center gap-[3px] rounded-[5px] px-[6px]"
+              style={{ height: 22, width: 70, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
+              <span style={{ fontSize: 6.5, color: "#B5B5B5", flex: 1 }}>Search</span>
+              <img src={searchIconSvg} alt="search" style={{ width: 9, height: 9 }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Table header */}
+        <div className="absolute flex items-center" style={{ left: 14, top: 103, right: 14 }}>
+          {["Agent Session ID","User","Risk Score","Target Type","Status","Date","Actions"].map((h) => (
+            <span key={h} className="font-semibold flex-1 text-[#ADAEB0]" style={{ fontSize: 7 }}>{h}</span>
+          ))}
+        </div>
+
+        {/* Table rows */}
+        {TABLE_ROWS.map((row, i) => (
+          <motion.div
+            key={row.id}
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: p.table > i / 5 ? 1 : 0, x: p.table > i / 5 ? 0 : -8 }}
+            transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
+            className="absolute flex items-center"
+            style={{ left: 14, top: 117 + i * 30, right: 14 }}
+          >
+            <span className="flex-1 text-[#111] tracking-[-0.16px]" style={{ fontSize: 7.5 }}>{row.id}</span>
+            <span className="flex-1 text-[#111] tracking-[-0.16px]" style={{ fontSize: 7.5 }}>{row.user}</span>
+            <span className="flex-1 text-[#111] tracking-[-0.16px] font-medium" style={{ fontSize: 7.5 }}>{row.risk}</span>
+            <div className="flex-1 flex items-center gap-[4px]">
+              {row.logo && <img src={row.logo} alt="" style={{ width: 12, height: 12 }} />}
+              <span className="text-[#111]" style={{ fontSize: 8 }}>{row.target}</span>
+            </div>
+            <div className="flex-1">
+              <StatusBadge status={row.status} />
+            </div>
+            <span className="flex-1 text-[#111] tracking-[-0.16px]" style={{ fontSize: 7.5 }}>{row.date}</span>
+            <img src={dotsIcon} alt="" style={{ width: 10, height: 10, opacity: 0.5, flexShrink: 0 }} />
+          </motion.div>
+        ))}
+
+      </motion.div>
+
+      {/* ─── FORENSIC TRACEABILITY (top right) ─── */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="absolute"
+        style={{ left: 559, top: 18, width: 480, height: 292 }}
+      >
+        <div className="absolute inset-0 rounded-[11px]"
+          style={{ background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }} />
+
+        <div className="absolute" style={{ left: 22, top: 16 }}>
+          <p className="font-semibold text-[#111]" style={{ fontSize: 10 }}>Forensic Traceability</p>
+          <p className="text-gray-400" style={{ fontSize: 7.5 }}>Incident Investigation: Session AAM-HS-177367110</p>
+        </div>
+
+        {/* Timeline line */}
+        <div className="absolute" style={{ left: 40, top: 80, right: 40, height: 2, background: "#E8E9EF" }}>
+          <motion.div
+            className="h-full rounded-full"
+            style={{ background: "#05D9C2" }}
+            animate={{ width: `${p.forensic * 100}%` }}
+            transition={{ duration: 0 }}
+          />
+        </div>
+
+        {/* Timeline dots */}
+        {[0, 1, 2].map((dot) => {
+          const left = 40 + dot * 190;
+          const active = FORENSIC_STAGE >= dot;
+          return (
+            <motion.div
+              key={dot}
+              className="absolute rounded-full border-2"
+              style={{
+                left: left - 6,
+                top: 72,
+                width: 14,
+                height: 14,
+                borderColor: active ? "#05D9C2" : "#E8E9EF",
+                background: active ? "#05D9C2" : "#fff",
+                transition: "all 0.4s ease",
+              }}
+            />
+          );
+        })}
+
+        {/* Timeline timestamps */}
+        {["17:58:20.171","17:58:20.171","17:58:20.176"].map((ts, i) => (
+          <span key={i} className="absolute text-gray-400" style={{ fontSize: 7, left: 26 + i * 190, top: 60 }}>{ts}</span>
+        ))}
+
+        {/* Stage cards */}
+        <AnimatePresence>
+          {/* IDENTIFIED */}
+          <motion.div
+            key="identified"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : 10 }}
+            className="absolute rounded-[8px] p-[10px]"
+            style={{ left: 22, top: 100, width: 135,
+              background: "rgba(5,217,194,0.08)", border: "1px solid rgba(5,217,194,0.3)" }}
+          >
+            <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[4px]"
+              style={{ background: "#05D9C2", fontSize: 6 }}>
+              <span className="font-bold text-white">IDENTIFIED</span>
+            </div>
+            <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 7 }}>User</p>
+            <p className="text-gray-500" style={{ fontSize: 6.5 }}>testuser@example.com accessing HubSpot, Walmart.</p>
+          </motion.div>
+
+          {/* INTERCEPTED */}
+          <motion.div
+            key="intercepted"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: p.forensic > 0.35 ? 1 : 0, y: p.forensic > 0.35 ? 0 : 10 }}
+            className="absolute rounded-[8px] p-[10px]"
+            style={{ left: 170, top: 100, width: 140,
+              background: "rgba(243,152,46,0.08)", border: "1px solid rgba(243,152,46,0.3)" }}
+          >
+            <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[4px]"
+              style={{ background: "#F3982E", fontSize: 6 }}>
+              <span className="font-bold text-white">INTERCEPTED</span>
+            </div>
+            <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 7 }}>Raw Prompt</p>
+            <p className="text-gray-500 italic" style={{ fontSize: 6.5 }}>"What is the Walmart deal ARR?"</p>
+          </motion.div>
+
+          {/* BLOCKED */}
+          <motion.div
+            key="blocked"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: p.forensic > 0.65 ? 1 : 0, y: p.forensic > 0.65 ? 0 : 10 }}
+            className="absolute rounded-[8px] p-[10px]"
+            style={{ left: 330, top: 100, width: 145,
+              background: "rgba(253,43,17,0.06)", border: "1px solid rgba(253,43,17,0.3)" }}
+          >
+            <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[4px]"
+              style={{ background: "#FD2B11", fontSize: 6 }}>
+              <span className="font-bold text-white">BLOCKED</span>
+            </div>
+            <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 7 }}>Access Denied</p>
+            <p className="text-gray-500" style={{ fontSize: 6.5 }}>Command not allowed by policy.</p>
+            <p className="text-gray-400 mt-[3px]" style={{ fontSize: 5.5 }}>POLICY THAT BLOCKED: ForbiddenTerm</p>
+            <p className="text-gray-400" style={{ fontSize: 5.5 }}>MATCHED TERM: arr</p>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Action buttons */}
+        <motion.div
+          animate={{ opacity: p.forensic > 0.8 ? 1 : 0 }}
+          className="absolute flex gap-[8px] items-center"
+          style={{ left: 22, bottom: 18 }}
+        >
+          <button className="rounded-full border border-gray-300 px-[12px] py-[4px] text-[8px] text-gray-600">Cancel</button>
+          <button className="rounded-full px-[12px] py-[4px] text-[8px] text-white font-semibold"
+            style={{ background: "#05D9C2" }}>Kill Switch</button>
+          <button className="rounded-full border border-gray-300 px-[12px] py-[4px] text-[8px] text-gray-700 font-medium">Revoke Lease</button>
+        </motion.div>
+      </motion.div>
+
+      {/* ─── MIDDLE LEFT: Identity Authentication ─── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        className="absolute rounded-[11px]"
+        style={{ left: 18, top: 322, width: 332, height: 89,
+          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+      >
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+          Identity Authentication Methods in Use
+        </p>
+        <div className="absolute flex flex-col gap-[6px]" style={{ left: 14, top: 32, right: 14 }}>
+          {[
+            { logo: awsLogo,     name: "AWS",     val: 200, max: 200, color: "#F3982E" },
+            { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
+            { logo: gcpLogo,     name: "GCP",     val: 140, max: 200, color: "#05D9C2" },
+            { logo: windowsLogo, name: "Windows", val: 60,  max: 200, color: "#5C7FC6" },
+          ].map((item, i) => (
+            <div key={item.name} className="flex items-center gap-[6px]">
+              <img src={item.logo} alt={item.name} style={{ width: 12, height: 12, flexShrink: 0 }} />
+              <span className="text-[#111] w-[40px] flex-shrink-0" style={{ fontSize: 8 }}>{item.name}</span>
+              <div className="flex-1">
+                <HBar value={item.val} max={item.max} color={item.color} progress={p.identity} />
+              </div>
+              <span className="text-[#111] w-[24px] text-right flex-shrink-0" style={{ fontSize: 8 }}>
+                <AnimatedNumber value={item.val} progress={p.identity} />
+              </span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* ─── MIDDLE CENTER: Enterprise Identity Landscape ─── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+        className="absolute rounded-[11px]"
+        style={{ left: 362, top: 322, width: 333, height: 89,
+          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+      >
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+          Enterprise Identity Landscape
+        </p>
+        <div className="absolute flex items-start gap-[16px]" style={{ left: 14, top: 32 }}>
+          {[
+            { icon: vector4,     label: "Ai Adgents",      value: 200,  suffix: "" },
+            { icon: dubleUser,   label: "Human Identity",  value: 8000, suffix: "K", display: "8K" },
+            { icon: groupMachine,label: "Machine Identity",value: 30000,suffix: "K", display: "30K" },
+          ].map((item, i) => (
+            <div key={i} className="flex flex-col items-center gap-[2px]">
+              <img src={item.icon} alt="" style={{ width: 14, height: 14 }} />
+              <span className="font-semibold text-[#111]" style={{ fontSize: 22 }}>
+                {item.display || <AnimatedNumber value={item.value} progress={p.landscape} />}
+              </span>
+              <span className="text-[#111]" style={{ fontSize: 7.5 }}>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* ─── MIDDLE CENTER: Identity Risk & Exposure Analysis ─── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.65 }}
+        className="absolute rounded-[11px]"
+        style={{ left: 362, top: 422, width: 333, height: 89,
+          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+      >
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+          Identity Risk &amp; Exposure Analysis
+        </p>
+        {/* Stacked bar */}
+        <div className="absolute flex rounded-[4px] overflow-hidden" style={{ left: 14, top: 34, right: 14, height: 22 }}>
+          {[
+            { color: "#A70808", width: 1.5 * p.riskbar, label: "120", name: "Critical" },
+            { color: "#C62828", width: 5.5 * p.riskbar, label: "450", name: "High" },
+            { color: "#F3982E", width: 25 * p.riskbar,  label: "2200",name: "Medium" },
+            { color: "#1ADDC7", width: 60 * p.riskbar,  label: "8000",name: "Low" },
+          ].map((seg, i) => (
+            <div key={i} className="flex items-center justify-center relative"
+              style={{ flex: seg.width, backgroundColor: seg.color, minWidth: 0 }}>
+              <span className="font-semibold text-white absolute" style={{ fontSize: 6.5 }}>{seg.label}</span>
+            </div>
+          ))}
+        </div>
+        <div className="absolute flex items-center gap-[8px]" style={{ left: 14, top: 62 }}>
+          {[
+            { color: "#A70808", label: "Critical" },
+            { color: "#C62828", label: "High" },
+            { color: "#F3982E", label: "Medium" },
+            { color: "#1ADDC7", label: "Low" },
+          ].map((l) => (
+            <div key={l.label} className="flex items-center gap-[3px]">
+              <div className="rounded-[2px]" style={{ width: 9, height: 9, background: l.color }} />
+              <span style={{ fontSize: 7 }}>{l.label}</span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* ─── MIDDLE RIGHT: External Vault & Secrets ─── */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.7 }}
+        className="absolute rounded-[11px]"
+        style={{ left: 706, top: 322, width: 333, height: 190,
+          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+      >
+        <p className="absolute font-semibold text-[#111]" style={{ left: 22, top: 14, fontSize: 9.5 }}>
+          External Vault &amp; Secrets Integrations
+        </p>
+        {/* Donut chart */}
+        <div className="absolute" style={{ left: 14, top: 30, width: 125, height: 125 }}>
+          <img src={figpie} alt="" style={{ width: "100%", height: "100%" }} />
+          {/* Center glow + number */}
+          <div className="absolute inset-[8%] rounded-full overflow-hidden">
+            <img src={ellipseGlow} alt="" style={{ width: "100%", height: "100%" }} />
+          </div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="font-semibold text-[#111]" style={{ fontSize: 25 }}>
+              <AnimatedNumber value={89} progress={p.vault} />
+            </span>
+            <span className="text-[#111]" style={{ fontSize: 6.5 }}>Total Items</span>
+          </div>
+        </div>
+        {/* Legend */}
+        <div className="absolute flex flex-col gap-[6px]" style={{ left: 148, top: 38 }}>
+          {[
+            { color: "#F3982E", label: "AWS",            val: 32 },
+            { color: "#5C7FC6", label: "Azure",          val: 19 },
+            { color: "#111",    label: "Hashicorp Vault", val: 18 },
+            { color: "#05D9C2", label: "GCP",            val: 10 },
+            { color: "#275AC2", label: "K8s",            val: 10 },
+          ].map((item) => (
+            <div key={item.label} className="flex items-center gap-[5px]">
+              <div className="rounded-[2px] flex-shrink-0" style={{ width: 9, height: 9, background: item.color }} />
+              <span className="flex-1 text-[#111]" style={{ fontSize: 8 }}>{item.label}</span>
+              <span className="text-[#111]" style={{ fontSize: 8 }}>
+                <AnimatedNumber value={item.val} progress={p.vault} />
+              </span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* ─── BOTTOM ROW ─── */}
+
+      {/* Certificate Lifecycle Health */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.75 }}
+        className="absolute rounded-[11px]"
+        style={{ left: 18, top: 523, width: 250, height: 170,
+          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+      >
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+          Certificate Lifecycle Health
+        </p>
+        <div className="absolute" style={{ left: 14, top: 30, right: 14, bottom: 14 }}>
+          <div className="relative h-full flex items-end gap-[6px] pb-[16px]">
+            {[
+              { label: "Expired",    color: "#FD2B11", height: 35 },
+              { label: "0-30 Days",  color: "#5C7FC6", height: 75 },
+              { label: "60-90 Days", color: "#8B9FD4", height: 90 },
+              { label: "90-180 Days",color: "#05D9C2", height: 110 },
+            ].map((bar, i) => (
+              <div key={i} className="flex-1 flex flex-col items-center justify-end gap-[3px]">
+                <motion.div
+                  className="w-full rounded-t-[3px]"
+                  style={{ backgroundColor: bar.color, height: bar.height * p.certchart }}
+                />
+                <span className="text-center text-[#111]" style={{ fontSize: 5.5 }}>{bar.label}</span>
+              </div>
+            ))}
+          </div>
+          {/* Y axis labels */}
+          <div className="absolute top-0 left-[-2px] flex flex-col justify-between h-[calc(100%-20px)] items-end">
+            {["1000","500","100","0"].map((v) => (
+              <span key={v} className="text-[#111]" style={{ fontSize: 5.5 }}>{v}</span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Dynamic Secrets Issued */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        className="absolute rounded-[11px]"
+        style={{ left: 280, top: 523, width: 250, height: 170,
+          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+      >
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+          Dynamic Secrets Issued
+        </p>
+        {/* Donut */}
+        <div className="absolute" style={{ left: 14, top: 28, width: 100, height: 100 }}>
+          <img src={donutSecrets} alt="" style={{ width: "100%", height: "100%" }} />
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="font-semibold text-[#111]" style={{ fontSize: 18 }}>
+              <AnimatedNumber value={12} progress={p.secrets} />K
+            </span>
+            <span className="text-[#111] text-center leading-tight" style={{ fontSize: 5.5 }}>Total Dynamic<br/>Secrets</span>
+          </div>
+        </div>
+        {/* Legend */}
+        <div className="absolute flex flex-col gap-[5px]" style={{ left: 122, top: 32 }}>
+          {[
+            { color: "#F3982E", label: "AWS",      val: 18 },
+            { color: "#275AC2", label: "GCP",      val: 12 },
+            { color: "#5C7FC6", label: "PostgreSQL",val: 9 },
+            { color: "#8B9FD4", label: "MySQL",    val: 8 },
+            { color: "#05D9C2", label: "OpenAI",   val: 7 },
+            { color: "#111",    label: "Docker",   val: 6 },
+          ].map((item) => (
+            <div key={item.label} className="flex items-center gap-[4px]">
+              <div className="rounded-[2px] flex-shrink-0" style={{ width: 7, height: 7, background: item.color }} />
+              <span className="flex-1 text-[#111]" style={{ fontSize: 7 }}>{item.label}</span>
+              <span className="text-[#111]" style={{ fontSize: 7 }}>
+                <AnimatedNumber value={item.val} progress={p.secrets} />K
+              </span>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Enterprise Encryption & Key Operations */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.85 }}
+        className="absolute rounded-[11px]"
+        style={{ left: 542, top: 523, width: 250, height: 170,
+          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+      >
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+          Enterprise Encryption &amp; Key Operations
+        </p>
+        <div className="absolute flex flex-col gap-[8px]" style={{ left: 14, top: 34, right: 14 }}>
+          {[
+            { label: "Transactions",  val: 2000000, display: "2M",  max: 100 },
+            { label: "Tokenizers",    val: 50,      display: "50",  max: 100 },
+            { label: "Cloud Accounts",val: 45,      display: "45",  max: 100 },
+          ].map((item, i) => (
+            <div key={i} className="flex flex-col gap-[2px]">
+              <div className="flex justify-between">
+                <span className="text-[#111]" style={{ fontSize: 8 }}>{item.label}</span>
+                <span className="font-medium text-[#111]" style={{ fontSize: 8 }}>{item.display}</span>
+              </div>
+              <HBar value={70 + i * 5} max={100} color="#05D9C2" progress={p.encryption} />
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Password Health */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.9 }}
+        className="absolute rounded-[11px]"
+        style={{ left: 804, top: 523, width: 235, height: 170,
+          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+      >
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+          Password Health
+        </p>
+        <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ top: 20 }}>
+          <div className="relative" style={{ width: 120, height: 120 }}>
+            <img src={passwordGauge} alt="" style={{ width: "100%", height: "100%" }} />
+            <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ top: 16 }}>
+              <span className="font-semibold text-[#111]" style={{ fontSize: 36 }}>
+                <AnimatedNumber value={92} progress={p.password} />
+              </span>
+              <span className="text-[#111]" style={{ fontSize: 8 }}>Out of 100</span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Decorative background gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse at 80% 10%, rgba(5,217,194,0.04) 0%, transparent 60%)",
+          zIndex: -1,
+        }}
+      />
+    </div>
+  );
+}
