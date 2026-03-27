@@ -88,6 +88,7 @@ function HBar({ value, max, color, progress }) {
 
 export default function AkeylessDashboard() {
   const [progress, setProgress] = useState(0);
+  const [agenticHoverKey, setAgenticHoverKey] = useState(0);
   const rafRef = useRef(null);
 
   useEffect(() => {
