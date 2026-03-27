@@ -434,7 +434,7 @@ export default function AkeylessDashboard() {
             { logo: windowsLogo, name: "Windows", val: 60,  max: 200, color: "#5C7FC6" },
           ].map((item) => (
             <div key={item.name} className="flex items-center gap-[8px]">
-              <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0 }} />
+              <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0, objectFit: "contain" }} />
               <span className="text-[#111] w-[44px] flex-shrink-0" style={{ fontSize: 8.5 }}>{item.name}</span>
               <div className="flex-1">
                 <HBar value={item.val} max={item.max} color={item.color} progress={p.identity} />
