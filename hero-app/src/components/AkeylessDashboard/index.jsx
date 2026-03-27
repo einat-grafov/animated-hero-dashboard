@@ -801,8 +801,8 @@ export default function AkeylessDashboard() {
           {hoveredSection === "encryption" && (
             <Tooltip
               text="Encryption transactions, tokenizers, and connected cloud accounts at a glance."
-              position="bottom"
-              style={{ top: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+              position="top"
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
           )}
         </AnimatePresence>
