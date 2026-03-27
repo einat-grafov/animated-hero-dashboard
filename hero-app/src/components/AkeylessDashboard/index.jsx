@@ -1014,7 +1014,7 @@ export default function AkeylessDashboard() {
                 stroke="#1ADDC7"
                 strokeWidth="13"
                 strokeLinecap="round"
-                strokeDasharray={`${242 * 0.92 * p.password} 242`}
+                strokeDasharray={`${242 * 0.92 * (passwordHoverProgress !== null ? passwordHoverProgress : p.password)} 242`}
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-end" style={{ paddingBottom: 0 }}>
