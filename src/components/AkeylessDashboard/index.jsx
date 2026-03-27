@@ -86,6 +86,61 @@ function HBar({ value, max, color, progress }) {
   );
 }
 
+function DashTooltip({ text, children, position = "top" }) {
+  const [show, setShow] = useState(false);
+  const wrapRef = useRef(null);
+  return (
+    <div ref={wrapRef} style={{ position: "contents" !== undefined ? "absolute" : "relative", display: "contents" }}>
+      {React.cloneElement(children, {
+        onMouseEnter: (e) => { setShow(true); children.props.onMouseEnter?.(e); },
+        onMouseLeave: (e) => { setShow(false); children.props.onMouseLeave?.(e); },
+        style: { ...children.props.style, position: "absolute" },
+      })}
+      <AnimatePresence>
+        {show && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            className="absolute z-50 pointer-events-none"
+            style={{
+              ...children.props.style,
+              left: position === "top" || position === "bottom"
+                ? (children.props.style?.left || 0) + (children.props.style?.width || 0) / 2
+                : undefined,
+              top: position === "top"
+                ? (children.props.style?.top || 0) - 12
+                : undefined,
+              transform: position === "top" ? "translate(-50%, -100%)" : undefined,
+              width: "auto", height: "auto",
+              background: "none", boxShadow: "none", borderRadius: 0,
+            }}
+          >
+            <div
+              style={{
+                background: "#111",
+                color: "#fff",
+                borderRadius: 12,
+                padding: "10px 16px",
+                fontSize: 11,
+                fontWeight: 500,
+                maxWidth: 220,
+                textAlign: "center",
+                lineHeight: 1.4,
+                whiteSpace: "normal",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+              }}
+            >
+              {text}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function AkeylessDashboard() {
   const [progress, setProgress] = useState(0);
   const [agenticHovered, setAgenticHovered] = useState(false);
