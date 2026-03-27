@@ -231,6 +231,7 @@ export default function AkeylessDashboard() {
     return () => { if (landscapeRafRef.current) cancelAnimationFrame(landscapeRafRef.current); };
   }, [hoveredSection]);
 
+  useEffect(() => {
     let startTime = null;
     const delay = setTimeout(() => {
       const tick = (ts) => {
