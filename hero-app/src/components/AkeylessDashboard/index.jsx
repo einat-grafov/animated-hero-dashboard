@@ -437,7 +437,7 @@ export default function AkeylessDashboard() {
           <motion.div
             className="h-full rounded-full"
             style={{ background: "#05D9C2" }}
-            animate={{ width: `${p.forensic * 100}%` }}
+            animate={{ width: `${fp * 100}%` }}
             transition={{ duration: 0 }}
           />
         </div>
