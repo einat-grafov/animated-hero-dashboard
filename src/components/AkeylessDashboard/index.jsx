@@ -172,11 +172,18 @@ export default function AkeylessDashboard() {
   useEffect(() => {
     if (hoveredSection === "identity") {
       const timers = [];
-      timers.push(setTimeout(() => setIdentityScanRow(0), 150));
-      timers.push(setTimeout(() => setIdentityScanRow(1), 400));
-      timers.push(setTimeout(() => setIdentityScanRow(2), 650));
-      timers.push(setTimeout(() => setIdentityScanRow(3), 900));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 1150));
+      // Row 0: flicker (disappear then reappear)
+      timers.push(setTimeout(() => setIdentityScanRow(0), 200));
+      timers.push(setTimeout(() => setIdentityScanRow(-1), 350));
+      // Row 1: flicker
+      timers.push(setTimeout(() => setIdentityScanRow(1), 550));
+      timers.push(setTimeout(() => setIdentityScanRow(-1), 700));
+      // Row 2: flicker
+      timers.push(setTimeout(() => setIdentityScanRow(2), 900));
+      timers.push(setTimeout(() => setIdentityScanRow(-1), 1050));
+      // Row 3: flicker
+      timers.push(setTimeout(() => setIdentityScanRow(3), 1250));
+      timers.push(setTimeout(() => setIdentityScanRow(-1), 1400));
       identityScanRef.current = timers;
     } else {
       setIdentityScanRow(-1);
