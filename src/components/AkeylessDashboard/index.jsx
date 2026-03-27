@@ -581,8 +581,7 @@ export default function AkeylessDashboard() {
                     style={{
                       width: `${(item.val / item.max) * 100 * p.identity}%`,
                       backgroundColor: item.color,
-                      transition: identityScanRow === i ? "box-shadow 0.2s ease" : "none",
-                      boxShadow: identityScanRow === i ? `0 0 8px ${item.color}90` : "none",
+                      transition: "none",
                     }}
                   />
                 </div>
