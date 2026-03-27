@@ -923,29 +923,36 @@ export default function AkeylessDashboard() {
           Dynamic Secrets Issued
         </p>
         {/* Donut */}
-        <div className="absolute" style={{ left: 14, top: 28, width: 100, height: 100 }}>
+        <div className="absolute" style={{ left: 10, top: 26, width: 120, height: 120 }}>
           <img src={donutSecrets} alt="" style={{ width: "100%", height: "100%" }} />
+          <div className="absolute inset-[8%] rounded-full overflow-hidden"
+            style={{
+              background: "radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.95) 0%, rgba(230,235,245,0.7) 50%, rgba(200,210,230,0.5) 100%)",
+              backdropFilter: "blur(8px)",
+              boxShadow: "inset 0 -4px 12px rgba(0,0,0,0.06), inset 0 2px 8px rgba(255,255,255,0.8)",
+            }}
+          />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-semibold text-[#111]" style={{ fontSize: 18 }}>
+            <span className="font-semibold text-[#111]" style={{ fontSize: 22 }}>
               <AnimatedNumber value={12} progress={p.secrets} />K
             </span>
             <span className="text-[#111] text-center leading-tight" style={{ fontSize: 5.5 }}>Total Dynamic<br/>Secrets</span>
           </div>
         </div>
         {/* Legend */}
-        <div className="absolute flex flex-col gap-[5px]" style={{ left: 122, top: 32 }}>
+        <div className="absolute flex flex-col gap-[8px]" style={{ left: 138, top: 34 }}>
           {[
-            { color: "#F3982E", label: "AWS",      val: 18 },
-            { color: "#275AC2", label: "GCP",      val: 12 },
-            { color: "#5C7FC6", label: "PostgreSQL",val: 9 },
-            { color: "#8B9FD4", label: "MySQL",    val: 8 },
-            { color: "#05D9C2", label: "OpenAI",   val: 7 },
-            { color: "#111",    label: "Docker",   val: 6 },
+            { color: "#F3982E", label: "AWS",        val: 18 },
+            { color: "#275AC2", label: "GCP",        val: 12 },
+            { color: "#5C7FC6", label: "PostgreSQL", val: 9 },
+            { color: "#1ADDC7", label: "MySQL",      val: 8 },
+            { color: "#111",    label: "OpenAI",     val: 7 },
+            { color: "#275AC2", label: "Docker",     val: 6 },
           ].map((item) => (
-            <div key={item.label} className="flex items-center gap-[4px]">
-              <div className="rounded-[2px] flex-shrink-0" style={{ width: 7, height: 7, background: item.color }} />
-              <span className="flex-1 text-[#111]" style={{ fontSize: 7 }}>{item.label}</span>
-              <span className="text-[#111]" style={{ fontSize: 7 }}>
+            <div key={item.label} className="flex items-center gap-[6px]" style={{ width: 100 }}>
+              <span className="flex-1 text-[#111]" style={{ fontSize: 8 }}>{item.label}</span>
+              <div className="rounded-[2px] flex-shrink-0" style={{ width: 14, height: 10, background: item.color, borderRadius: 3 }} />
+              <span className="text-[#111] font-medium" style={{ fontSize: 8, width: 18, textAlign: "right" }}>
                 <AnimatedNumber value={item.val} progress={p.secrets} />K
               </span>
             </div>
