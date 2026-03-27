@@ -486,7 +486,7 @@ export default function AkeylessDashboard() {
         style={{ left: 706, top: 322, width: 333, height: 190,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 22, top: 14, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 22, top: 14, fontSize: 10 }}>
           External Vault &amp; Secrets Integrations
         </p>
         {/* Donut chart */}
