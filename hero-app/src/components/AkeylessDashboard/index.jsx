@@ -250,7 +250,7 @@ export default function AkeylessDashboard() {
             style={{ left: 14, top: 117 + i * 30, right: 14 }}
           >
             <span className="flex-1 text-[#111] tracking-[-0.16px] truncate pr-[4px]" style={{ fontSize: 7.5 }}>{row.id}</span>
-            <span className="flex-1 text-[#111] tracking-[-0.16px] truncate pr-[4px]" style={{ fontSize: 7.5 }}>{row.user}</span>
+            <span className="flex-1 text-[#111] tracking-[-0.16px] truncate pr-[12px]" style={{ fontSize: 7.5 }}>{row.user}</span>
             <span className="flex-1 text-[#111] tracking-[-0.16px] font-medium" style={{ fontSize: 7.5 }}>{row.risk}</span>
             <div className="flex-1 flex items-center gap-[4px]">
               {row.logo && <img src={row.logo} alt="" style={{ width: 12, height: 12 }} />}
