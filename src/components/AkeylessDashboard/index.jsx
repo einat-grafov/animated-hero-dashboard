@@ -692,8 +692,9 @@ export default function AkeylessDashboard() {
             { color: "#C62828", label: "High" },
             { color: "#F3982E", label: "Medium" },
             { color: "#1ADDC7", label: "Low" },
-          ].map((l) => (
-            <div key={l.label} className="flex items-center gap-[3px]">
+          ].map((l, i) => (
+            <div key={l.label} className="flex items-center gap-[3px]" style={{
+              opacity: riskFlickerIdx === i ? 0 : 1, transition: "opacity 0.08s ease" }}>
               <div className="rounded-[2px]" style={{ width: 9, height: 9, background: l.color }} />
               <span style={{ fontSize: 7 }}>{l.label}</span>
             </div>
