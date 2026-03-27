@@ -434,17 +434,19 @@ export default function AkeylessDashboard() {
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Enterprise Identity Landscape
         </p>
-        <div className="absolute flex items-start gap-[16px]" style={{ left: 14, top: 32 }}>
+        <div className="absolute flex items-start gap-[24px]" style={{ left: 14, top: 34 }}>
           {[
             { icon: vector4,     label: "Ai Adgents",      value: 200,  suffix: "" },
             { icon: dubleUser,   label: "Human Identity",  value: 8000, suffix: "K", display: "8K" },
-            { icon: groupMachine,label: "Machine Identity",value: 30000,suffix: "K", display: "30K" },
+            { icon: groupMachine,label: "Maschine Identity",value: 30000,suffix: "K", display: "30K" },
           ].map((item, i) => (
-            <div key={i} className="flex flex-col items-center gap-[2px]">
-              <img src={item.icon} alt="" style={{ width: 14, height: 14 }} />
-              <span className="font-semibold text-[#111]" style={{ fontSize: 22 }}>
-                {item.display || <AnimatedNumber value={item.value} progress={p.landscape} />}
-              </span>
+            <div key={i} className="flex flex-col items-start gap-[2px]">
+              <div className="flex items-center gap-[6px]">
+                <img src={item.icon} alt="" style={{ width: 18, height: 18 }} />
+                <span className="font-bold text-[#111]" style={{ fontSize: 24 }}>
+                  {item.display || <AnimatedNumber value={item.value} progress={p.landscape} />}
+                </span>
+              </div>
               <span className="text-[#111]" style={{ fontSize: 7.5 }}>{item.label}</span>
             </div>
           ))}
