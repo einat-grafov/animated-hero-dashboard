@@ -255,6 +255,26 @@ export default function AkeylessDashboard() {
     return () => { if (vaultRafRef.current) cancelAnimationFrame(vaultRafRef.current); };
   }, [hoveredSection]);
 
+  // Password: replay gauge + counter on hover
+  useEffect(() => {
+    if (hoveredSection === "password" && progress >= 0.9) {
+      setPasswordHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setPasswordHoverProgress(elapsed);
+        if (elapsed < 1) passwordRafRef.current = requestAnimationFrame(tick);
+      };
+      passwordRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setPasswordHoverProgress(null);
+      if (passwordRafRef.current) cancelAnimationFrame(passwordRafRef.current);
+    }
+    return () => { if (passwordRafRef.current) cancelAnimationFrame(passwordRafRef.current); };
+  }, [hoveredSection]);
+
   useEffect(() => {
     let startTime = null;
     const delay = setTimeout(() => {
