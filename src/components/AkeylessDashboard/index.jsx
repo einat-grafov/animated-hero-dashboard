@@ -902,7 +902,7 @@ export default function AkeylessDashboard() {
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Certificate Lifecycle Health
         </p>
-        <div className="absolute" style={{ left: 6, top: 36, right: 6, bottom: 10 }}>
+        <div className="absolute" style={{ left: 6, top: 32, right: 6, bottom: 6 }}>
           {/* Y axis labels */}
           <div className="absolute left-0 top-0 flex flex-col justify-between items-end" style={{ height: "calc(100% - 18px)", width: 20 }}>
             {["1000","500","100","0"].map((v) => (
@@ -911,9 +911,9 @@ export default function AkeylessDashboard() {
           </div>
           <div className="absolute flex items-end justify-around pb-[14px]" style={{ left: 24, top: 0, right: 0, bottom: 0 }}>
             {[
-              { label: "Expired",     gradient: "linear-gradient(180deg, #FD2B11 0%, #E8837A 100%)", heightPct: 21 },
+              { label: "Expired",     gradient: "linear-gradient(180deg, #FD2B11 0%, #E8837A 100%)", heightPct: 23 },
               { label: "0-30 Days",   gradient: "linear-gradient(180deg, #F3982E 0%, #F5BC73 100%)", heightPct: 58 },
-              { label: "60-90 Days",  gradient: "linear-gradient(180deg, #5C7FC6 0%, #8BA5D8 100%)", heightPct: 83 },
+              { label: "60-90 Days",  gradient: "linear-gradient(180deg, #5C7FC6 0%, #8BA5D8 100%)", heightPct: 82 },
               { label: "90-180 Days", gradient: "linear-gradient(180deg, #05D9C2 0%, #5DE8D6 100%)", heightPct: 100 },
             ].map((bar, i) => (
               <div key={i} className="flex flex-col items-center justify-end gap-[4px]" style={{ height: "100%" }}>
