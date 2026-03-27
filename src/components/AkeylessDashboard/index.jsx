@@ -204,6 +204,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => { setAgenticHovered(true); }}
         onMouseLeave={() => setAgenticHovered(false)}
       >
+        <AnimatePresence>
+          {agenticHovered && (
+            <Tooltip
+              text="Real-time monitoring of agentic AI sessions, blocked requests, and risk scores."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         {/* Card container */}
         <div
           className="absolute inset-0 rounded-[11px] overflow-hidden"
