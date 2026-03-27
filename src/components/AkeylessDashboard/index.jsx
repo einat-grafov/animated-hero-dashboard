@@ -941,7 +941,7 @@ export default function AkeylessDashboard() {
               <div key={i} className="flex flex-col items-center justify-end gap-[4px]" style={{ height: "100%" }}>
                 <motion.div
                   className="rounded-t-[4px]"
-                  style={{ background: bar.gradient, height: `${bar.heightPct * p.certchart}%`, width: 28 }}
+                  style={{ background: bar.gradient, height: `${bar.heightPct * (certHoverProgress !== null ? certHoverProgress : p.certchart)}%`, width: 28 }}
                 />
                 <span className="text-center text-[#555] whitespace-nowrap" style={{ fontSize: 5.5 }}>{bar.label}</span>
               </div>
