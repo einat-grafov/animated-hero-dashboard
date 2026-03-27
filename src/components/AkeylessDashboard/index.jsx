@@ -943,10 +943,11 @@ export default function AkeylessDashboard() {
         <div className="absolute flex flex-col gap-[8px]" style={{ left: 138, top: 34 }}>
           {[
             { color: "#F3982E", label: "AWS",        val: 18 },
+            { color: "#275AC2", label: "GCP",        val: 12 },
+            { color: "#5C7FC6", label: "PostgreSQL", val: 9 },
             { color: "#05D9C2", label: "MySQL",      val: 8 },
             { color: "#111",    label: "OpenAI",     val: 7 },
-            { color: "#5C7FC6", label: "PostgreSQL", val: 9 },
-            { color: "#275AC2", label: "GCP",        val: 12 },
+            { color: "#275AC2", label: "Docker",     val: 6 },
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-[6px]" style={{ width: 100 }}>
               <span className="flex-1 text-[#111]" style={{ fontSize: 8 }}>{item.label}</span>
