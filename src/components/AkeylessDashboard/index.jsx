@@ -486,8 +486,19 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.6 }}
         className="absolute rounded-[11px]"
         style={{ left: 362, top: 322, width: 333, height: 89,
-          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          background: "#fff", boxShadow: hoveredSection === "landscape" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)",
+          transition: "box-shadow 0.3s", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredSection("landscape")}
+        onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "landscape" && (
+            <Tooltip
+              text="Unified visibility across AI, human, and machine identities."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Enterprise Identity Landscape
         </p>
