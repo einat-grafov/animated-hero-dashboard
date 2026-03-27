@@ -146,11 +146,13 @@ export default function AkeylessDashboard() {
   const [riskFlickerIdx, setRiskFlickerIdx] = useState(-1);
   const [landscapeHoverProgress, setLandscapeHoverProgress] = useState(null);
   const [vaultHoverProgress, setVaultHoverProgress] = useState(null);
+  const [passwordHoverProgress, setPasswordHoverProgress] = useState(null);
   const rafRef = useRef(null);
   const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
   const landscapeRafRef = useRef(null);
   const vaultRafRef = useRef(null);
+  const passwordRafRef = useRef(null);
   const riskFlickerRef = useRef(null);
 
   // Forensic: replay timeline animation on hover
@@ -251,6 +253,26 @@ export default function AkeylessDashboard() {
       if (vaultRafRef.current) cancelAnimationFrame(vaultRafRef.current);
     }
     return () => { if (vaultRafRef.current) cancelAnimationFrame(vaultRafRef.current); };
+  }, [hoveredSection]);
+
+  // Password: replay gauge + counter on hover
+  useEffect(() => {
+    if (hoveredSection === "password" && progress >= 0.9) {
+      setPasswordHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setPasswordHoverProgress(elapsed);
+        if (elapsed < 1) passwordRafRef.current = requestAnimationFrame(tick);
+      };
+      passwordRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setPasswordHoverProgress(null);
+      if (passwordRafRef.current) cancelAnimationFrame(passwordRafRef.current);
+    }
+    return () => { if (passwordRafRef.current) cancelAnimationFrame(passwordRafRef.current); };
   }, [hoveredSection]);
 
   useEffect(() => {
@@ -992,12 +1014,12 @@ export default function AkeylessDashboard() {
                 stroke="#1ADDC7"
                 strokeWidth="13"
                 strokeLinecap="round"
-                strokeDasharray={`${242 * 0.92 * p.password} 242`}
+                strokeDasharray={`${242 * 0.92 * (passwordHoverProgress !== null ? passwordHoverProgress : p.password)} 242`}
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-end" style={{ paddingBottom: 0 }}>
               <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 38 }}>
-                <AnimatedNumber value={92} progress={p.password} />
+                <AnimatedNumber value={92} progress={passwordHoverProgress !== null ? passwordHoverProgress : p.password} />
               </span>
               <span className="text-[#111]" style={{ fontSize: 8, marginTop: 2 }}>Out of 100</span>
             </div>
