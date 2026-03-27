@@ -194,13 +194,13 @@ export default function AkeylessDashboard() {
     if (hoveredSection === "risk") {
       const timers = [];
       timers.push(setTimeout(() => setRiskFlickerIdx(0), 200));
-      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 350));
-      timers.push(setTimeout(() => setRiskFlickerIdx(1), 550));
-      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 700));
-      timers.push(setTimeout(() => setRiskFlickerIdx(2), 900));
-      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 1050));
-      timers.push(setTimeout(() => setRiskFlickerIdx(3), 1250));
-      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 1400));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 600));
+      timers.push(setTimeout(() => setRiskFlickerIdx(1), 800));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 1200));
+      timers.push(setTimeout(() => setRiskFlickerIdx(2), 1400));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 1800));
+      timers.push(setTimeout(() => setRiskFlickerIdx(3), 2000));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 2400));
       riskFlickerRef.current = timers;
     } else {
       setRiskFlickerIdx(-1);
