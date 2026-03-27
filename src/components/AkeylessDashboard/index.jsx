@@ -344,7 +344,7 @@ export default function AkeylessDashboard() {
         style={{ left: 559, top: 18, width: 480, height: 292, overflow: "hidden" }}
       >
         <div className="absolute inset-0 rounded-[11px]"
-          style={{ background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }} />
+          style={{ background: "#fff", boxShadow: hoveredSection === "forensic" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "forensic" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease" }} />
 
         <div className="absolute" style={{ left: 22, top: 12 }}>
           <p className="font-semibold text-[#111]" style={{ fontSize: 10 }}>Forensic Traceability</p>
