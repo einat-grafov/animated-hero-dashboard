@@ -144,9 +144,11 @@ export default function AkeylessDashboard() {
   const [forensicHoverProgress, setForensicHoverProgress] = useState(null);
   const [identityHoverProgress, setIdentityHoverProgress] = useState(null);
   const [riskFlickerIdx, setRiskFlickerIdx] = useState(-1);
+  const [landscapeHoverProgress, setLandscapeHoverProgress] = useState(null);
   const rafRef = useRef(null);
   const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
+  const landscapeRafRef = useRef(null);
   const riskFlickerRef = useRef(null);
 
   // Forensic: replay timeline animation on hover
@@ -207,6 +209,26 @@ export default function AkeylessDashboard() {
       if (riskFlickerRef.current) riskFlickerRef.current.forEach(clearTimeout);
     }
     return () => { if (riskFlickerRef.current) riskFlickerRef.current.forEach(clearTimeout); };
+  }, [hoveredSection]);
+
+  // Landscape: replay number count on hover
+  useEffect(() => {
+    if (hoveredSection === "landscape" && progress >= 0.65) {
+      setLandscapeHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setLandscapeHoverProgress(elapsed);
+        if (elapsed < 1) landscapeRafRef.current = requestAnimationFrame(tick);
+      };
+      landscapeRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setLandscapeHoverProgress(null);
+      if (landscapeRafRef.current) cancelAnimationFrame(landscapeRafRef.current);
+    }
+    return () => { if (landscapeRafRef.current) cancelAnimationFrame(landscapeRafRef.current); };
   }, [hoveredSection]);
 
   useEffect(() => {
@@ -640,7 +662,7 @@ export default function AkeylessDashboard() {
               <div className="flex items-center gap-[6px]">
                 <img src={item.icon} alt="" style={{ width: 18, height: 18, flexShrink: 0 }} />
                 <span className="font-bold text-[#111]" style={{ fontSize: 24, minWidth: 40 }}>
-                  {item.format(Math.round(lerp(0, item.value, p.landscape)))}
+                  {item.format(Math.round(lerp(0, item.value, landscapeHoverProgress !== null ? landscapeHoverProgress : p.landscape)))}
                 </span>
               </div>
               <span className="text-[#111]" style={{ fontSize: 7.5 }}>{item.label}</span>
