@@ -383,7 +383,7 @@ export default function AkeylessDashboard() {
         style={{ left: 18, top: 322, width: 332, height: 89,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Identity Authentication Methods in Use
         </p>
         <div className="absolute flex flex-col gap-[6px]" style={{ left: 14, top: 32, right: 14 }}>
@@ -416,7 +416,7 @@ export default function AkeylessDashboard() {
         style={{ left: 362, top: 322, width: 333, height: 89,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Enterprise Identity Landscape
         </p>
         <div className="absolute flex items-start gap-[16px]" style={{ left: 14, top: 32 }}>
@@ -445,7 +445,7 @@ export default function AkeylessDashboard() {
         style={{ left: 362, top: 422, width: 333, height: 89,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Identity Risk &amp; Exposure Analysis
         </p>
         {/* Stacked bar */}
@@ -486,7 +486,7 @@ export default function AkeylessDashboard() {
         style={{ left: 706, top: 322, width: 333, height: 190,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 22, top: 14, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 22, top: 14, fontSize: 10 }}>
           External Vault &amp; Secrets Integrations
         </p>
         {/* Donut chart */}
@@ -534,7 +534,7 @@ export default function AkeylessDashboard() {
         style={{ left: 18, top: 523, width: 250, height: 170,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Certificate Lifecycle Health
         </p>
         <div className="absolute" style={{ left: 14, top: 30, right: 14, bottom: 14 }}>
@@ -572,7 +572,7 @@ export default function AkeylessDashboard() {
         style={{ left: 280, top: 523, width: 250, height: 170,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Dynamic Secrets Issued
         </p>
         {/* Donut */}
@@ -615,7 +615,7 @@ export default function AkeylessDashboard() {
         style={{ left: 542, top: 523, width: 250, height: 170,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Enterprise Encryption &amp; Key Operations
         </p>
         <div className="absolute flex flex-col gap-[8px]" style={{ left: 14, top: 34, right: 14 }}>
@@ -644,7 +644,7 @@ export default function AkeylessDashboard() {
         style={{ left: 804, top: 523, width: 235, height: 170,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Password Health
         </p>
         <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ top: 20 }}>

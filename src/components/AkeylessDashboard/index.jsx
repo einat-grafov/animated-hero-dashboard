@@ -615,7 +615,7 @@ export default function AkeylessDashboard() {
         style={{ left: 542, top: 523, width: 250, height: 170,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Enterprise Encryption &amp; Key Operations
         </p>
         <div className="absolute flex flex-col gap-[8px]" style={{ left: 14, top: 34, right: 14 }}>
@@ -644,7 +644,7 @@ export default function AkeylessDashboard() {
         style={{ left: 804, top: 523, width: 235, height: 170,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Password Health
         </p>
         <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ top: 20 }}>
