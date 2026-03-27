@@ -201,7 +201,7 @@ export default function AkeylessDashboard() {
                 <img src={card.icon} alt="" style={{ width: 20, height: 20, flexShrink: 0 }} />
                 <div className="flex flex-col">
                   <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 17 }}>
-                    <AnimatedNumber value={card.value} progress={p.cards} />
+                    <AnimatedNumber value={card.value} progress={kpiProgress} />
                   </span>
                   <span className="text-[#111]" style={{ fontSize: 7 }}>{card.label}</span>
                   {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 6 }}>{card.sub}</span>}
