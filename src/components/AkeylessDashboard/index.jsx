@@ -416,7 +416,7 @@ export default function AkeylessDashboard() {
         style={{ left: 362, top: 322, width: 333, height: 89,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Enterprise Identity Landscape
         </p>
         <div className="absolute flex items-start gap-[16px]" style={{ left: 14, top: 32 }}>
