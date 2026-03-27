@@ -923,7 +923,7 @@ export default function AkeylessDashboard() {
           Dynamic Secrets Issued
         </p>
         {/* Pie Chart */}
-        <div className="absolute" style={{ left: 10, top: 30, width: 110, height: 110 }}>
+        <div className="absolute" style={{ left: 10, top: 38, width: 110, height: 110 }}>
           <div
             className="absolute inset-0 rounded-full"
             style={{
