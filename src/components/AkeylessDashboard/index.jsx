@@ -319,6 +319,7 @@ export default function AkeylessDashboard() {
     return () => { if (secretsRafRef.current) cancelAnimationFrame(secretsRafRef.current); };
   }, [hoveredSection]);
 
+  useEffect(() => {
     let startTime = null;
     const delay = setTimeout(() => {
       const tick = (ts) => {
