@@ -657,29 +657,29 @@ export default function AkeylessDashboard() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.85 }}
-        className="absolute rounded-[11px]"
+        className="absolute rounded-[11px] overflow-hidden"
         style={{ left: 542, top: 523, width: 250, height: 170,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 14, fontSize: 10 }}>
           Enterprise Encryption &amp; Key Operations
         </p>
-        <div className="absolute flex flex-col gap-[20px]" style={{ left: 14, top: 42, right: 14 }}>
+        <div className="absolute flex flex-col gap-[14px]" style={{ left: 14, top: 38, right: 14 }}>
           {[
             { label: "Transactions",   barPct: 90, display: "2M" },
             { label: "Tokenizers",     barPct: 35, display: "50" },
             { label: "Cloud Accounts", barPct: 30, display: "45" },
           ].map((item, i) => (
-            <div key={i} className="flex flex-col gap-[4px]">
-              <span className="text-[#111]" style={{ fontSize: 8.5 }}>{item.label}</span>
+            <div key={i} className="flex flex-col gap-[3px]">
+              <span className="text-[#111]" style={{ fontSize: 8 }}>{item.label}</span>
               <div className="flex items-center gap-[6px]">
-                <div className="flex-1 h-[14px] rounded-[4px] bg-gray-100 overflow-hidden">
+                <div className="flex-1 h-[12px] rounded-[3px] bg-gray-100 overflow-hidden">
                   <div
-                    className="h-full rounded-[4px]"
+                    className="h-full rounded-[3px]"
                     style={{ width: `${item.barPct * p.encryption}%`, backgroundColor: "#1ADDC7", transition: "none" }}
                   />
                 </div>
-                <span className="font-medium text-[#111] flex-shrink-0" style={{ fontSize: 9, minWidth: 20 }}>{item.display}</span>
+                <span className="font-medium text-[#111] flex-shrink-0" style={{ fontSize: 8.5, minWidth: 18 }}>{item.display}</span>
               </div>
             </div>
           ))}
