@@ -224,7 +224,8 @@ export default function AkeylessDashboard() {
           {agenticHovered && (
             <Tooltip
               text="Real-time monitoring of agentic AI sessions, blocked requests, and risk scores."
-              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+              position="bottom"
+              style={{ top: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
           )}
         </AnimatePresence>
