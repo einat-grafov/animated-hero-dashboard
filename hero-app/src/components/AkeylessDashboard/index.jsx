@@ -321,6 +321,26 @@ export default function AkeylessDashboard() {
     return () => { if (secretsRafRef.current) cancelAnimationFrame(secretsRafRef.current); };
   }, [hoveredSection]);
 
+  // Cert: replay bar growth on hover
+  useEffect(() => {
+    if (hoveredSection === "cert" && progress >= 0.75) {
+      setCertHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setCertHoverProgress(elapsed);
+        if (elapsed < 1) certRafRef.current = requestAnimationFrame(tick);
+      };
+      certRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setCertHoverProgress(null);
+      if (certRafRef.current) cancelAnimationFrame(certRafRef.current);
+    }
+    return () => { if (certRafRef.current) cancelAnimationFrame(certRafRef.current); };
+  }, [hoveredSection]);
+
   useEffect(() => {
     let startTime = null;
     const delay = setTimeout(() => {
