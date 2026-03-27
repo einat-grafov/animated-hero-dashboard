@@ -350,7 +350,7 @@ export default function AkeylessDashboard() {
             { label: "Status", width: "10%" },
             { label: "Date", width: "20%" },
           ].map((h) => (
-            <span key={h.label} className="font-semibold text-[#ADAEB0]" style={{ fontSize: 7, width: h.width, flexShrink: 0 }}>{h.label}</span>
+            <span key={h.label} className="font-semibold text-[#ADAEB0]" style={{ fontSize: 7, width: h.width, flexShrink: 0, textAlign: (h.label === "Status" || h.label === "Date") ? "center" : undefined }}>{h.label}</span>
           ))}
           <span style={{ width: 10, flexShrink: 0 }} />
         </div>
