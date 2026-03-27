@@ -142,8 +142,10 @@ export default function AkeylessDashboard() {
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
   const [hoveredSection, setHoveredSection] = useState(null);
   const [forensicFlickerNode, setForensicFlickerNode] = useState(-1);
+  const [identityScanRow, setIdentityScanRow] = useState(-1);
   const rafRef = useRef(null);
   const forensicFlickerRef = useRef(null);
+  const identityScanRef = useRef(null);
 
   // Forensic flicker: sequentially blink each node once on hover (not looping)
   useEffect(() => {
@@ -164,6 +166,23 @@ export default function AkeylessDashboard() {
       if (forensicFlickerRef.current) forensicFlickerRef.current.forEach(clearTimeout);
     }
     return () => { if (forensicFlickerRef.current) (Array.isArray(forensicFlickerRef.current) ? forensicFlickerRef.current.forEach(clearTimeout) : clearInterval(forensicFlickerRef.current)); };
+  }, [hoveredSection]);
+
+  // Identity scan: spotlight sweeps down rows once on hover
+  useEffect(() => {
+    if (hoveredSection === "identity") {
+      const timers = [];
+      timers.push(setTimeout(() => setIdentityScanRow(0), 150));
+      timers.push(setTimeout(() => setIdentityScanRow(1), 400));
+      timers.push(setTimeout(() => setIdentityScanRow(2), 650));
+      timers.push(setTimeout(() => setIdentityScanRow(3), 900));
+      timers.push(setTimeout(() => setIdentityScanRow(-1), 1150));
+      identityScanRef.current = timers;
+    } else {
+      setIdentityScanRow(-1);
+      if (identityScanRef.current) identityScanRef.current.forEach(clearTimeout);
+    }
+    return () => { if (identityScanRef.current) identityScanRef.current.forEach(clearTimeout); };
   }, [hoveredSection]);
 
   useEffect(() => {
@@ -264,7 +283,6 @@ export default function AkeylessDashboard() {
             transition: "box-shadow 0.3s ease, border-color 0.3s ease",
           }}
         />
-
 
         {/* Stat cards row */}
         <div className="absolute flex gap-[6px]" style={{ left: 14, top: 14, width: 497, height: 49 }}>
@@ -541,8 +559,13 @@ export default function AkeylessDashboard() {
             { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
             { logo: gcpLogo,     name: "GCP",     val: 140, max: 200, color: "#05D9C2" },
             { logo: windowsLogo, name: "Windows", val: 60,  max: 200, color: "#5C7FC6" },
-          ].map((item) => (
-            <div key={item.name} className="flex items-center gap-[8px]">
+          ].map((item, i) => (
+            <div key={item.name} className="flex items-center gap-[8px]" style={{
+              position: "relative", borderRadius: 4, padding: "2px 4px", margin: "-2px -4px",
+              background: identityScanRow === i ? `linear-gradient(90deg, ${item.color}18 0%, ${item.color}08 100%)` : "transparent",
+              boxShadow: identityScanRow === i ? `inset 0 0 0 1px ${item.color}30` : "none",
+              transition: "background 0.2s ease, box-shadow 0.2s ease",
+            }}>
               <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0, objectFit: "contain" }} />
               <span className="text-[#111] w-[44px] flex-shrink-0" style={{ fontSize: 8.5 }}>{item.name}</span>
               <div className="flex-1">
