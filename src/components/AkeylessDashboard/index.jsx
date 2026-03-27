@@ -299,11 +299,9 @@ export default function AkeylessDashboard() {
           />
         </div>
 
-        {/* Node 0: IDENTIFIED - card ABOVE timeline */}
+        {/* Node 0: IDENTIFIED - card BELOW timeline */}
         <div className="absolute" style={{ left: 60, top: 140 }}>
-          {/* Timestamp */}
-          <span className="absolute text-gray-400" style={{ fontSize: 7, top: -78, left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
-          {/* Dot */}
+          <span className="absolute text-gray-400" style={{ fontSize: 7, top: -12, left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
           <div className="rounded-full" style={{
             width: 16, height: 16, position: "relative", zIndex: 2,
             border: `2.5px solid ${FORENSIC_STAGE >= 0 ? "#05D9C2" : "#E8E9EF"}`,
@@ -312,13 +310,11 @@ export default function AkeylessDashboard() {
           }}>
             {FORENSIC_STAGE >= 0 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
           </div>
-          {/* Connector going UP */}
           <motion.div animate={{ opacity: p.forensic > 0.1 ? 1 : 0 }}
-            style={{ width: 1.5, height: 20, background: "#05D9C2", margin: "0 auto", position: "absolute", bottom: 16, left: "50%", marginLeft: -0.75 }} />
-          {/* Card ABOVE */}
-          <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : -8 }}
-            className="absolute rounded-[8px] p-[10px]"
-            style={{ width: 130, bottom: 36, left: "50%", marginLeft: -65,
+            style={{ width: 1.5, height: 20, background: "#05D9C2", margin: "0 auto" }} />
+          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : 8 }}
+            className="rounded-[8px] p-[10px]"
+            style={{ width: 130, marginLeft: -57,
               background: "rgba(5,217,194,0.06)", border: "1px solid rgba(5,217,194,0.2)" }}>
             <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[5px]" style={{ background: "#05D9C2", fontSize: 6 }}>
               <span className="font-bold text-white tracking-wide">IDENTIFIED</span>
@@ -328,9 +324,9 @@ export default function AkeylessDashboard() {
           </motion.div>
         </div>
 
-        {/* Node 1: INTERCEPTED - card BELOW timeline */}
+        {/* Node 1: INTERCEPTED - card ABOVE timeline */}
         <div className="absolute" style={{ left: 200, top: 140 }}>
-          <span className="absolute text-gray-400" style={{ fontSize: 7, top: -12, left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
+          <span className="absolute text-gray-400" style={{ fontSize: 7, top: -78, left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
           <div className="rounded-full" style={{
             width: 16, height: 16, position: "relative", zIndex: 2,
             border: `2.5px solid ${FORENSIC_STAGE >= 1 ? "#05D9C2" : "#E8E9EF"}`,
@@ -340,10 +336,10 @@ export default function AkeylessDashboard() {
             {FORENSIC_STAGE >= 1 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
           </div>
           <motion.div animate={{ opacity: p.forensic > 0.35 ? 1 : 0 }}
-            style={{ width: 1.5, height: 20, background: "#05D9C2", margin: "0 auto" }} />
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.35 ? 1 : 0, y: p.forensic > 0.35 ? 0 : 8 }}
-            className="rounded-[8px] p-[10px]"
-            style={{ width: 130, marginLeft: -57,
+            style={{ width: 1.5, height: 20, background: "#05D9C2", margin: "0 auto", position: "absolute", bottom: 16, left: "50%", marginLeft: -0.75 }} />
+          <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: p.forensic > 0.35 ? 1 : 0, y: p.forensic > 0.35 ? 0 : -8 }}
+            className="absolute rounded-[8px] p-[10px]"
+            style={{ width: 140, bottom: 36, left: "50%", marginLeft: -70,
               background: "rgba(5,217,194,0.06)", border: "1px solid rgba(5,217,194,0.2)" }}>
             <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[5px]" style={{ background: "#05D9C2", fontSize: 6 }}>
               <span className="font-bold text-white tracking-wide">INTERCEPTED</span>
