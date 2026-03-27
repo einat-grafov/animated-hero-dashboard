@@ -169,14 +169,8 @@ export default function AkeylessDashboard() {
   useEffect(() => {
     if (hoveredSection === "identity") {
       const timers = [];
-      timers.push(setTimeout(() => setIdentityScanRow(0), 200));
+      timers.push(setTimeout(() => setIdentityScanRow(99), 200));
       timers.push(setTimeout(() => setIdentityScanRow(-1), 350));
-      timers.push(setTimeout(() => setIdentityScanRow(1), 550));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 700));
-      timers.push(setTimeout(() => setIdentityScanRow(2), 900));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 1050));
-      timers.push(setTimeout(() => setIdentityScanRow(3), 1250));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 1400));
       identityScanRef.current = timers;
     } else {
       setIdentityScanRow(-1);
