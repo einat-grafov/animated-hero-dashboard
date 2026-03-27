@@ -363,15 +363,15 @@ export default function AkeylessDashboard() {
           <motion.div animate={{ opacity: p.forensic > 0.65 ? 1 : 0 }}
             style={{ width: 1.5, height: 20, background: "#05D9C2", margin: "0 auto" }} />
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.65 ? 1 : 0, y: p.forensic > 0.65 ? 0 : 8 }}
-            className="rounded-[8px] p-[10px]"
-            style={{ width: 145, marginLeft: -64,
-              background: "rgba(253,43,17,0.05)", border: "1px solid rgba(253,43,17,0.2)" }}>
-            <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[5px]" style={{ background: "#FD2B11", fontSize: 6 }}>
+            className="rounded-[8px] p-[6px]"
+            style={{ width: 130, marginLeft: -57,
+              background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+            <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#FD2B11", fontSize: 6 }}>
               <span className="font-bold text-white tracking-wide">BLOCKED</span>
             </div>
-            <p className="font-semibold text-[#111] mb-[3px]" style={{ fontSize: 8 }}>Access Denied</p>
-            <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.4 }}>Command not allowed by policy.</p>
-            <p className="text-gray-400 mt-[3px] uppercase" style={{ fontSize: 5.5, lineHeight: 1.3 }}>Policy that blocked: ForbiddenTerm</p>
+            <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>Access Denied</p>
+            <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>Command not allowed by policy.</p>
+            <p className="text-gray-400 mt-[2px] uppercase" style={{ fontSize: 5.5, lineHeight: 1.3 }}>Policy that blocked: ForbiddenTerm</p>
             <p className="text-gray-400 uppercase" style={{ fontSize: 5.5 }}>Matched Term: arr</p>
           </motion.div>
         </div>
