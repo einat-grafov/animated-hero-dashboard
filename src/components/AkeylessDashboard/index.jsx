@@ -141,7 +141,25 @@ export default function AkeylessDashboard() {
   const [agenticHovered, setAgenticHovered] = useState(false);
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
   const [hoveredSection, setHoveredSection] = useState(null);
+  const [forensicFlickerNode, setForensicFlickerNode] = useState(-1);
   const rafRef = useRef(null);
+  const forensicFlickerRef = useRef(null);
+
+  // Forensic flicker: cycle through nodes 0→1→2 on hover
+  useEffect(() => {
+    if (hoveredSection === "forensic") {
+      let node = 0;
+      setForensicFlickerNode(0);
+      forensicFlickerRef.current = setInterval(() => {
+        node = (node + 1) % 3;
+        setForensicFlickerNode(node);
+      }, 600);
+    } else {
+      setForensicFlickerNode(-1);
+      if (forensicFlickerRef.current) clearInterval(forensicFlickerRef.current);
+    }
+    return () => { if (forensicFlickerRef.current) clearInterval(forensicFlickerRef.current); };
+  }, [hoveredSection]);
 
   useEffect(() => {
     let startTime = null;
