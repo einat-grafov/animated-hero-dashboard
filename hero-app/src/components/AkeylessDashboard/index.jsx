@@ -299,6 +299,26 @@ export default function AkeylessDashboard() {
     return () => { if (encryptionRafRef.current) cancelAnimationFrame(encryptionRafRef.current); };
   }, [hoveredSection]);
 
+  // Secrets: replay counters on hover
+  useEffect(() => {
+    if (hoveredSection === "secrets" && progress >= 0.8) {
+      setSecretsHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setSecretsHoverProgress(elapsed);
+        if (elapsed < 1) secretsRafRef.current = requestAnimationFrame(tick);
+      };
+      secretsRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setSecretsHoverProgress(null);
+      if (secretsRafRef.current) cancelAnimationFrame(secretsRafRef.current);
+    }
+    return () => { if (secretsRafRef.current) cancelAnimationFrame(secretsRafRef.current); };
+  }, [hoveredSection]);
+
   useEffect(() => {
     let startTime = null;
     const delay = setTimeout(() => {
