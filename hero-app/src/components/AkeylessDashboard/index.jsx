@@ -145,6 +145,7 @@ export default function AkeylessDashboard() {
   const [identityHoverProgress, setIdentityHoverProgress] = useState(null);
   const [riskFlickerIdx, setRiskFlickerIdx] = useState(-1);
   const [landscapeHoverProgress, setLandscapeHoverProgress] = useState(null);
+  const [vaultHoverProgress, setVaultHoverProgress] = useState(null);
   const rafRef = useRef(null);
   const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
