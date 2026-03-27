@@ -88,6 +88,7 @@ function HBar({ value, max, color, progress }) {
 
 export default function AkeylessDashboard() {
   const [progress, setProgress] = useState(0);
+  const [agenticHoverKey, setAgenticHoverKey] = useState(0);
   const rafRef = useRef(null);
 
   useEffect(() => {
@@ -141,11 +142,13 @@ export default function AkeylessDashboard() {
     >
       {/* ─── TOP SECTION: Stat cards + table ─── */}
       <motion.div
+        key={`agentic-${agenticHoverKey}`}
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         className="absolute"
-        style={{ left: 18, top: 18, width: 527, height: 292 }}
+        style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer" }}
+        onMouseEnter={() => setAgenticHoverKey(k => k + 1)}
       >
         {/* Card container */}
         <div
