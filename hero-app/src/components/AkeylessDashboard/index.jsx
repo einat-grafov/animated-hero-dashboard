@@ -143,18 +143,24 @@ export default function AkeylessDashboard() {
     >
       {/* ─── TOP SECTION: Stat cards + table ─── */}
       <motion.div
-        key={`agentic-${agenticHoverKey}`}
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         className="absolute"
         style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer" }}
-        onMouseEnter={() => setAgenticHoverKey(k => k + 1)}
+        onMouseEnter={() => { setAgenticHoverKey(k => k + 1); setAgenticHovered(true); }}
+        onMouseLeave={() => setAgenticHovered(false)}
       >
         {/* Card container */}
         <div
           className="absolute inset-0 rounded-[11px]"
-          style={{ background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          style={{
+            background: "#fff",
+            boxShadow: agenticHovered
+              ? "0 8px 40px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.03)"
+              : "0 4px 27px rgba(0,0,0,0.07)",
+            transition: "box-shadow 0.3s ease",
+          }}
         />
 
         {/* Stat cards row */}
