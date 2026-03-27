@@ -279,18 +279,18 @@ export default function AkeylessDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
         className="absolute"
-        style={{ left: 559, top: 18, width: 480, height: 310, overflow: "hidden" }}
+        style={{ left: 559, top: 18, width: 480, height: 292, overflow: "hidden" }}
       >
         <div className="absolute inset-0 rounded-[11px]"
           style={{ background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }} />
 
-        <div className="absolute" style={{ left: 22, top: 14 }}>
+        <div className="absolute" style={{ left: 22, top: 12 }}>
           <p className="font-semibold text-[#111]" style={{ fontSize: 10 }}>Forensic Traceability</p>
           <p className="text-gray-400" style={{ fontSize: 7.5 }}>Incident Investigation: Session AAM-HS-177367110</p>
         </div>
 
-        {/* Timeline line - centered vertically */}
-        <div className="absolute" style={{ left: 30, top: 148, right: 30, height: 2, background: "#E8E9EF", borderRadius: 2 }}>
+        {/* Timeline line */}
+        <div className="absolute" style={{ left: 30, top: 130, right: 30, height: 2, background: "#E8E9EF", borderRadius: 2 }}>
           <motion.div
             className="h-full rounded-full"
             style={{ background: "#05D9C2" }}
@@ -299,91 +299,79 @@ export default function AkeylessDashboard() {
           />
         </div>
 
-        {/* Node 0: IDENTIFIED - card BELOW, timestamp ABOVE dot */}
-        {/* Timestamp */}
-        <span className="absolute text-gray-400" style={{ fontSize: 7, left: 68, top: 128, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
-        {/* Dot */}
+        {/* Node 0: INTERCEPTED - card BELOW, timestamp ABOVE dot */}
+        <span className="absolute text-gray-400" style={{ fontSize: 7, left: 68, top: 112, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
         <div className="absolute rounded-full" style={{
-          left: 60, top: 141, width: 16, height: 16, zIndex: 2,
+          left: 60, top: 123, width: 16, height: 16, zIndex: 2,
           border: `2.5px solid ${FORENSIC_STAGE >= 0 ? "#05D9C2" : "#E8E9EF"}`,
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all 0.4s ease",
         }}>
           {FORENSIC_STAGE >= 0 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
         </div>
-        {/* Connector down */}
         <motion.div animate={{ opacity: p.forensic > 0.1 ? 1 : 0 }}
-          className="absolute" style={{ left: 67.25, top: 157, width: 1.5, height: 18, background: "#05D9C2" }} />
-        {/* Card */}
+          className="absolute" style={{ left: 67.25, top: 139, width: 1.5, height: 14, background: "#05D9C2" }} />
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : 8 }}
-          className="absolute rounded-[8px] p-[6px]"
-          style={{ left: 8, top: 175, width: 120,
+          className="absolute rounded-[6px] p-[5px]"
+          style={{ left: 8, top: 153, width: 120,
             background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-          <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#05D9C2", fontSize: 6 }}>
+          <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#05D9C2", fontSize: 5.5 }}>
             <span className="font-bold text-white tracking-wide">INTERCEPTED</span>
           </div>
-          <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>Raw Prompt</p>
-          <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>"What is the Walmart deal ARR?"</p>
+          <p className="font-semibold text-[#111] mb-[1px]" style={{ fontSize: 7.5 }}>Raw Prompt</p>
+          <p className="text-gray-500" style={{ fontSize: 6, lineHeight: 1.3 }}>"What is the Walmart deal ARR?"</p>
         </motion.div>
 
-        {/* Node 1: INTERCEPTED - card ABOVE, timestamp BELOW dot */}
-        {/* Dot */}
+        {/* Node 1: IDENTIFIED - card ABOVE, timestamp BELOW dot */}
         <div className="absolute rounded-full" style={{
-          left: 200, top: 141, width: 16, height: 16, zIndex: 2,
+          left: 200, top: 123, width: 16, height: 16, zIndex: 2,
           border: `2.5px solid ${FORENSIC_STAGE >= 1 ? "#05D9C2" : "#E8E9EF"}`,
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all 0.4s ease",
         }}>
           {FORENSIC_STAGE >= 1 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
         </div>
-        {/* Timestamp below dot */}
-        <span className="absolute text-gray-400" style={{ fontSize: 7, left: 208, top: 160, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
-        {/* Connector up */}
+        <span className="absolute text-gray-400" style={{ fontSize: 7, left: 208, top: 142, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
         <motion.div animate={{ opacity: p.forensic > 0.35 ? 1 : 0 }}
-          className="absolute" style={{ left: 207.25, top: 123, width: 1.5, height: 18, background: "#05D9C2" }} />
-        {/* Card above */}
+          className="absolute" style={{ left: 207.25, top: 109, width: 1.5, height: 14, background: "#05D9C2" }} />
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: p.forensic > 0.35 ? 1 : 0, y: p.forensic > 0.35 ? 0 : -8 }}
-          className="absolute rounded-[8px] p-[6px]"
-          style={{ left: 148, bottom: 195, width: 120,
+          className="absolute rounded-[6px] p-[5px]"
+          style={{ left: 148, bottom: 178, width: 120,
             background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-          <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#05D9C2", fontSize: 6 }}>
+          <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#05D9C2", fontSize: 5.5 }}>
             <span className="font-bold text-white tracking-wide">IDENTIFIED</span>
           </div>
-          <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>User</p>
-          <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>'testuser@example.com' accessing HubSpot 'Walmart'.</p>
+          <p className="font-semibold text-[#111] mb-[1px]" style={{ fontSize: 7.5 }}>User</p>
+          <p className="text-gray-500" style={{ fontSize: 6, lineHeight: 1.3 }}>'testuser@example.com' accessing HubSpot 'Walmart'.</p>
         </motion.div>
 
         {/* Node 2: BLOCKED - card BELOW, timestamp ABOVE dot */}
-        {/* Timestamp */}
-        <span className="absolute text-gray-400" style={{ fontSize: 7, left: 358, top: 128, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.176</span>
-        {/* Dot */}
+        <span className="absolute text-gray-400" style={{ fontSize: 7, left: 358, top: 112, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.176</span>
         <div className="absolute rounded-full" style={{
-          left: 350, top: 141, width: 16, height: 16, zIndex: 2,
+          left: 350, top: 123, width: 16, height: 16, zIndex: 2,
           border: `2.5px solid ${FORENSIC_STAGE >= 2 ? "#05D9C2" : "#E8E9EF"}`,
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all 0.4s ease",
         }}>
           {FORENSIC_STAGE >= 2 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
         </div>
-        {/* Connector down */}
         <motion.div animate={{ opacity: p.forensic > 0.65 ? 1 : 0 }}
-          className="absolute" style={{ left: 357.25, top: 157, width: 1.5, height: 18, background: "#05D9C2" }} />
-        {/* Card */}
+          className="absolute" style={{ left: 357.25, top: 139, width: 1.5, height: 14, background: "#05D9C2" }} />
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.65 ? 1 : 0, y: p.forensic > 0.65 ? 0 : 8 }}
-          className="absolute rounded-[8px] p-[6px]"
-          style={{ left: 293, top: 175, width: 145,
+          className="absolute rounded-[6px] p-[5px]"
+          style={{ left: 293, top: 153, width: 140,
             background: "rgba(253,43,17,0.04)", border: "1px solid rgba(253,43,17,0.15)", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-          <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#FD2B11", fontSize: 6 }}>
+          <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#FD2B11", fontSize: 5.5 }}>
             <span className="font-bold text-white tracking-wide">BLOCKED</span>
           </div>
-          <p className="mb-[4px]" style={{ fontSize: 7, lineHeight: 1.3 }}><span className="font-semibold text-[#111]">Access Denied:</span> <span className="text-gray-500">Command not allowed by policy.</span></p>
-          <div className="rounded-[4px] p-[4px] mb-[3px]" style={{ background: "rgba(253,43,17,0.06)" }}>
-            <p className="uppercase text-gray-400" style={{ fontSize: 5, lineHeight: 1.2, letterSpacing: "0.3px" }}>POLICY THAT BLOCKED</p>
-            <p className="text-[#FD2B11] font-medium" style={{ fontSize: 6.5 }}>ForbiddenTerm</p>
+          <p className="mb-[3px]" style={{ fontSize: 6.5, lineHeight: 1.3 }}><span className="font-semibold text-[#111]">Access Denied:</span> <span className="text-gray-500">Command not allowed by policy.</span></p>
+          <div className="rounded-[3px] p-[3px] mb-[2px]" style={{ background: "rgba(253,43,17,0.06)" }}>
+            <p className="uppercase text-gray-400" style={{ fontSize: 4.5, lineHeight: 1.2, letterSpacing: "0.3px" }}>POLICY THAT BLOCKED</p>
+            <p className="text-[#FD2B11] font-medium" style={{ fontSize: 6 }}>ForbiddenTerm</p>
           </div>
-          <div className="rounded-[4px] p-[4px]" style={{ background: "rgba(253,43,17,0.06)" }}>
-            <p className="uppercase text-gray-400" style={{ fontSize: 5, lineHeight: 1.2, letterSpacing: "0.3px" }}>MATCHED TERM</p>
-            <p className="text-[#FD2B11] font-medium" style={{ fontSize: 6.5 }}>arr</p>
+          <div className="rounded-[3px] p-[3px]" style={{ background: "rgba(253,43,17,0.06)" }}>
+            <p className="uppercase text-gray-400" style={{ fontSize: 4.5, lineHeight: 1.2, letterSpacing: "0.3px" }}>MATCHED TERM</p>
+            <p className="text-[#FD2B11] font-medium" style={{ fontSize: 6 }}>arr</p>
           </div>
         </motion.div>
 
@@ -391,12 +379,12 @@ export default function AkeylessDashboard() {
         <motion.div
           animate={{ opacity: p.forensic > 0.8 ? 1 : 0 }}
           className="absolute flex gap-[10px] items-center justify-center"
-          style={{ left: 0, right: 0, bottom: 14 }}
+          style={{ left: 0, right: 0, bottom: 10 }}
         >
-          <button className="rounded-full border border-gray-300 px-[14px] py-[5px] text-[7.5px] text-gray-600 font-medium" style={{ background: "#fff" }}>Cancel</button>
-          <button className="rounded-full px-[14px] py-[5px] text-[7.5px] text-white font-semibold"
+          <button className="rounded-full border border-gray-300 px-[14px] py-[4px] text-[7px] text-gray-600 font-medium" style={{ background: "#fff" }}>Cancel</button>
+          <button className="rounded-full px-[14px] py-[4px] text-[7px] text-white font-semibold"
             style={{ background: "#05D9C2" }}>Kill Switch</button>
-          <button className="rounded-full px-[14px] py-[5px] text-[7.5px] font-medium"
+          <button className="rounded-full px-[14px] py-[4px] text-[7px] font-medium"
             style={{ background: "#fff", border: "1px solid #FD2B11", color: "#FD2B11" }}>Revoke Lease</button>
         </motion.div>
       </motion.div>
