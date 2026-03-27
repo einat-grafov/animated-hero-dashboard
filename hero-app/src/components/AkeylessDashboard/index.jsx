@@ -238,6 +238,7 @@ export default function AkeylessDashboard() {
   };
 
   const kpiProgress = kpiHoverProgress >= 0 ? kpiHoverProgress : p.cards;
+  const fp = forensicHoverProgress !== null ? forensicHoverProgress : p.forensic;
 
   const FORENSIC_STAGE = progress < 0.3 ? 0 : progress < 0.55 ? 1 : 2;
 
