@@ -233,9 +233,10 @@ export default function AkeylessDashboard() {
 
         {/* Table header */}
         <div className="absolute flex items-center" style={{ left: 14, top: 103, right: 14 }}>
-          {["Agent Session ID","User","Risk Score","Target Type","Status","Date","Actions"].map((h) => (
+          {["Agent Session ID","User","Risk Score","Target Type","Status","Date"].map((h) => (
             <span key={h} className="font-semibold flex-1 text-[#ADAEB0]" style={{ fontSize: 7 }}>{h}</span>
           ))}
+          <span style={{ width: 10, flexShrink: 0 }} />
         </div>
 
         {/* Table rows */}
