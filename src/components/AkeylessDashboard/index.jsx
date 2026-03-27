@@ -814,7 +814,13 @@ export default function AkeylessDashboard() {
         </p>
         {/* Donut chart */}
         <div className="absolute" style={{ left: 18, top: 42, width: 120, height: 120 }}>
-          <img src={figpie} alt="" style={{ width: "100%", height: "100%" }} />
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              background: "conic-gradient(from -90deg, #F3982E 0% 35.96%, #5C7FC6 35.96% 57.30%, #111111 57.30% 77.53%, #05D9C2 77.53% 88.76%, #275AC2 88.76% 100%)",
+              boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.7)",
+            }}
+          />
           {/* Glass effect center */}
           <div className="absolute inset-[8%] rounded-full overflow-hidden"
             style={{
