@@ -390,13 +390,14 @@ export default function AkeylessDashboard() {
         {/* Action buttons */}
         <motion.div
           animate={{ opacity: p.forensic > 0.8 ? 1 : 0 }}
-          className="absolute flex gap-[8px] items-center"
-          style={{ left: 22, bottom: 16 }}
+          className="absolute flex gap-[10px] items-center justify-center"
+          style={{ left: 0, right: 0, bottom: 14 }}
         >
-          <button className="rounded-full border border-gray-300 px-[12px] py-[4px] text-[8px] text-gray-600">Cancel</button>
-          <button className="rounded-full px-[12px] py-[4px] text-[8px] text-white font-semibold"
-            style={{ background: "#FD2B11" }}>Kill Switch</button>
-          <button className="rounded-full border border-gray-300 px-[12px] py-[4px] text-[8px] text-gray-700 font-medium">Revoke Lease</button>
+          <button className="rounded-full border border-gray-300 px-[14px] py-[5px] text-[7.5px] text-gray-600 font-medium" style={{ background: "#fff" }}>Cancel</button>
+          <button className="rounded-full px-[14px] py-[5px] text-[7.5px] text-white font-semibold"
+            style={{ background: "#05D9C2" }}>Kill Switch</button>
+          <button className="rounded-full px-[14px] py-[5px] text-[7.5px] font-medium"
+            style={{ background: "#fff", border: "1px solid #FD2B11", color: "#FD2B11" }}>Revoke Lease</button>
         </motion.div>
       </motion.div>
 
