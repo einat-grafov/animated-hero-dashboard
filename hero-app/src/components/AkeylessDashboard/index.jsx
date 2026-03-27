@@ -149,6 +149,7 @@ export default function AkeylessDashboard() {
   const [passwordHoverProgress, setPasswordHoverProgress] = useState(null);
   const [encryptionHoverProgress, setEncryptionHoverProgress] = useState(null);
   const [secretsHoverProgress, setSecretsHoverProgress] = useState(null);
+  const [certHoverProgress, setCertHoverProgress] = useState(null);
   const rafRef = useRef(null);
   const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
@@ -157,6 +158,7 @@ export default function AkeylessDashboard() {
   const passwordRafRef = useRef(null);
   const encryptionRafRef = useRef(null);
   const secretsRafRef = useRef(null);
+  const certRafRef = useRef(null);
   const riskFlickerRef = useRef(null);
 
   // Forensic: replay timeline animation on hover
@@ -317,6 +319,26 @@ export default function AkeylessDashboard() {
       if (secretsRafRef.current) cancelAnimationFrame(secretsRafRef.current);
     }
     return () => { if (secretsRafRef.current) cancelAnimationFrame(secretsRafRef.current); };
+  }, [hoveredSection]);
+
+  // Cert: replay bar growth on hover
+  useEffect(() => {
+    if (hoveredSection === "cert" && progress >= 0.75) {
+      setCertHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setCertHoverProgress(elapsed);
+        if (elapsed < 1) certRafRef.current = requestAnimationFrame(tick);
+      };
+      certRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setCertHoverProgress(null);
+      if (certRafRef.current) cancelAnimationFrame(certRafRef.current);
+    }
+    return () => { if (certRafRef.current) cancelAnimationFrame(certRafRef.current); };
   }, [hoveredSection]);
 
   useEffect(() => {
@@ -919,7 +941,7 @@ export default function AkeylessDashboard() {
               <div key={i} className="flex flex-col items-center justify-end gap-[4px]" style={{ height: "100%" }}>
                 <motion.div
                   className="rounded-t-[4px]"
-                  style={{ background: bar.gradient, height: `${bar.heightPct * p.certchart}%`, width: 28 }}
+                  style={{ background: bar.gradient, height: `${bar.heightPct * (certHoverProgress !== null ? certHoverProgress : p.certchart)}%`, width: 28 }}
                 />
                 <span className="text-center text-[#555] whitespace-nowrap" style={{ fontSize: 5.5 }}>{bar.label}</span>
               </div>
