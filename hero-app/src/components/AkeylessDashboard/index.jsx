@@ -565,6 +565,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("risk")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "risk" && (
+            <Tooltip
+              text="Risk distribution across identities — from critical to low exposure levels."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Identity Risk &amp; Exposure Analysis
         </p>
