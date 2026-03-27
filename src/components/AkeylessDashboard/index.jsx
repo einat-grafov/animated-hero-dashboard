@@ -190,10 +190,7 @@ export default function AkeylessDashboard() {
           {/* Filter icon button */}
           <div className="flex items-center justify-center rounded-[5px] shrink-0"
             style={{ width: 22, height: 22, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
-            {/* Inline filter funnel SVG */}
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <path d="M0.5 1.5h9M2 5h6M3.5 8.5h3" stroke="#727272" strokeWidth="1.2" strokeLinecap="round"/>
-            </svg>
+            <img src={new URL('../../assets/svg/filter-icon.svg', import.meta.url).href} width="10" height="10" alt="filter" />
           </div>
 
           {/* Refresh icon button */}
