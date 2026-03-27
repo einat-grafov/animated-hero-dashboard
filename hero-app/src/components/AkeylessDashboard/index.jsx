@@ -451,7 +451,7 @@ export default function AkeylessDashboard() {
           transition: "opacity 0.08s ease",
           opacity: forensicFlickerNode === 1 ? 0 : 1,
         }}>
-          {FORENSIC_STAGE >= 1 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
+          <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
         </div>
         <span className="absolute text-gray-400" style={{ fontSize: 7, left: 208, top: 142, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
         <motion.div animate={{ opacity: (p.forensic > 0.35 && forensicFlickerNode !== 1) ? 1 : 0 }}
