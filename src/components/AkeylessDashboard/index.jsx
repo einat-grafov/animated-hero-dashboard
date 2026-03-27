@@ -211,7 +211,26 @@ export default function AkeylessDashboard() {
     return () => { if (riskFlickerRef.current) riskFlickerRef.current.forEach(clearTimeout); };
   }, [hoveredSection]);
 
+  // Landscape: replay number count on hover
   useEffect(() => {
+    if (hoveredSection === "landscape" && progress >= 0.65) {
+      setLandscapeHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setLandscapeHoverProgress(elapsed);
+        if (elapsed < 1) landscapeRafRef.current = requestAnimationFrame(tick);
+      };
+      landscapeRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setLandscapeHoverProgress(null);
+      if (landscapeRafRef.current) cancelAnimationFrame(landscapeRafRef.current);
+    }
+    return () => { if (landscapeRafRef.current) cancelAnimationFrame(landscapeRafRef.current); };
+  }, [hoveredSection]);
+
     let startTime = null;
     const delay = setTimeout(() => {
       const tick = (ts) => {
