@@ -781,7 +781,7 @@ export default function AkeylessDashboard() {
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="font-semibold text-[#111]" style={{ fontSize: 25 }}>
-              <AnimatedNumber value={89} progress={p.vault} />
+              <AnimatedNumber value={89} progress={vaultHoverProgress !== null ? vaultHoverProgress : p.vault} />
             </span>
             <span className="text-[#111]" style={{ fontSize: 6.5 }}>Total Items</span>
           </div>
