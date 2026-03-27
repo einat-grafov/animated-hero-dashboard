@@ -680,7 +680,8 @@ export default function AkeylessDashboard() {
             { color: "#1ADDC7", width: 55 * p.riskbar,  label: "8000",name: "Low" },
           ].map((seg, i) => (
             <div key={i} className="flex items-center justify-center relative"
-              style={{ flex: seg.width, backgroundColor: seg.color, minWidth: 0 }}>
+              style={{ flex: seg.width, backgroundColor: seg.color, minWidth: 0,
+                opacity: riskFlickerIdx === i ? 0 : 1, transition: "opacity 0.08s ease" }}>
               <span className="font-semibold text-white absolute" style={{ fontSize: 6.5 }}>{seg.label}</span>
             </div>
           ))}
