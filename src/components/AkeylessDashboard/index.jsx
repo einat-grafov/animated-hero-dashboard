@@ -313,14 +313,14 @@ export default function AkeylessDashboard() {
           <motion.div animate={{ opacity: p.forensic > 0.1 ? 1 : 0 }}
             style={{ width: 1.5, height: 20, background: "#05D9C2", margin: "0 auto" }} />
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : 8 }}
-            className="rounded-[8px] p-[10px]"
-            style={{ width: 130, marginLeft: -57,
-              background: "rgba(5,217,194,0.06)", border: "1px solid rgba(5,217,194,0.2)" }}>
-            <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[5px]" style={{ background: "#05D9C2", fontSize: 6 }}>
+            className="rounded-[8px] p-[6px]"
+            style={{ width: 120, marginLeft: -52,
+              background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+            <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#05D9C2", fontSize: 6 }}>
               <span className="font-bold text-white tracking-wide">IDENTIFIED</span>
             </div>
-            <p className="font-semibold text-[#111] mb-[3px]" style={{ fontSize: 8 }}>User</p>
-            <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.4 }}>testuser@example.com accessing HubSpot, Walmart.</p>
+            <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>User</p>
+            <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>'testuser@example.com' accessing HubSpot 'Walmart'.</p>
           </motion.div>
         </div>
 
