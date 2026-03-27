@@ -166,7 +166,7 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.1 }}
         className="absolute"
         style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer" }}
-        onMouseEnter={() => { setAgenticHoverKey(k => k + 1); setAgenticHovered(true); }}
+        onMouseEnter={() => { setAgenticHovered(true); }}
         onMouseLeave={() => setAgenticHovered(false)}
       >
         {/* Card container */}
