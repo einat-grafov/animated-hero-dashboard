@@ -903,26 +903,26 @@ export default function AkeylessDashboard() {
           Certificate Lifecycle Health
         </p>
         <div className="absolute" style={{ left: 14, top: 30, right: 14, bottom: 14 }}>
-          <div className="relative h-full flex items-end gap-[6px] pb-[16px]">
-            {[
-              { label: "Expired",    color: "#FD2B11", height: 35 },
-              { label: "0-30 Days",  color: "#5C7FC6", height: 75 },
-              { label: "60-90 Days", color: "#8B9FD4", height: 90 },
-              { label: "90-180 Days",color: "#05D9C2", height: 110 },
-            ].map((bar, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center justify-end gap-[3px]">
-                <motion.div
-                  className="w-full rounded-t-[3px]"
-                  style={{ backgroundColor: bar.color, height: bar.height * p.certchart }}
-                />
-                <span className="text-center text-[#111]" style={{ fontSize: 5.5 }}>{bar.label}</span>
-              </div>
+          {/* Y axis labels */}
+          <div className="absolute left-0 top-0 flex flex-col justify-between items-end" style={{ height: "calc(100% - 20px)", width: 24 }}>
+            {["1000","500","100","0"].map((v) => (
+              <span key={v} className="text-[#888]" style={{ fontSize: 6 }}>{v}</span>
             ))}
           </div>
-          {/* Y axis labels */}
-          <div className="absolute top-0 left-[-2px] flex flex-col justify-between h-[calc(100%-20px)] items-end">
-            {["1000","500","100","0"].map((v) => (
-              <span key={v} className="text-[#111]" style={{ fontSize: 5.5 }}>{v}</span>
+          <div className="absolute flex items-end gap-[10px] pb-[16px]" style={{ left: 30, top: 0, right: 0, bottom: 0 }}>
+            {[
+              { label: "Expired",     gradient: "linear-gradient(180deg, #FD2B11 0%, #E8837A 100%)", heightPct: 22 },
+              { label: "0-30 Days",   gradient: "linear-gradient(180deg, #F3982E 0%, #F5BC73 100%)", heightPct: 58 },
+              { label: "60-90 Days",  gradient: "linear-gradient(180deg, #5C7FC6 0%, #8BA5D8 100%)", heightPct: 82 },
+              { label: "90-180 Days", gradient: "linear-gradient(180deg, #05D9C2 0%, #5DE8D6 100%)", heightPct: 95 },
+            ].map((bar, i) => (
+              <div key={i} className="flex-1 flex flex-col items-center justify-end gap-[4px]" style={{ height: "100%" }}>
+                <motion.div
+                  className="w-full rounded-t-[4px]"
+                  style={{ background: bar.gradient, height: `${bar.heightPct * p.certchart}%` }}
+                />
+                <span className="text-center text-[#555]" style={{ fontSize: 6 }}>{bar.label}</span>
+              </div>
             ))}
           </div>
         </div>
