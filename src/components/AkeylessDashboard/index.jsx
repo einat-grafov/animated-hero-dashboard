@@ -922,18 +922,18 @@ export default function AkeylessDashboard() {
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Dynamic Secrets Issued
         </p>
-        {/* Donut */}
-        <div className="absolute" style={{ left: 10, top: 26, width: 120, height: 120 }}>
-          <img src={donutSecrets} alt="" style={{ width: "100%", height: "100%" }} />
-          <div className="absolute inset-[8%] rounded-full overflow-hidden"
+        {/* Pie Chart */}
+        <div className="absolute" style={{ left: 10, top: 30, width: 110, height: 110 }}>
+          <img src={figpie} alt="" style={{ width: "100%", height: "100%" }} />
+          <div className="absolute inset-[22%] rounded-full overflow-hidden"
             style={{
-              background: "radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.95) 0%, rgba(230,235,245,0.7) 50%, rgba(200,210,230,0.5) 100%)",
+              background: "radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.97) 0%, rgba(240,242,248,0.85) 60%, rgba(220,225,238,0.7) 100%)",
               backdropFilter: "blur(8px)",
-              boxShadow: "inset 0 -4px 12px rgba(0,0,0,0.06), inset 0 2px 8px rgba(255,255,255,0.8)",
+              boxShadow: "inset 0 -3px 10px rgba(0,0,0,0.05), inset 0 2px 6px rgba(255,255,255,0.9)",
             }}
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-semibold text-[#111]" style={{ fontSize: 22 }}>
+            <span className="font-semibold text-[#111]" style={{ fontSize: 20 }}>
               <AnimatedNumber value={12} progress={p.secrets} />K
             </span>
             <span className="text-[#111] text-center leading-tight" style={{ fontSize: 5.5 }}>Total Dynamic<br/>Secrets</span>
