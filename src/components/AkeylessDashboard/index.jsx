@@ -383,7 +383,7 @@ export default function AkeylessDashboard() {
         style={{ left: 18, top: 322, width: 332, height: 89,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Identity Authentication Methods in Use
         </p>
         <div className="absolute flex flex-col gap-[6px]" style={{ left: 14, top: 32, right: 14 }}>
