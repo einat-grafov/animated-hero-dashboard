@@ -187,7 +187,7 @@ export default function AkeylessDashboard() {
         </div>
 
         {/* Table title + filter bar */}
-        <div className="absolute flex items-center gap-[5px]" style={{ left: 14, top: 73, right: 14 }}>
+        <div className="absolute flex items-center gap-[5px]" style={{ left: 14, top: 83, right: 14 }}>
           <span className="font-semibold text-[#0E0D1E] shrink-0" style={{ fontSize: 10 }}>Agentic Access Overview</span>
 
           {/* Filter icon button */}
@@ -232,7 +232,7 @@ export default function AkeylessDashboard() {
         </div>
 
         {/* Table header */}
-        <div className="absolute flex items-center" style={{ left: 14, top: 103, right: 14 }}>
+        <div className="absolute flex items-center" style={{ left: 14, top: 113, right: 14 }}>
           {[
             { label: "Agent Session ID", width: "22%" },
             { label: "User", width: "22%" },
@@ -254,7 +254,7 @@ export default function AkeylessDashboard() {
             animate={{ opacity: p.table > i / 5 ? 1 : 0, x: p.table > i / 5 ? 0 : -8 }}
             transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
             className="absolute flex items-center"
-            style={{ left: 14, top: 117 + i * 30, right: 14 }}
+            style={{ left: 14, top: 127 + i * 30, right: 14 }}
           >
             <span className="text-[#111] tracking-[-0.16px] truncate pr-[4px]" style={{ fontSize: 7.5, width: "22%", flexShrink: 0 }}>{row.id}</span>
             <span className="text-[#111] tracking-[-0.16px] truncate pr-[4px]" style={{ fontSize: 7.5, width: "22%", flexShrink: 0 }}>{row.user}</span>
