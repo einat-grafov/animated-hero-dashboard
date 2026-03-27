@@ -923,7 +923,7 @@ export default function AkeylessDashboard() {
           Dynamic Secrets Issued
         </p>
         {/* Pie Chart */}
-        <div className="absolute" style={{ left: 10, top: 30, width: 110, height: 110 }}>
+        <div className="absolute" style={{ left: 10, top: 38, width: 110, height: 110 }}>
           <div
             className="absolute inset-0 rounded-full"
             style={{
@@ -946,7 +946,7 @@ export default function AkeylessDashboard() {
           </div>
         </div>
         {/* Legend */}
-        <div className="absolute flex flex-col gap-[8px]" style={{ left: 138, top: 34 }}>
+        <div className="absolute flex flex-col gap-[8px]" style={{ left: 138, top: 42 }}>
           {[
             { color: "#F3982E", label: "AWS",        val: 18 },
             { color: "#275AC2", label: "GCP",        val: 12 },
