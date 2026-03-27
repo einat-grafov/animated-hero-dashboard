@@ -423,7 +423,7 @@ export default function AkeylessDashboard() {
         <span className="absolute text-gray-400" style={{ fontSize: 7, left: 68, top: 112, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
         <div className="absolute rounded-full" style={{
           left: 60, top: 123, width: 16, height: 16, zIndex: 2,
-          border: `2.5px solid ${FORENSIC_STAGE >= 0 ? "#05D9C2" : "#E8E9EF"}`,
+          border: "2.5px solid #05D9C2",
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
           transition: "opacity 0.08s ease",
           opacity: forensicFlickerNode === 0 ? 0 : 1,
