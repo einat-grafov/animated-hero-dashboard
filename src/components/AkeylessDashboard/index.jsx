@@ -145,20 +145,25 @@ export default function AkeylessDashboard() {
   const rafRef = useRef(null);
   const forensicFlickerRef = useRef(null);
 
-  // Forensic flicker: cycle through nodes 0→1→2 on hover
+  // Forensic flicker: sequentially blink each node once on hover (not looping)
   useEffect(() => {
     if (hoveredSection === "forensic") {
-      let node = 0;
-      setForensicFlickerNode(0);
-      forensicFlickerRef.current = setInterval(() => {
-        node = (node + 1) % 3;
-        setForensicFlickerNode(node);
-      }, 600);
+      const timers = [];
+      // Node 0: blink at 200ms
+      timers.push(setTimeout(() => setForensicFlickerNode(0), 200));
+      timers.push(setTimeout(() => setForensicFlickerNode(-1), 350));
+      // Node 1: blink at 550ms
+      timers.push(setTimeout(() => setForensicFlickerNode(1), 550));
+      timers.push(setTimeout(() => setForensicFlickerNode(-1), 700));
+      // Node 2: blink at 900ms
+      timers.push(setTimeout(() => setForensicFlickerNode(2), 900));
+      timers.push(setTimeout(() => setForensicFlickerNode(-1), 1050));
+      forensicFlickerRef.current = timers;
     } else {
       setForensicFlickerNode(-1);
-      if (forensicFlickerRef.current) clearInterval(forensicFlickerRef.current);
+      if (forensicFlickerRef.current) forensicFlickerRef.current.forEach(clearTimeout);
     }
-    return () => { if (forensicFlickerRef.current) clearInterval(forensicFlickerRef.current); };
+    return () => { if (forensicFlickerRef.current) (Array.isArray(forensicFlickerRef.current) ? forensicFlickerRef.current.forEach(clearTimeout) : clearInterval(forensicFlickerRef.current)); };
   }, [hoveredSection]);
 
   useEffect(() => {
@@ -421,9 +426,8 @@ export default function AkeylessDashboard() {
           left: 60, top: 123, width: 16, height: 16, zIndex: 2,
           border: `2.5px solid ${FORENSIC_STAGE >= 0 ? "#05D9C2" : "#E8E9EF"}`,
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "all 0.3s ease",
-          transform: forensicFlickerNode === 0 ? "scale(1.35)" : "scale(1)",
-          boxShadow: forensicFlickerNode === 0 ? "0 0 10px rgba(5,217,194,0.6)" : "none",
+          transition: "opacity 0.08s ease",
+          opacity: forensicFlickerNode === 0 ? 0 : 1,
         }}>
           {FORENSIC_STAGE >= 0 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
         </div>
@@ -432,7 +436,7 @@ export default function AkeylessDashboard() {
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : 8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 8, top: 153, width: 120,
-            background: "#fff", border: forensicFlickerNode === 0 ? "1.5px solid rgba(5,217,194,0.5)" : "1px solid #E8E9EF", boxShadow: forensicFlickerNode === 0 ? "0 0 12px rgba(5,217,194,0.25)" : "0 2px 12px rgba(0,0,0,0.06)", transition: "border 0.3s ease, box-shadow 0.3s ease" }}>
+            background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", transition: "opacity 0.08s ease", opacity: forensicFlickerNode === 0 ? 0 : 1 }}>
           <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#05D9C2", fontSize: 5.5 }}>
             <span className="font-bold text-white tracking-wide">INTERCEPTED</span>
           </div>
@@ -445,9 +449,8 @@ export default function AkeylessDashboard() {
           left: 200, top: 123, width: 16, height: 16, zIndex: 2,
           border: `2.5px solid ${FORENSIC_STAGE >= 1 ? "#05D9C2" : "#E8E9EF"}`,
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "all 0.3s ease",
-          transform: forensicFlickerNode === 1 ? "scale(1.35)" : "scale(1)",
-          boxShadow: forensicFlickerNode === 1 ? "0 0 10px rgba(5,217,194,0.6)" : "none",
+          transition: "opacity 0.08s ease",
+          opacity: forensicFlickerNode === 1 ? 0 : 1,
         }}>
           {FORENSIC_STAGE >= 1 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
         </div>
@@ -457,7 +460,7 @@ export default function AkeylessDashboard() {
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: p.forensic > 0.35 ? 1 : 0, y: p.forensic > 0.35 ? 0 : -8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 148, bottom: 178, width: 120,
-            background: "#fff", border: forensicFlickerNode === 1 ? "1.5px solid rgba(5,217,194,0.5)" : "1px solid #E8E9EF", boxShadow: forensicFlickerNode === 1 ? "0 0 12px rgba(5,217,194,0.25)" : "0 2px 12px rgba(0,0,0,0.06)", transition: "border 0.3s ease, box-shadow 0.3s ease" }}>
+            background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", transition: "opacity 0.08s ease", opacity: forensicFlickerNode === 1 ? 0 : 1 }}>
           <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#05D9C2", fontSize: 5.5 }}>
             <span className="font-bold text-white tracking-wide">IDENTIFIED</span>
           </div>
@@ -471,9 +474,8 @@ export default function AkeylessDashboard() {
           left: 350, top: 123, width: 16, height: 16, zIndex: 2,
           border: `2.5px solid ${FORENSIC_STAGE >= 2 ? "#05D9C2" : "#E8E9EF"}`,
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "all 0.3s ease",
-          transform: forensicFlickerNode === 2 ? "scale(1.35)" : "scale(1)",
-          boxShadow: forensicFlickerNode === 2 ? "0 0 10px rgba(5,217,194,0.6)" : "none",
+          transition: "opacity 0.08s ease",
+          opacity: forensicFlickerNode === 2 ? 0 : 1,
         }}>
           {FORENSIC_STAGE >= 2 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
         </div>
@@ -482,7 +484,7 @@ export default function AkeylessDashboard() {
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.65 ? 1 : 0, y: p.forensic > 0.65 ? 0 : 8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 293, top: 153, width: 140,
-            background: forensicFlickerNode === 2 ? "rgba(253,43,17,0.06)" : "rgba(253,43,17,0.04)", border: forensicFlickerNode === 2 ? "1.5px solid rgba(253,43,17,0.4)" : "1px solid rgba(253,43,17,0.15)", boxShadow: forensicFlickerNode === 2 ? "0 0 12px rgba(253,43,17,0.2)" : "0 2px 12px rgba(0,0,0,0.06)", transition: "border 0.3s ease, box-shadow 0.3s ease" }}>
+            background: "rgba(253,43,17,0.04)", border: "1px solid rgba(253,43,17,0.15)", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", transition: "opacity 0.08s ease", opacity: forensicFlickerNode === 2 ? 0 : 1 }}>
           <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#FD2B11", fontSize: 5.5 }}>
             <span className="font-bold text-white tracking-wide">BLOCKED</span>
           </div>
