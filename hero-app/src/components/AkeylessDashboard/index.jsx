@@ -508,15 +508,15 @@ export default function AkeylessDashboard() {
         <div className="absolute" style={{ left: 14, top: 30, width: 125, height: 125 }}>
           <img src={figpie} alt="" style={{ width: "100%", height: "100%" }} />
           {/* Center glow + number */}
-          <div className="absolute inset-[8%] rounded-full overflow-hidden">
-            <img src={ellipseGlow} alt="" style={{ width: "100%", height: "100%" }} />
-          </div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-semibold text-[#111]" style={{ fontSize: 25 }}>
-              <AnimatedNumber value={89} progress={p.vault} />
-            </span>
-            <span className="text-[#111]" style={{ fontSize: 6.5 }}>Total Items</span>
-          </div>
+           <div className="absolute inset-[18%] rounded-full overflow-hidden">
+             <img src={ellipseGlow} alt="" style={{ width: "100%", height: "100%" }} />
+           </div>
+           <div className="absolute inset-0 flex flex-col items-center justify-center">
+             <span className="font-semibold text-[#111]" style={{ fontSize: 22 }}>
+               <AnimatedNumber value={89} progress={p.vault} />
+             </span>
+             <span className="text-[#111]" style={{ fontSize: 6.5 }}>Total Items</span>
+           </div>
         </div>
         {/* Legend */}
         <div className="absolute flex flex-col gap-[6px]" style={{ left: 148, top: 38 }}>
