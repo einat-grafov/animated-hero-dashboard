@@ -249,8 +249,14 @@ export default function AkeylessDashboard() {
             className="absolute flex items-center"
             style={{ left: 14, top: 117 + i * 30, right: 14 }}
           >
-            <span className="flex-1 text-[#111] tracking-[-0.16px]" style={{ fontSize: 7.5 }}>{row.id}</span>
-            <span className="flex-1 text-[#111] tracking-[-0.16px]" style={{ fontSize: 7.5 }}>{row.user}</span>
+            <span className="flex-1 text-[#111] tracking-[-0.16px] truncate pr-[4px]" style={{ fontSize: 7.5 }}>{row.id}</span>
+            <span className="flex-1 text-[#111] tracking-[-0.16px] truncate pr-[4px]" style={{ fontSize: 7.5 }}>{row.user}</span>
+            <span className="flex-1 text-[#111] tracking-[-0.16px] font-medium" style={{ fontSize: 7.5 }}>
+              <span className="inline-flex items-center gap-[3px]">
+                {row.risk}
+                <span className="inline-block rounded-full" style={{ width: 16, height: 4, background: row.risk >= 45 ? '#FD2B11' : row.risk >= 25 ? '#F59E0B' : '#05D9C2' }} />
+              </span>
+            </span>
             <span className="flex-1 text-[#111] tracking-[-0.16px] font-medium" style={{ fontSize: 7.5 }}>{row.risk}</span>
             <div className="flex-1 flex items-center gap-[4px]">
               {row.logo && <img src={row.logo} alt="" style={{ width: 12, height: 12 }} />}
