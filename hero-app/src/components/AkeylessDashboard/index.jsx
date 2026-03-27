@@ -616,6 +616,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("vault")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "vault" && (
+            <Tooltip
+              text="Secrets synced from external vaults — AWS, Azure, HashiCorp, GCP, and K8s."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 22, top: 14, fontSize: 10 }}>
           External Vault &amp; Secrets Integrations
         </p>
