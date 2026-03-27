@@ -1019,7 +1019,7 @@ export default function AkeylessDashboard() {
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-end" style={{ paddingBottom: 0 }}>
               <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 38 }}>
-                <AnimatedNumber value={92} progress={p.password} />
+                <AnimatedNumber value={92} progress={passwordHoverProgress !== null ? passwordHoverProgress : p.password} />
               </span>
               <span className="text-[#111]" style={{ fontSize: 8, marginTop: 2 }}>Out of 100</span>
             </div>
