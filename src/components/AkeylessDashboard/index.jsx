@@ -679,6 +679,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("cert")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "cert" && (
+            <Tooltip
+              text="Certificate expiration tracking — from expired to 180-day renewal windows."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Certificate Lifecycle Health
         </p>
