@@ -147,25 +147,24 @@ export default function AkeylessDashboard() {
   const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
 
-  // Forensic flicker: sequentially blink each node once on hover (not looping)
+  // Forensic: replay timeline animation on hover
   useEffect(() => {
-    if (hoveredSection === "forensic") {
-      const timers = [];
-      // Node 0: blink at 200ms
-      timers.push(setTimeout(() => setForensicFlickerNode(0), 200));
-      timers.push(setTimeout(() => setForensicFlickerNode(-1), 350));
-      // Node 1: blink at 550ms
-      timers.push(setTimeout(() => setForensicFlickerNode(1), 550));
-      timers.push(setTimeout(() => setForensicFlickerNode(-1), 700));
-      // Node 2: blink at 900ms
-      timers.push(setTimeout(() => setForensicFlickerNode(2), 900));
-      timers.push(setTimeout(() => setForensicFlickerNode(-1), 1050));
-      forensicFlickerRef.current = timers;
+    if (hoveredSection === "forensic" && progress >= 0.5) {
+      setForensicHoverProgress(0);
+      let start = null;
+      const duration = 1200;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setForensicHoverProgress(elapsed);
+        if (elapsed < 1) forensicRafRef.current = requestAnimationFrame(tick);
+      };
+      forensicRafRef.current = requestAnimationFrame(tick);
     } else {
-      setForensicFlickerNode(-1);
-      if (forensicFlickerRef.current) forensicFlickerRef.current.forEach(clearTimeout);
+      setForensicHoverProgress(null);
+      if (forensicRafRef.current) cancelAnimationFrame(forensicRafRef.current);
     }
-    return () => { if (forensicFlickerRef.current) (Array.isArray(forensicFlickerRef.current) ? forensicFlickerRef.current.forEach(clearTimeout) : clearInterval(forensicFlickerRef.current)); };
+    return () => { if (forensicRafRef.current) cancelAnimationFrame(forensicRafRef.current); };
   }, [hoveredSection]);
 
   // Identity: replay bar fill animation on hover
