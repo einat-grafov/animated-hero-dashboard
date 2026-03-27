@@ -277,6 +277,26 @@ export default function AkeylessDashboard() {
     return () => { if (passwordRafRef.current) cancelAnimationFrame(passwordRafRef.current); };
   }, [hoveredSection]);
 
+  // Encryption: replay bars + counters on hover
+  useEffect(() => {
+    if (hoveredSection === "encryption" && progress >= 0.85) {
+      setEncryptionHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setEncryptionHoverProgress(elapsed);
+        if (elapsed < 1) encryptionRafRef.current = requestAnimationFrame(tick);
+      };
+      encryptionRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setEncryptionHoverProgress(null);
+      if (encryptionRafRef.current) cancelAnimationFrame(encryptionRafRef.current);
+    }
+    return () => { if (encryptionRafRef.current) cancelAnimationFrame(encryptionRafRef.current); };
+  }, [hoveredSection]);
+
   useEffect(() => {
     let startTime = null;
     const delay = setTimeout(() => {
