@@ -204,6 +204,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => { setAgenticHovered(true); }}
         onMouseLeave={() => setAgenticHovered(false)}
       >
+        <AnimatePresence>
+          {agenticHovered && (
+            <Tooltip
+              text="Real-time monitoring of agentic AI sessions, blocked requests, and risk scores."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         {/* Card container */}
         <div
           className="absolute inset-0 rounded-[11px] overflow-hidden"
@@ -345,6 +353,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("forensic")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "forensic" && (
+            <Tooltip
+              text="End-to-end session tracing with intercepted prompts, identity resolution, and policy enforcement."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <div className="absolute inset-0 rounded-[11px]"
           style={{ background: "#fff", boxShadow: hoveredSection === "forensic" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "forensic" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease" }} />
 
@@ -464,6 +480,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("identity")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "identity" && (
+            <Tooltip
+              text="Authentication method usage across cloud providers and platforms."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 14, fontSize: 10 }}>
           Identity Authentication Methods in Use
         </p>
@@ -542,6 +566,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("risk")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "risk" && (
+            <Tooltip
+              text="Risk distribution across identities — from critical to low exposure levels."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Identity Risk &amp; Exposure Analysis
         </p>
@@ -585,6 +617,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("vault")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "vault" && (
+            <Tooltip
+              text="Secrets synced from external vaults — AWS, Azure, HashiCorp, GCP, and K8s."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 22, top: 14, fontSize: 10 }}>
           External Vault &amp; Secrets Integrations
         </p>
@@ -639,6 +679,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("cert")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "cert" && (
+            <Tooltip
+              text="Certificate expiration tracking — from expired to 180-day renewal windows."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Certificate Lifecycle Health
         </p>
@@ -679,6 +727,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("secrets")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "secrets" && (
+            <Tooltip
+              text="Dynamic, short-lived secrets issued across AWS, GCP, databases, and AI services."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Dynamic Secrets Issued
         </p>
@@ -724,6 +780,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("encryption")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "encryption" && (
+            <Tooltip
+              text="Encryption transactions, tokenizers, and connected cloud accounts at a glance."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 14, fontSize: 10 }}>
           Enterprise Encryption &amp; Key Operations
         </p>
@@ -760,6 +824,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("password")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "password" && (
+            <Tooltip
+              text="Overall password strength score based on complexity, reuse, and rotation policies."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Password Health
         </p>
