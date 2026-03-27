@@ -925,7 +925,7 @@ export default function AkeylessDashboard() {
         {/* Pie Chart */}
         <div className="absolute" style={{ left: 10, top: 30, width: 110, height: 110 }}>
           <img src={figpie} alt="" style={{ width: "100%", height: "100%" }} />
-          <div className="absolute inset-[22%] rounded-full overflow-hidden"
+          <div className="absolute inset-[8%] rounded-full overflow-hidden"
             style={{
               background: "radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.97) 0%, rgba(240,242,248,0.85) 60%, rgba(220,225,238,0.7) 100%)",
               backdropFilter: "blur(8px)",
