@@ -693,11 +693,29 @@ export default function AkeylessDashboard() {
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Password Health
         </p>
-        <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ top: 20 }}>
-          <div className="relative" style={{ width: 120, height: 120 }}>
-            <img src={passwordGauge} alt="" style={{ width: "100%", height: "100%" }} />
-            <div className="absolute inset-0 flex flex-col items-center justify-center" style={{ top: 16 }}>
-              <span className="font-semibold text-[#111]" style={{ fontSize: 36 }}>
+        <div className="absolute inset-0 flex flex-col items-center justify-end" style={{ paddingBottom: 14 }}>
+          <div className="relative" style={{ width: 160, height: 90 }}>
+            <svg viewBox="0 0 160 90" width="160" height="90">
+              {/* Background arc */}
+              <path
+                d="M 16 82 A 64 64 0 0 1 144 82"
+                fill="none"
+                stroke="#EBEBEB"
+                strokeWidth="12"
+                strokeLinecap="round"
+              />
+              {/* Filled arc */}
+              <path
+                d="M 16 82 A 64 64 0 0 1 144 82"
+                fill="none"
+                stroke="#1ADDC7"
+                strokeWidth="12"
+                strokeLinecap="round"
+                strokeDasharray={`${201 * 0.92 * p.password} 201`}
+              />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-end" style={{ paddingBottom: 0 }}>
+              <span className="font-semibold text-[#111]" style={{ fontSize: 34 }}>
                 <AnimatedNumber value={92} progress={p.password} />
               </span>
               <span className="text-[#111]" style={{ fontSize: 8 }}>Out of 100</span>
