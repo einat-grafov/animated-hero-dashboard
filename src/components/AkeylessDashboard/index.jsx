@@ -141,31 +141,30 @@ export default function AkeylessDashboard() {
   const [agenticHovered, setAgenticHovered] = useState(false);
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
   const [hoveredSection, setHoveredSection] = useState(null);
-  const [forensicFlickerNode, setForensicFlickerNode] = useState(-1);
+  const [forensicHoverProgress, setForensicHoverProgress] = useState(null);
   const [identityHoverProgress, setIdentityHoverProgress] = useState(null);
   const rafRef = useRef(null);
-  const forensicFlickerRef = useRef(null);
+  const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
 
-  // Forensic flicker: sequentially blink each node once on hover (not looping)
+  // Forensic: replay timeline animation on hover
   useEffect(() => {
-    if (hoveredSection === "forensic") {
-      const timers = [];
-      // Node 0: blink at 200ms
-      timers.push(setTimeout(() => setForensicFlickerNode(0), 200));
-      timers.push(setTimeout(() => setForensicFlickerNode(-1), 350));
-      // Node 1: blink at 550ms
-      timers.push(setTimeout(() => setForensicFlickerNode(1), 550));
-      timers.push(setTimeout(() => setForensicFlickerNode(-1), 700));
-      // Node 2: blink at 900ms
-      timers.push(setTimeout(() => setForensicFlickerNode(2), 900));
-      timers.push(setTimeout(() => setForensicFlickerNode(-1), 1050));
-      forensicFlickerRef.current = timers;
+    if (hoveredSection === "forensic" && progress >= 0.5) {
+      setForensicHoverProgress(0);
+      let start = null;
+      const duration = 1200;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setForensicHoverProgress(elapsed);
+        if (elapsed < 1) forensicRafRef.current = requestAnimationFrame(tick);
+      };
+      forensicRafRef.current = requestAnimationFrame(tick);
     } else {
-      setForensicFlickerNode(-1);
-      if (forensicFlickerRef.current) forensicFlickerRef.current.forEach(clearTimeout);
+      setForensicHoverProgress(null);
+      if (forensicRafRef.current) cancelAnimationFrame(forensicRafRef.current);
     }
-    return () => { if (forensicFlickerRef.current) (Array.isArray(forensicFlickerRef.current) ? forensicFlickerRef.current.forEach(clearTimeout) : clearInterval(forensicFlickerRef.current)); };
+    return () => { if (forensicRafRef.current) cancelAnimationFrame(forensicRafRef.current); };
   }, [hoveredSection]);
 
   // Identity: replay bar fill animation on hover
@@ -238,6 +237,7 @@ export default function AkeylessDashboard() {
   };
 
   const kpiProgress = kpiHoverProgress >= 0 ? kpiHoverProgress : p.cards;
+  const fp = forensicHoverProgress !== null ? forensicHoverProgress : p.forensic;
 
   const FORENSIC_STAGE = progress < 0.3 ? 0 : progress < 0.55 ? 1 : 2;
 
@@ -436,7 +436,7 @@ export default function AkeylessDashboard() {
           <motion.div
             className="h-full rounded-full"
             style={{ background: "#05D9C2" }}
-            animate={{ width: `${p.forensic * 100}%` }}
+            animate={{ width: `${fp * 100}%` }}
             transition={{ duration: 0 }}
           />
         </div>
@@ -447,14 +447,13 @@ export default function AkeylessDashboard() {
           left: 60, top: 123, width: 16, height: 16, zIndex: 2,
           border: "2.5px solid #05D9C2",
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "opacity 0.08s ease",
-          opacity: forensicFlickerNode === 0 ? 0 : 1,
+          opacity: fp > 0.05 ? 1 : 0, transition: "opacity 0.15s ease",
         }}>
           <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
         </div>
-        <motion.div animate={{ opacity: (p.forensic > 0.1 && forensicFlickerNode !== 0) ? 1 : 0 }}
+        <motion.div animate={{ opacity: fp > 0.1 ? 1 : 0 }}
           className="absolute" style={{ left: 67.25, top: 139, width: 1.5, height: 14, background: "#05D9C2" }} />
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: (p.forensic > 0.1 && forensicFlickerNode !== 0) ? 1 : 0, y: p.forensic > 0.1 ? 0 : 8 }}
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: fp > 0.1 ? 1 : 0, y: fp > 0.1 ? 0 : 8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 8, top: 153, width: 120,
             background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
@@ -470,15 +469,14 @@ export default function AkeylessDashboard() {
           left: 200, top: 123, width: 16, height: 16, zIndex: 2,
           border: "2.5px solid #05D9C2",
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "opacity 0.08s ease",
-          opacity: forensicFlickerNode === 1 ? 0 : 1,
+          opacity: fp > 0.3 ? 1 : 0, transition: "opacity 0.15s ease",
         }}>
           <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
         </div>
         <span className="absolute text-gray-400" style={{ fontSize: 7, left: 208, top: 142, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
-        <motion.div animate={{ opacity: (p.forensic > 0.35 && forensicFlickerNode !== 1) ? 1 : 0 }}
+        <motion.div animate={{ opacity: fp > 0.35 ? 1 : 0 }}
           className="absolute" style={{ left: 207.25, top: 109, width: 1.5, height: 14, background: "#05D9C2" }} />
-        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: (p.forensic > 0.35 && forensicFlickerNode !== 1) ? 1 : 0, y: p.forensic > 0.35 ? 0 : -8 }}
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: fp > 0.35 ? 1 : 0, y: fp > 0.35 ? 0 : -8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 148, bottom: 178, width: 120,
             background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
@@ -495,14 +493,13 @@ export default function AkeylessDashboard() {
           left: 350, top: 123, width: 16, height: 16, zIndex: 2,
           border: "2.5px solid #05D9C2",
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "opacity 0.08s ease",
-          opacity: forensicFlickerNode === 2 ? 0 : 1,
+          opacity: fp > 0.6 ? 1 : 0, transition: "opacity 0.15s ease",
         }}>
           <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
         </div>
-        <motion.div animate={{ opacity: (p.forensic > 0.65 && forensicFlickerNode !== 2) ? 1 : 0 }}
+        <motion.div animate={{ opacity: fp > 0.65 ? 1 : 0 }}
           className="absolute" style={{ left: 357.25, top: 139, width: 1.5, height: 14, background: "#05D9C2" }} />
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: (p.forensic > 0.65 && forensicFlickerNode !== 2) ? 1 : 0, y: p.forensic > 0.65 ? 0 : 8 }}
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: fp > 0.65 ? 1 : 0, y: fp > 0.65 ? 0 : 8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 293, top: 153, width: 140,
             background: "rgba(253,43,17,0.04)", border: "1px solid rgba(253,43,17,0.15)", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
@@ -522,7 +519,7 @@ export default function AkeylessDashboard() {
 
         {/* Action buttons */}
         <motion.div
-          animate={{ opacity: p.forensic > 0.8 ? 1 : 0 }}
+          animate={{ opacity: fp > 0.8 ? 1 : 0 }}
           className="absolute flex gap-[10px] items-center justify-end"
           style={{ right: 14, bottom: 10 }}
         >
