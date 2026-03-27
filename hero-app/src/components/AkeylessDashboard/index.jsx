@@ -987,7 +987,7 @@ export default function AkeylessDashboard() {
               <span className="flex-1 text-[#111]" style={{ fontSize: 8 }}>{item.label}</span>
               <div className="rounded-[2px] flex-shrink-0" style={{ width: 14, height: 10, background: item.color, borderRadius: 3 }} />
               <span className="text-[#111] font-medium" style={{ fontSize: 8, width: 18, textAlign: "right" }}>
-                <AnimatedNumber value={item.val} progress={p.secrets} />K
+                <AnimatedNumber value={item.val} progress={secretsHoverProgress !== null ? secretsHoverProgress : p.secrets} />K
               </span>
             </div>
           ))}
