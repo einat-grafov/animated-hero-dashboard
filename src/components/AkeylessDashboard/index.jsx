@@ -562,14 +562,23 @@ export default function AkeylessDashboard() {
           ].map((item, i) => (
             <div key={item.name} className="flex items-center gap-[8px]" style={{
               position: "relative", borderRadius: 4, padding: "2px 4px", margin: "-2px -4px",
-              background: identityScanRow === i ? `linear-gradient(90deg, ${item.color}18 0%, ${item.color}08 100%)` : "transparent",
-              boxShadow: identityScanRow === i ? `inset 0 0 0 1px ${item.color}30` : "none",
-              transition: "background 0.2s ease, box-shadow 0.2s ease",
+              transform: identityScanRow === i ? "scaleY(1.15)" : "scaleY(1)",
+              transition: "transform 0.2s ease",
             }}>
               <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0, objectFit: "contain" }} />
               <span className="text-[#111] w-[44px] flex-shrink-0" style={{ fontSize: 8.5 }}>{item.name}</span>
               <div className="flex-1">
-                <HBar value={item.val} max={item.max} color={item.color} progress={p.identity} />
+                <div className="h-[6px] rounded-full bg-gray-100 overflow-hidden w-full">
+                  <div
+                    className="h-full rounded-full"
+                    style={{
+                      width: `${(item.val / item.max) * 100 * p.identity}%`,
+                      backgroundColor: item.color,
+                      transition: identityScanRow === i ? "box-shadow 0.2s ease" : "none",
+                      boxShadow: identityScanRow === i ? `0 0 8px ${item.color}90` : "none",
+                    }}
+                  />
+                </div>
               </div>
               <span className="text-[#111] w-[26px] text-right flex-shrink-0 font-medium" style={{ fontSize: 8.5 }}>
                 <AnimatedNumber value={item.val} progress={p.identity} />
