@@ -141,28 +141,30 @@ export default function AkeylessDashboard() {
   const [agenticHovered, setAgenticHovered] = useState(false);
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
   const [hoveredSection, setHoveredSection] = useState(null);
-  const [forensicFlickerNode, setForensicFlickerNode] = useState(-1);
+  const [forensicHoverProgress, setForensicHoverProgress] = useState(null);
   const [identityHoverProgress, setIdentityHoverProgress] = useState(null);
   const rafRef = useRef(null);
-  const forensicFlickerRef = useRef(null);
+  const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
 
-  // Forensic flicker: sequentially blink each node once on hover (not looping)
+  // Forensic: replay timeline animation on hover
   useEffect(() => {
-    if (hoveredSection === "forensic") {
-      const timers = [];
-      timers.push(setTimeout(() => setForensicFlickerNode(0), 200));
-      timers.push(setTimeout(() => setForensicFlickerNode(-1), 350));
-      timers.push(setTimeout(() => setForensicFlickerNode(1), 550));
-      timers.push(setTimeout(() => setForensicFlickerNode(-1), 700));
-      timers.push(setTimeout(() => setForensicFlickerNode(2), 900));
-      timers.push(setTimeout(() => setForensicFlickerNode(-1), 1050));
-      forensicFlickerRef.current = timers;
+    if (hoveredSection === "forensic" && progress >= 0.5) {
+      setForensicHoverProgress(0);
+      let start = null;
+      const duration = 1200;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setForensicHoverProgress(elapsed);
+        if (elapsed < 1) forensicRafRef.current = requestAnimationFrame(tick);
+      };
+      forensicRafRef.current = requestAnimationFrame(tick);
     } else {
-      setForensicFlickerNode(-1);
-      if (forensicFlickerRef.current) forensicFlickerRef.current.forEach(clearTimeout);
+      setForensicHoverProgress(null);
+      if (forensicRafRef.current) cancelAnimationFrame(forensicRafRef.current);
     }
-    return () => { if (forensicFlickerRef.current) (Array.isArray(forensicFlickerRef.current) ? forensicFlickerRef.current.forEach(clearTimeout) : clearInterval(forensicFlickerRef.current)); };
+    return () => { if (forensicRafRef.current) cancelAnimationFrame(forensicRafRef.current); };
   }, [hoveredSection]);
 
   // Identity scan: spotlight sweeps down rows once on hover
