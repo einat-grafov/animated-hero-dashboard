@@ -352,6 +352,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("forensic")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "forensic" && (
+            <Tooltip
+              text="End-to-end session tracing with intercepted prompts, identity resolution, and policy enforcement."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <div className="absolute inset-0 rounded-[11px]"
           style={{ background: "#fff", boxShadow: hoveredSection === "forensic" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "forensic" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease" }} />
 
