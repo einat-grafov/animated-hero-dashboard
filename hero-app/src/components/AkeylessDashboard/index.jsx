@@ -203,19 +203,39 @@ export default function AkeylessDashboard() {
         style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer" }}
         onMouseEnter={() => { setAgenticHovered(true); }}
         onMouseLeave={() => setAgenticHovered(false)}
+        onMouseMove={(e) => {
+          const rect = e.currentTarget.getBoundingClientRect();
+          e.currentTarget.style.setProperty("--glow-x", `${e.clientX - rect.left}px`);
+          e.currentTarget.style.setProperty("--glow-y", `${e.clientY - rect.top}px`);
+        }}
       >
         {/* Card container */}
         <div
-          className="absolute inset-0 rounded-[11px]"
+          className="absolute inset-0 rounded-[11px] overflow-hidden"
           style={{
             background: "#fff",
             boxShadow: agenticHovered
               ? "0 8px 40px rgba(0,0,0,0.14)"
               : "0 4px 27px rgba(0,0,0,0.07)",
-            border: agenticHovered ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent",
-            transition: "box-shadow 0.3s ease, border-color 0.3s ease",
+            border: "1.5px solid transparent",
+            transition: "box-shadow 0.3s ease",
           }}
         />
+        {/* Glow border overlay */}
+        {agenticHovered && (
+          <div
+            className="absolute inset-0 rounded-[11px] pointer-events-none"
+            style={{
+              border: "1.5px solid transparent",
+              maskImage: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+              maskComposite: "exclude",
+              WebkitMaskComposite: "xor",
+              padding: "1.5px",
+              background: `radial-gradient(300px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(5,217,194,0.7), rgba(5,217,194,0.15) 40%, transparent 70%)`,
+              transition: "opacity 0.3s ease",
+            }}
+          />
+        )}
 
         {/* Stat cards row */}
         <div className="absolute flex gap-[6px]" style={{ left: 14, top: 14, width: 497, height: 49 }}>
