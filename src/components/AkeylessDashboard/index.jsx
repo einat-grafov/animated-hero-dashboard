@@ -110,6 +110,24 @@ export default function AkeylessDashboard() {
     };
   }, []);
 
+  // KPI hover re-count animation
+  const kpiHoverRaf = useRef(null);
+  useEffect(() => {
+    if (!agenticHovered || progress < 1) return;
+    let start = null;
+    setKpiHoverProgress(0);
+    const tick = (ts) => {
+      if (!start) start = ts;
+      const t = Math.min((ts - start) / 800, 1);
+      setKpiHoverProgress(easeOut(t));
+      if (t < 1) kpiHoverRaf.current = requestAnimationFrame(tick);
+    };
+    kpiHoverRaf.current = requestAnimationFrame(tick);
+    return () => { if (kpiHoverRaf.current) cancelAnimationFrame(kpiHoverRaf.current); };
+  }, [agenticHovered]);
+
+  const kpiProgress = kpiHoverProgress >= 0 ? kpiHoverProgress : p.cards;
+
   // Section progress slices
   const p = {
     cards:      sliceProgress(progress, 0,    0.15),
