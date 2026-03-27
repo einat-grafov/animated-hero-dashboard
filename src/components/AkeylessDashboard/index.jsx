@@ -519,7 +519,7 @@ export default function AkeylessDashboard() {
 
         {/* Action buttons */}
         <motion.div
-          animate={{ opacity: p.forensic > 0.8 ? 1 : 0 }}
+          animate={{ opacity: fp > 0.8 ? 1 : 0 }}
           className="absolute flex gap-[10px] items-center justify-end"
           style={{ right: 14, bottom: 10 }}
         >
