@@ -189,7 +189,26 @@ export default function AkeylessDashboard() {
     return () => { if (identityRafRef.current) cancelAnimationFrame(identityRafRef.current); };
   }, [hoveredSection]);
 
+  // Risk: flicker Critical→High→Medium→Low on hover
   useEffect(() => {
+    if (hoveredSection === "risk") {
+      const timers = [];
+      timers.push(setTimeout(() => setRiskFlickerIdx(0), 200));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 350));
+      timers.push(setTimeout(() => setRiskFlickerIdx(1), 550));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 700));
+      timers.push(setTimeout(() => setRiskFlickerIdx(2), 900));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 1050));
+      timers.push(setTimeout(() => setRiskFlickerIdx(3), 1250));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 1400));
+      riskFlickerRef.current = timers;
+    } else {
+      setRiskFlickerIdx(-1);
+      if (riskFlickerRef.current) riskFlickerRef.current.forEach(clearTimeout);
+    }
+    return () => { if (riskFlickerRef.current) riskFlickerRef.current.forEach(clearTimeout); };
+  }, [hoveredSection]);
+
     let startTime = null;
     const delay = setTimeout(() => {
       const tick = (ts) => {
