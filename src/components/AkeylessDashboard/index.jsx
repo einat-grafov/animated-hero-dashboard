@@ -727,6 +727,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("secrets")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "secrets" && (
+            <Tooltip
+              text="Dynamic, short-lived secrets issued across AWS, GCP, databases, and AI services."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Dynamic Secrets Issued
         </p>
