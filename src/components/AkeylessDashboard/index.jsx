@@ -148,6 +148,7 @@ export default function AkeylessDashboard() {
   const [vaultHoverProgress, setVaultHoverProgress] = useState(null);
   const [passwordHoverProgress, setPasswordHoverProgress] = useState(null);
   const [encryptionHoverProgress, setEncryptionHoverProgress] = useState(null);
+  const [secretsHoverProgress, setSecretsHoverProgress] = useState(null);
   const rafRef = useRef(null);
   const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
@@ -155,6 +156,7 @@ export default function AkeylessDashboard() {
   const vaultRafRef = useRef(null);
   const passwordRafRef = useRef(null);
   const encryptionRafRef = useRef(null);
+  const secretsRafRef = useRef(null);
   const riskFlickerRef = useRef(null);
 
   // Forensic: replay timeline animation on hover
