@@ -94,7 +94,7 @@ function Tooltip({ text, style }) {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.15 }}
       className="absolute z-50 pointer-events-none"
-      style={style}
+      style={{ ...style, display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <div
         style={{
@@ -113,6 +113,9 @@ function Tooltip({ text, style }) {
       >
         {text}
       </div>
+      <svg width="16" height="8" viewBox="0 0 16 8" style={{ display: "block", marginTop: -1 }}>
+        <path d="M0 0 L8 8 L16 0" fill="#111" />
+      </svg>
     </motion.div>
   );
 }
