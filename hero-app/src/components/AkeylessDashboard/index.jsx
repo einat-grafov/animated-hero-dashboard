@@ -473,9 +473,8 @@ export default function AkeylessDashboard() {
           left: 350, top: 123, width: 16, height: 16, zIndex: 2,
           border: `2.5px solid ${FORENSIC_STAGE >= 2 ? "#05D9C2" : "#E8E9EF"}`,
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "all 0.3s ease",
-          transform: forensicFlickerNode === 2 ? "scale(1.35)" : "scale(1)",
-          boxShadow: forensicFlickerNode === 2 ? "0 0 10px rgba(5,217,194,0.6)" : "none",
+          transition: "opacity 0.08s ease",
+          opacity: forensicFlickerNode === 2 ? 0 : 1,
         }}>
           {FORENSIC_STAGE >= 2 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
         </div>
