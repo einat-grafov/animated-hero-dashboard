@@ -169,11 +169,14 @@ export default function AkeylessDashboard() {
   useEffect(() => {
     if (hoveredSection === "identity") {
       const timers = [];
-      timers.push(setTimeout(() => setIdentityScanRow(0), 150));
-      timers.push(setTimeout(() => setIdentityScanRow(1), 400));
-      timers.push(setTimeout(() => setIdentityScanRow(2), 650));
-      timers.push(setTimeout(() => setIdentityScanRow(3), 900));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 1150));
+      timers.push(setTimeout(() => setIdentityScanRow(0), 200));
+      timers.push(setTimeout(() => setIdentityScanRow(-1), 350));
+      timers.push(setTimeout(() => setIdentityScanRow(1), 550));
+      timers.push(setTimeout(() => setIdentityScanRow(-1), 700));
+      timers.push(setTimeout(() => setIdentityScanRow(2), 900));
+      timers.push(setTimeout(() => setIdentityScanRow(-1), 1050));
+      timers.push(setTimeout(() => setIdentityScanRow(3), 1250));
+      timers.push(setTimeout(() => setIdentityScanRow(-1), 1400));
       identityScanRef.current = timers;
     } else {
       setIdentityScanRow(-1);
@@ -559,8 +562,8 @@ export default function AkeylessDashboard() {
           ].map((item, i) => (
             <div key={item.name} className="flex items-center gap-[8px]" style={{
               position: "relative", borderRadius: 4, padding: "2px 4px", margin: "-2px -4px",
-              transform: identityScanRow === i ? "scaleY(1.15)" : "scaleY(1)",
-              transition: "transform 0.2s ease",
+              opacity: identityScanRow === i ? 0 : 1,
+              transition: "opacity 0.08s ease",
             }}>
               <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0, objectFit: "contain" }} />
               <span className="text-[#111] w-[44px] flex-shrink-0" style={{ fontSize: 8.5 }}>{item.name}</span>
@@ -571,8 +574,7 @@ export default function AkeylessDashboard() {
                     style={{
                       width: `${(item.val / item.max) * 100 * p.identity}%`,
                       backgroundColor: item.color,
-                      transition: identityScanRow === i ? "box-shadow 0.2s ease" : "none",
-                      boxShadow: identityScanRow === i ? `0 0 8px ${item.color}90` : "none",
+                      transition: "none",
                     }}
                   />
                 </div>
