@@ -217,6 +217,7 @@ export default function AkeylessDashboard() {
           }}
         />
 
+
         {/* Stat cards row */}
         <div className="absolute flex gap-[6px]" style={{ left: 14, top: 14, width: 497, height: 49 }}>
           {[
