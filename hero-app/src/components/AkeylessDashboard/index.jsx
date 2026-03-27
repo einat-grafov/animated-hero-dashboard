@@ -557,7 +557,7 @@ export default function AkeylessDashboard() {
           {[
             { icon: vector4,     label: "AI Agents",        value: 200, format: (v) => String(v) },
             { icon: dubleUser,   label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
-            { icon: groupMachine,label: "Maschine Identity", value: 30,  format: (v) => `${v}K` },
+            { icon: groupMachine,label: "Machine Identity", value: 30,  format: (v) => `${v}K` },
           ].map((item, i) => (
             <div key={i} className="flex flex-col items-start gap-[2px]" style={{ width: 90 }}>
               <div className="flex items-center gap-[6px]">
