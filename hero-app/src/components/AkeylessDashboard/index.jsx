@@ -86,10 +86,42 @@ function HBar({ value, max, color, progress }) {
   );
 }
 
+function Tooltip({ text, style }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.15 }}
+      className="absolute z-50 pointer-events-none"
+      style={style}
+    >
+      <div
+        style={{
+          background: "#111",
+          color: "#fff",
+          borderRadius: 12,
+          padding: "10px 16px",
+          fontSize: 11,
+          fontWeight: 500,
+          maxWidth: 220,
+          textAlign: "center",
+          lineHeight: 1.4,
+          whiteSpace: "normal",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+        }}
+      >
+        {text}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function AkeylessDashboard() {
   const [progress, setProgress] = useState(0);
   const [agenticHovered, setAgenticHovered] = useState(false);
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
+  const [hoveredSection, setHoveredSection] = useState(null);
   const rafRef = useRef(null);
 
   useEffect(() => {
