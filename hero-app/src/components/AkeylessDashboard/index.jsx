@@ -86,10 +86,42 @@ function HBar({ value, max, color, progress }) {
   );
 }
 
+function Tooltip({ text, style }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.15 }}
+      className="absolute z-50 pointer-events-none"
+      style={style}
+    >
+      <div
+        style={{
+          background: "#111",
+          color: "#fff",
+          borderRadius: 12,
+          padding: "10px 16px",
+          fontSize: 11,
+          fontWeight: 500,
+          maxWidth: 220,
+          textAlign: "center",
+          lineHeight: 1.4,
+          whiteSpace: "normal",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+        }}
+      >
+        {text}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function AkeylessDashboard() {
   const [progress, setProgress] = useState(0);
   const [agenticHovered, setAgenticHovered] = useState(false);
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
+  const [hoveredSection, setHoveredSection] = useState(null);
   const rafRef = useRef(null);
 
   useEffect(() => {
@@ -454,8 +486,19 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.6 }}
         className="absolute rounded-[11px]"
         style={{ left: 362, top: 322, width: 333, height: 89,
-          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          background: "#fff", boxShadow: hoveredSection === "landscape" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)",
+          transition: "box-shadow 0.3s", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredSection("landscape")}
+        onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "landscape" && (
+            <Tooltip
+              text="Unified visibility across AI, human, and machine identities."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Enterprise Identity Landscape
         </p>
