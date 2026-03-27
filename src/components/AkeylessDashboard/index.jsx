@@ -88,7 +88,8 @@ function HBar({ value, max, color, progress }) {
 
 export default function AkeylessDashboard() {
   const [progress, setProgress] = useState(0);
-  const [agenticHoverKey, setAgenticHoverKey] = useState(0);
+  const [agenticHovered, setAgenticHovered] = useState(false);
+  const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
   const rafRef = useRef(null);
 
   useEffect(() => {
@@ -109,6 +110,22 @@ export default function AkeylessDashboard() {
     };
   }, []);
 
+  // KPI hover re-count animation
+  const kpiHoverRaf = useRef(null);
+  useEffect(() => {
+    if (!agenticHovered || progress < 1) return;
+    let start = null;
+    setKpiHoverProgress(0);
+    const tick = (ts) => {
+      if (!start) start = ts;
+      const t = Math.min((ts - start) / 800, 1);
+      setKpiHoverProgress(easeOut(t));
+      if (t < 1) kpiHoverRaf.current = requestAnimationFrame(tick);
+    };
+    kpiHoverRaf.current = requestAnimationFrame(tick);
+    return () => { if (kpiHoverRaf.current) cancelAnimationFrame(kpiHoverRaf.current); };
+  }, [agenticHovered]);
+
   // Section progress slices
   const p = {
     cards:      sliceProgress(progress, 0,    0.15),
@@ -123,6 +140,8 @@ export default function AkeylessDashboard() {
     encryption: sliceProgress(progress, 0.55, 0.85),
     password:   sliceProgress(progress, 0.6,  0.9),
   };
+
+  const kpiProgress = kpiHoverProgress >= 0 ? kpiHoverProgress : p.cards;
 
   const FORENSIC_STAGE = progress < 0.3 ? 0 : progress < 0.55 ? 1 : 2;
 
@@ -142,18 +161,24 @@ export default function AkeylessDashboard() {
     >
       {/* ─── TOP SECTION: Stat cards + table ─── */}
       <motion.div
-        key={`agentic-${agenticHoverKey}`}
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         className="absolute"
         style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer" }}
-        onMouseEnter={() => setAgenticHoverKey(k => k + 1)}
+        onMouseEnter={() => { setAgenticHovered(true); }}
+        onMouseLeave={() => setAgenticHovered(false)}
       >
         {/* Card container */}
         <div
           className="absolute inset-0 rounded-[11px]"
-          style={{ background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          style={{
+            background: "#fff",
+            boxShadow: agenticHovered
+              ? "0 8px 40px rgba(0,0,0,0.14), 0 0 0 1px rgba(0,0,0,0.03)"
+              : "0 4px 27px rgba(0,0,0,0.07)",
+            transition: "box-shadow 0.3s ease",
+          }}
         />
 
         {/* Stat cards row */}
@@ -176,7 +201,7 @@ export default function AkeylessDashboard() {
                 <img src={card.icon} alt="" style={{ width: 20, height: 20, flexShrink: 0 }} />
                 <div className="flex flex-col">
                   <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 17 }}>
-                    <AnimatedNumber value={card.value} progress={p.cards} />
+                    <AnimatedNumber value={card.value} progress={kpiProgress} />
                   </span>
                   <span className="text-[#111]" style={{ fontSize: 7 }}>{card.label}</span>
                   {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 6 }}>{card.sub}</span>}
