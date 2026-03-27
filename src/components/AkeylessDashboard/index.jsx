@@ -145,20 +145,25 @@ export default function AkeylessDashboard() {
   const rafRef = useRef(null);
   const forensicFlickerRef = useRef(null);
 
-  // Forensic flicker: cycle through nodes 0→1→2 on hover
+  // Forensic flicker: sequentially blink each node once on hover (not looping)
   useEffect(() => {
     if (hoveredSection === "forensic") {
-      let node = 0;
-      setForensicFlickerNode(0);
-      forensicFlickerRef.current = setInterval(() => {
-        node = (node + 1) % 3;
-        setForensicFlickerNode(node);
-      }, 600);
+      const timers = [];
+      // Node 0: blink at 200ms
+      timers.push(setTimeout(() => setForensicFlickerNode(0), 200));
+      timers.push(setTimeout(() => setForensicFlickerNode(-1), 350));
+      // Node 1: blink at 550ms
+      timers.push(setTimeout(() => setForensicFlickerNode(1), 550));
+      timers.push(setTimeout(() => setForensicFlickerNode(-1), 700));
+      // Node 2: blink at 900ms
+      timers.push(setTimeout(() => setForensicFlickerNode(2), 900));
+      timers.push(setTimeout(() => setForensicFlickerNode(-1), 1050));
+      forensicFlickerRef.current = timers;
     } else {
       setForensicFlickerNode(-1);
-      if (forensicFlickerRef.current) clearInterval(forensicFlickerRef.current);
+      if (forensicFlickerRef.current) forensicFlickerRef.current.forEach(clearTimeout);
     }
-    return () => { if (forensicFlickerRef.current) clearInterval(forensicFlickerRef.current); };
+    return () => { if (forensicFlickerRef.current) (Array.isArray(forensicFlickerRef.current) ? forensicFlickerRef.current.forEach(clearTimeout) : clearInterval(forensicFlickerRef.current)); };
   }, [hoveredSection]);
 
   useEffect(() => {
