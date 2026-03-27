@@ -312,7 +312,7 @@ export default function AkeylessDashboard() {
         <motion.div animate={{ opacity: p.forensic > 0.1 ? 1 : 0 }}
           className="absolute" style={{ left: 67.25, top: 139, width: 1.5, height: 14, background: "#05D9C2" }} />
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : 8 }}
-          className="absolute rounded-[6px] p-[5px]"
+          className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 8, top: 153, width: 120,
             background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
           <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#05D9C2", fontSize: 5.5 }}>
