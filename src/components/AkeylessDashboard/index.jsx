@@ -209,6 +209,7 @@ export default function AkeylessDashboard() {
     return () => { if (riskFlickerRef.current) riskFlickerRef.current.forEach(clearTimeout); };
   }, [hoveredSection]);
 
+  useEffect(() => {
     let startTime = null;
     const delay = setTimeout(() => {
       const tick = (ts) => {
