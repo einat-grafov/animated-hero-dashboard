@@ -905,7 +905,7 @@ export default function AkeylessDashboard() {
         <div className="absolute" style={{ left: 6, top: 32, right: 6, bottom: 6 }}>
           {/* Y axis labels */}
           <div className="absolute left-0 top-0 flex flex-col justify-between items-end" style={{ height: "calc(100% - 18px)", width: 20 }}>
-            {["1000","500","250","0"].map((v) => (
+            {["1000","750","500","250","0"].map((v) => (
               <span key={v} className="text-[#888]" style={{ fontSize: 5.5 }}>{v}</span>
             ))}
           </div>
