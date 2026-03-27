@@ -289,13 +289,8 @@ export default function AkeylessDashboard() {
           <p className="text-gray-400" style={{ fontSize: 7.5 }}>Incident Investigation: Session AAM-HS-177367110</p>
         </div>
 
-        {/* Timeline timestamps - above the line */}
-        {["17:58:20.171","17:58:20.171","17:58:20.176"].map((ts, i) => (
-          <span key={i} className="absolute text-gray-400" style={{ fontSize: 7, left: 26 + i * 190, top: 52 }}>{ts}</span>
-        ))}
-
         {/* Timeline line */}
-        <div className="absolute" style={{ left: 40, top: 78, right: 40, height: 3, background: "#E8E9EF", borderRadius: 2 }}>
+        <div className="absolute" style={{ left: 40, top: 68, right: 40, height: 2, background: "#E8E9EF", borderRadius: 2 }}>
           <motion.div
             className="h-full rounded-full"
             style={{ background: "#05D9C2" }}
@@ -304,87 +299,67 @@ export default function AkeylessDashboard() {
           />
         </div>
 
-        {/* Timeline dots */}
-        {[0, 1, 2].map((dot) => {
-          const left = 40 + dot * 190;
-          const active = FORENSIC_STAGE >= dot;
+        {/* Timeline nodes with timestamps, connector lines, and cards */}
+        {[
+          { ts: "17:58:20.171", left: 40, stage: 0, threshold: 0.1, label: "IDENTIFIED", color: "#05D9C2", title: "User", desc: "testuser@example.com accessing HubSpot, Walmart.", cardWidth: 135 },
+          { ts: "17:58:20.171", left: 200, stage: 1, threshold: 0.35, label: "INTERCEPTED", color: "#05D9C2", title: "Raw Prompt", desc: '"What is the Walmart deal ARR?"', cardWidth: 140, italic: true },
+          { ts: "17:58:20.176", left: 370, stage: 2, threshold: 0.65, label: "BLOCKED", color: "#FD2B11", title: "Access Denied", desc: "Command not allowed by policy.", cardWidth: 145, extra: true },
+        ].map((node, i) => {
+          const active = FORENSIC_STAGE >= node.stage;
+          const visible = p.forensic > node.threshold;
           return (
-            <div
-              key={dot}
-              className="absolute rounded-full"
-              style={{
-                left: left - 8,
-                top: 70,
-                width: 18,
-                height: 18,
-                border: `3px solid ${active ? "#05D9C2" : "#E8E9EF"}`,
-                background: active ? "#05D9C2" : "#fff",
-                transition: "all 0.4s ease",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {active && <div className="rounded-full" style={{ width: 6, height: 6, background: "#fff" }} />}
+            <div key={i} className="absolute" style={{ left: node.left - 8, top: 42 }}>
+              {/* Timestamp above */}
+              <span className="text-gray-400" style={{ fontSize: 7, position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>{node.ts}</span>
+
+              {/* Dot */}
+              <div
+                className="rounded-full"
+                style={{
+                  width: 16, height: 16, marginTop: 18,
+                  border: `2.5px solid ${active ? "#05D9C2" : "#E8E9EF"}`,
+                  background: active ? "#fff" : "#fff",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  transition: "all 0.4s ease",
+                }}
+              >
+                {active && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
+              </div>
+
+              {/* Vertical connector line */}
+              <motion.div
+                animate={{ opacity: visible ? 1 : 0 }}
+                style={{ width: 1.5, height: 22, background: "#05D9C2", margin: "0 auto" }}
+              />
+
+              {/* Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 8 }}
+                className="rounded-[8px] p-[10px]"
+                style={{
+                  width: node.cardWidth,
+                  marginLeft: -((node.cardWidth - 16) / 2),
+                  background: node.color === "#FD2B11" ? "rgba(253,43,17,0.05)" : "rgba(5,217,194,0.06)",
+                  border: `1px solid ${node.color === "#FD2B11" ? "rgba(253,43,17,0.2)" : "rgba(5,217,194,0.2)"}`,
+                }}
+              >
+                <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[5px]"
+                  style={{ background: node.color, fontSize: 6 }}>
+                  <span className="font-bold text-white tracking-wide">{node.label}</span>
+                </div>
+                <p className="font-semibold text-[#111] mb-[3px]" style={{ fontSize: 8 }}>{node.title}</p>
+                <p className={`text-gray-500 ${node.italic ? "italic" : ""}`} style={{ fontSize: 6.5, lineHeight: 1.4 }}>{node.desc}</p>
+                {node.extra && (
+                  <>
+                    <p className="text-gray-400 mt-[3px] uppercase" style={{ fontSize: 5.5, lineHeight: 1.3 }}>Policy that blocked: ForbiddenTerm</p>
+                    <p className="text-gray-400 uppercase" style={{ fontSize: 5.5 }}>Matched Term: arr</p>
+                  </>
+                )}
+              </motion.div>
             </div>
           );
         })}
-
-        {/* Stage cards */}
-        <AnimatePresence>
-          {/* IDENTIFIED */}
-          <motion.div
-            key="identified"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : 10 }}
-            className="absolute rounded-[8px] p-[10px]"
-            style={{ left: 22, top: 98, width: 135,
-              background: "rgba(5,217,194,0.06)", border: "1px solid rgba(5,217,194,0.2)" }}
-          >
-            <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[5px]"
-              style={{ background: "#05D9C2", fontSize: 6 }}>
-              <span className="font-bold text-white tracking-wide">IDENTIFIED</span>
-            </div>
-            <p className="font-semibold text-[#111] mb-[3px]" style={{ fontSize: 8 }}>User</p>
-            <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.4 }}>testuser@example.com accessing HubSpot, Walmart.</p>
-          </motion.div>
-
-          {/* INTERCEPTED */}
-          <motion.div
-            key="intercepted"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: p.forensic > 0.35 ? 1 : 0, y: p.forensic > 0.35 ? 0 : 10 }}
-            className="absolute rounded-[8px] p-[10px]"
-            style={{ left: 170, top: 98, width: 140,
-              background: "rgba(5,217,194,0.06)", border: "1px solid rgba(5,217,194,0.2)" }}
-          >
-            <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[5px]"
-              style={{ background: "#05D9C2", fontSize: 6 }}>
-              <span className="font-bold text-white tracking-wide">INTERCEPTED</span>
-            </div>
-            <p className="font-semibold text-[#111] mb-[3px]" style={{ fontSize: 8 }}>Raw Prompt</p>
-            <p className="text-gray-500 italic" style={{ fontSize: 6.5, lineHeight: 1.4 }}>"What is the Walmart deal ARR?"</p>
-          </motion.div>
-
-          {/* BLOCKED */}
-          <motion.div
-            key="blocked"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: p.forensic > 0.65 ? 1 : 0, y: p.forensic > 0.65 ? 0 : 10 }}
-            className="absolute rounded-[8px] p-[10px]"
-            style={{ left: 330, top: 98, width: 145,
-              background: "rgba(253,43,17,0.05)", border: "1px solid rgba(253,43,17,0.2)" }}
-          >
-            <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[5px]"
-              style={{ background: "#FD2B11", fontSize: 6 }}>
-              <span className="font-bold text-white tracking-wide">BLOCKED</span>
-            </div>
-            <p className="font-semibold text-[#111] mb-[3px]" style={{ fontSize: 8 }}>Access Denied</p>
-            <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.4 }}>Command not allowed by policy.</p>
-            <p className="text-gray-400 mt-[3px] uppercase" style={{ fontSize: 5.5, lineHeight: 1.3 }}>Policy that blocked: ForbiddenTerm</p>
-            <p className="text-gray-400 uppercase" style={{ fontSize: 5.5 }}>Matched Term: arr</p>
-          </motion.div>
-        </AnimatePresence>
 
         {/* Action buttons */}
         <motion.div
