@@ -148,6 +148,7 @@ export default function AkeylessDashboard() {
   const [vaultHoverProgress, setVaultHoverProgress] = useState(null);
   const [passwordHoverProgress, setPasswordHoverProgress] = useState(null);
   const [encryptionHoverProgress, setEncryptionHoverProgress] = useState(null);
+  const [secretsHoverProgress, setSecretsHoverProgress] = useState(null);
   const rafRef = useRef(null);
   const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
@@ -155,6 +156,7 @@ export default function AkeylessDashboard() {
   const vaultRafRef = useRef(null);
   const passwordRafRef = useRef(null);
   const encryptionRafRef = useRef(null);
+  const secretsRafRef = useRef(null);
   const riskFlickerRef = useRef(null);
 
   // Forensic: replay timeline animation on hover
@@ -295,6 +297,26 @@ export default function AkeylessDashboard() {
       if (encryptionRafRef.current) cancelAnimationFrame(encryptionRafRef.current);
     }
     return () => { if (encryptionRafRef.current) cancelAnimationFrame(encryptionRafRef.current); };
+  }, [hoveredSection]);
+
+  // Secrets: replay counters on hover
+  useEffect(() => {
+    if (hoveredSection === "secrets" && progress >= 0.8) {
+      setSecretsHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setSecretsHoverProgress(elapsed);
+        if (elapsed < 1) secretsRafRef.current = requestAnimationFrame(tick);
+      };
+      secretsRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setSecretsHoverProgress(null);
+      if (secretsRafRef.current) cancelAnimationFrame(secretsRafRef.current);
+    }
+    return () => { if (secretsRafRef.current) cancelAnimationFrame(secretsRafRef.current); };
   }, [hoveredSection]);
 
   useEffect(() => {
@@ -946,7 +968,7 @@ export default function AkeylessDashboard() {
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="font-semibold text-[#111]" style={{ fontSize: 20 }}>
-              <AnimatedNumber value={60} progress={p.secrets} />K
+              <AnimatedNumber value={60} progress={secretsHoverProgress !== null ? secretsHoverProgress : p.secrets} />K
             </span>
             <span className="text-[#111] text-center leading-tight" style={{ fontSize: 5.5 }}>Total Dynamic<br/>Secrets</span>
           </div>
@@ -965,7 +987,7 @@ export default function AkeylessDashboard() {
               <span className="flex-1 text-[#111]" style={{ fontSize: 8 }}>{item.label}</span>
               <div className="rounded-[2px] flex-shrink-0" style={{ width: 14, height: 10, background: item.color, borderRadius: 3 }} />
               <span className="text-[#111] font-medium" style={{ fontSize: 8, width: 18, textAlign: "right" }}>
-                <AnimatedNumber value={item.val} progress={p.secrets} />K
+                <AnimatedNumber value={item.val} progress={secretsHoverProgress !== null ? secretsHoverProgress : p.secrets} />K
               </span>
             </div>
           ))}
