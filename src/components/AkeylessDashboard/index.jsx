@@ -86,7 +86,27 @@ function HBar({ value, max, color, progress }) {
   );
 }
 
-function Tooltip({ text, style }) {
+function Tooltip({ text, style, position = "top" }) {
+  const bubbleStyle = {
+    background: "#111",
+    color: "#fff",
+    borderRadius: 12,
+    padding: "10px 16px",
+    fontSize: 11,
+    fontWeight: 500,
+    maxWidth: 220,
+    textAlign: "center",
+    lineHeight: 1.4,
+    whiteSpace: "normal",
+    boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+  };
+
+  const isRight = position === "right";
+  const isBottom = position === "bottom";
+
+  const flexDir = isRight ? "row" : "column";
+  const alignItems = "center";
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -94,28 +114,24 @@ function Tooltip({ text, style }) {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.15 }}
       className="absolute z-50 pointer-events-none"
-      style={{ ...style, display: "flex", flexDirection: "column", alignItems: "center" }}
+      style={{ ...style, display: "flex", flexDirection: flexDir, alignItems }}
     >
-      <div
-        style={{
-          background: "#111",
-          color: "#fff",
-          borderRadius: 12,
-          padding: "10px 16px",
-          fontSize: 11,
-          fontWeight: 500,
-          maxWidth: 220,
-          textAlign: "center",
-          lineHeight: 1.4,
-          whiteSpace: "normal",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
-        }}
-      >
-        {text}
-      </div>
-      <svg width="16" height="8" viewBox="0 0 16 8" style={{ display: "block", marginTop: -1 }}>
-        <path d="M0 0 L8 8 L16 0" fill="#111" />
-      </svg>
+      {isBottom && (
+        <svg width="16" height="8" viewBox="0 0 16 8" style={{ display: "block", marginBottom: -1 }}>
+          <path d="M0 8 L8 0 L16 8" fill="#111" />
+        </svg>
+      )}
+      {isRight && (
+        <svg width="8" height="16" viewBox="0 0 8 16" style={{ display: "block", marginRight: -1 }}>
+          <path d="M8 0 L0 8 L8 16" fill="#111" />
+        </svg>
+      )}
+      <div style={bubbleStyle}>{text}</div>
+      {position === "top" && (
+        <svg width="16" height="8" viewBox="0 0 16 8" style={{ display: "block", marginTop: -1 }}>
+          <path d="M0 0 L8 8 L16 0" fill="#111" />
+        </svg>
+      )}
     </motion.div>
   );
 }
