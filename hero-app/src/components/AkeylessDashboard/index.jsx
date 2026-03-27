@@ -436,15 +436,15 @@ export default function AkeylessDashboard() {
         </p>
         <div className="absolute flex items-start gap-[24px]" style={{ left: 14, top: 34 }}>
           {[
-            { icon: vector4,     label: "Ai Adgents",      value: 200,  suffix: "" },
-            { icon: dubleUser,   label: "Human Identity",  value: 8000, suffix: "K", display: "8K" },
-            { icon: groupMachine,label: "Maschine Identity",value: 30000,suffix: "K", display: "30K" },
+            { icon: vector4,     label: "Ai Adgents",       value: 200, format: (v) => String(v), width: 50 },
+            { icon: dubleUser,   label: "Human Identity",   value: 8,   format: (v) => `${v}K`, width: 50 },
+            { icon: groupMachine,label: "Maschine Identity", value: 30,  format: (v) => `${v}K`, width: 55 },
           ].map((item, i) => (
-            <div key={i} className="flex flex-col items-start gap-[2px]">
+            <div key={i} className="flex flex-col items-start gap-[2px]" style={{ minWidth: item.width }}>
               <div className="flex items-center gap-[6px]">
-                <img src={item.icon} alt="" style={{ width: 18, height: 18 }} />
+                <img src={item.icon} alt="" style={{ width: 18, height: 18, flexShrink: 0 }} />
                 <span className="font-bold text-[#111]" style={{ fontSize: 24 }}>
-                  {item.display || <AnimatedNumber value={item.value} progress={p.landscape} />}
+                  {item.format(Math.round(lerp(0, item.value, p.landscape)))}
                 </span>
               </div>
               <span className="text-[#111]" style={{ fontSize: 7.5 }}>{item.label}</span>
