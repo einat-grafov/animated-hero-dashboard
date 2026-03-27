@@ -339,13 +339,13 @@ export default function AkeylessDashboard() {
             style={{ width: 1.5, height: 20, background: "#05D9C2", margin: "0 auto", position: "absolute", bottom: 16, left: "50%", marginLeft: -0.75 }} />
           <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: p.forensic > 0.35 ? 1 : 0, y: p.forensic > 0.35 ? 0 : -8 }}
             className="absolute rounded-[8px] p-[10px]"
-            style={{ width: 140, bottom: 36, left: "50%", marginLeft: -70,
-              background: "rgba(5,217,194,0.06)", border: "1px solid rgba(5,217,194,0.2)" }}>
+            style={{ width: 120, bottom: 36, left: "50%", marginLeft: -60,
+              background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
             <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[5px]" style={{ background: "#05D9C2", fontSize: 6 }}>
               <span className="font-bold text-white tracking-wide">INTERCEPTED</span>
             </div>
             <p className="font-semibold text-[#111] mb-[3px]" style={{ fontSize: 8 }}>Raw Prompt</p>
-            <p className="text-gray-500 italic" style={{ fontSize: 6.5, lineHeight: 1.4 }}>"What is the Walmart deal ARR?"</p>
+            <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.4 }}>"What is the Walmart deal ARR?"</p>
           </motion.div>
         </div>
 
