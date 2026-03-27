@@ -371,15 +371,20 @@ export default function AkeylessDashboard() {
         {/* Card */}
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.65 ? 1 : 0, y: p.forensic > 0.65 ? 0 : 8 }}
           className="absolute rounded-[8px] p-[6px]"
-          style={{ left: 293, top: 175, width: 130,
-            background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          style={{ left: 293, top: 175, width: 145,
+            background: "rgba(253,43,17,0.04)", border: "1px solid rgba(253,43,17,0.15)", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
           <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#FD2B11", fontSize: 6 }}>
             <span className="font-bold text-white tracking-wide">BLOCKED</span>
           </div>
-          <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>Access Denied</p>
-          <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>Command not allowed by policy.</p>
-          <p className="text-gray-400 mt-[2px] uppercase" style={{ fontSize: 5.5, lineHeight: 1.3 }}>Policy that blocked: ForbiddenTerm</p>
-          <p className="text-gray-400 uppercase" style={{ fontSize: 5.5 }}>Matched Term: arr</p>
+          <p className="mb-[4px]" style={{ fontSize: 7, lineHeight: 1.3 }}><span className="font-semibold text-[#111]">Access Denied:</span> <span className="text-gray-500">Command not allowed by policy.</span></p>
+          <div className="rounded-[4px] p-[4px] mb-[3px]" style={{ background: "rgba(253,43,17,0.06)" }}>
+            <p className="uppercase text-gray-400" style={{ fontSize: 5, lineHeight: 1.2, letterSpacing: "0.3px" }}>POLICY THAT BLOCKED</p>
+            <p className="text-[#FD2B11] font-medium" style={{ fontSize: 6.5 }}>ForbiddenTerm</p>
+          </div>
+          <div className="rounded-[4px] p-[4px]" style={{ background: "rgba(253,43,17,0.06)" }}>
+            <p className="uppercase text-gray-400" style={{ fontSize: 5, lineHeight: 1.2, letterSpacing: "0.3px" }}>MATCHED TERM</p>
+            <p className="text-[#FD2B11] font-medium" style={{ fontSize: 6.5 }}>arr</p>
+          </div>
         </motion.div>
 
         {/* Action buttons */}
