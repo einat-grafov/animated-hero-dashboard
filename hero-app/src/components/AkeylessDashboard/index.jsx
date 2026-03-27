@@ -203,11 +203,6 @@ export default function AkeylessDashboard() {
         style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer" }}
         onMouseEnter={() => { setAgenticHovered(true); }}
         onMouseLeave={() => setAgenticHovered(false)}
-        onMouseMove={(e) => {
-          const rect = e.currentTarget.getBoundingClientRect();
-          e.currentTarget.style.setProperty("--glow-x", `${e.clientX - rect.left}px`);
-          e.currentTarget.style.setProperty("--glow-y", `${e.clientY - rect.top}px`);
-        }}
       >
         {/* Card container */}
         <div
@@ -217,36 +212,10 @@ export default function AkeylessDashboard() {
             boxShadow: agenticHovered
               ? "0 8px 40px rgba(0,0,0,0.14)"
               : "0 4px 27px rgba(0,0,0,0.07)",
-            border: agenticHovered ? "1.5px solid rgba(5,217,194,0.15)" : "1.5px solid transparent",
+            border: agenticHovered ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent",
             transition: "box-shadow 0.3s ease, border-color 0.3s ease",
           }}
         />
-        {/* Glow border overlay */}
-        {agenticHovered && (
-          <>
-            {/* Outer glow behind the card */}
-            <div
-              className="absolute pointer-events-none rounded-[13px]"
-              style={{
-                inset: -4,
-                background: `radial-gradient(350px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(5,217,194,0.35), transparent 70%)`,
-                filter: "blur(6px)",
-                zIndex: -1,
-              }}
-            />
-            {/* Border glow on edge */}
-            <div
-              className="absolute inset-0 rounded-[11px] pointer-events-none"
-              style={{
-                padding: "2px",
-                background: `radial-gradient(350px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(5,217,194,0.8), rgba(5,217,194,0.2) 40%, transparent 70%)`,
-                maskImage: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                maskComposite: "exclude",
-                WebkitMaskComposite: "xor",
-              }}
-            />
-          </>
-        )}
 
         {/* Stat cards row */}
         <div className="absolute flex gap-[6px]" style={{ left: 14, top: 14, width: 497, height: 49 }}>
