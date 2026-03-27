@@ -373,10 +373,10 @@ export default function AkeylessDashboard() {
               {row.logo && <img src={row.logo} alt="" style={{ width: 12, height: 12 }} />}
               <span className="text-[#111]" style={{ fontSize: 8 }}>{row.target}</span>
             </div>
-            <div style={{ width: "10%", flexShrink: 0 }}>
+            <div className="flex items-center justify-center" style={{ width: "10%", flexShrink: 0 }}>
               <StatusBadge status={row.status} />
             </div>
-            <span className="text-[#111] tracking-[-0.16px]" style={{ fontSize: 7.5, width: "20%", flexShrink: 0 }}>{row.date}</span>
+            <span className="text-[#111] tracking-[-0.16px]" style={{ fontSize: 7.5, width: "20%", flexShrink: 0, textAlign: "center" }}>{row.date}</span>
             <img src={dotsIcon} alt="" style={{ width: 10, height: 10, opacity: 0.5, flexShrink: 0 }} />
           </motion.div>
         ))}
