@@ -468,10 +468,10 @@ export default function AkeylessDashboard() {
         {/* Stacked bar */}
         <div className="absolute flex rounded-[4px] overflow-hidden" style={{ left: 14, top: 34, right: 14, height: 22 }}>
           {[
-            { color: "#A70808", width: 1.5 * p.riskbar, label: "120", name: "Critical" },
-            { color: "#C62828", width: 5.5 * p.riskbar, label: "450", name: "High" },
+            { color: "#A70808", width: 5 * p.riskbar, label: "120", name: "Critical" },
+            { color: "#C62828", width: 8 * p.riskbar, label: "450", name: "High" },
             { color: "#F3982E", width: 25 * p.riskbar,  label: "2200",name: "Medium" },
-            { color: "#1ADDC7", width: 60 * p.riskbar,  label: "8000",name: "Low" },
+            { color: "#1ADDC7", width: 55 * p.riskbar,  label: "8000",name: "Low" },
           ].map((seg, i) => (
             <div key={i} className="flex items-center justify-center relative"
               style={{ flex: seg.width, backgroundColor: seg.color, minWidth: 0 }}>
