@@ -534,7 +534,7 @@ export default function AkeylessDashboard() {
         style={{ left: 18, top: 523, width: 250, height: 170,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 9.5 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Certificate Lifecycle Health
         </p>
         <div className="absolute" style={{ left: 14, top: 30, right: 14, bottom: 14 }}>
