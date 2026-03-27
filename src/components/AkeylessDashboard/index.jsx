@@ -143,9 +143,11 @@ export default function AkeylessDashboard() {
   const [hoveredSection, setHoveredSection] = useState(null);
   const [forensicHoverProgress, setForensicHoverProgress] = useState(null);
   const [identityHoverProgress, setIdentityHoverProgress] = useState(null);
+  const [riskFlickerIdx, setRiskFlickerIdx] = useState(-1);
   const rafRef = useRef(null);
   const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
+  const riskFlickerRef = useRef(null);
 
   // Forensic: replay timeline animation on hover
   useEffect(() => {
