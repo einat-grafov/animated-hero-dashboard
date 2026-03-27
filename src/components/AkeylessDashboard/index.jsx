@@ -121,6 +121,7 @@ export default function AkeylessDashboard() {
   const [progress, setProgress] = useState(0);
   const [agenticHovered, setAgenticHovered] = useState(false);
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
+  const [hoveredSection, setHoveredSection] = useState(null);
   const rafRef = useRef(null);
 
   useEffect(() => {
