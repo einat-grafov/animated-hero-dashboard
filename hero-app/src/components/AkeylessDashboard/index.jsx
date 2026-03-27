@@ -470,15 +470,14 @@ export default function AkeylessDashboard() {
           left: 200, top: 123, width: 16, height: 16, zIndex: 2,
           border: "2.5px solid #05D9C2",
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "opacity 0.08s ease",
-          opacity: forensicFlickerNode === 1 ? 0 : 1,
+          opacity: fp > 0.3 ? 1 : 0, transition: "opacity 0.15s ease",
         }}>
           <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
         </div>
         <span className="absolute text-gray-400" style={{ fontSize: 7, left: 208, top: 142, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
-        <motion.div animate={{ opacity: (p.forensic > 0.35 && forensicFlickerNode !== 1) ? 1 : 0 }}
+        <motion.div animate={{ opacity: fp > 0.35 ? 1 : 0 }}
           className="absolute" style={{ left: 207.25, top: 109, width: 1.5, height: 14, background: "#05D9C2" }} />
-        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: (p.forensic > 0.35 && forensicFlickerNode !== 1) ? 1 : 0, y: p.forensic > 0.35 ? 0 : -8 }}
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: fp > 0.35 ? 1 : 0, y: fp > 0.35 ? 0 : -8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 148, bottom: 178, width: 120,
             background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
