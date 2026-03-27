@@ -145,10 +145,12 @@ export default function AkeylessDashboard() {
   const [identityHoverProgress, setIdentityHoverProgress] = useState(null);
   const [riskFlickerIdx, setRiskFlickerIdx] = useState(-1);
   const [landscapeHoverProgress, setLandscapeHoverProgress] = useState(null);
+  const [vaultHoverProgress, setVaultHoverProgress] = useState(null);
   const rafRef = useRef(null);
   const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
   const landscapeRafRef = useRef(null);
+  const vaultRafRef = useRef(null);
   const riskFlickerRef = useRef(null);
 
   // Forensic: replay timeline animation on hover
@@ -229,6 +231,26 @@ export default function AkeylessDashboard() {
       if (landscapeRafRef.current) cancelAnimationFrame(landscapeRafRef.current);
     }
     return () => { if (landscapeRafRef.current) cancelAnimationFrame(landscapeRafRef.current); };
+  }, [hoveredSection]);
+
+  // Vault: replay number count on hover
+  useEffect(() => {
+    if (hoveredSection === "vault" && progress >= 0.7) {
+      setVaultHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setVaultHoverProgress(elapsed);
+        if (elapsed < 1) vaultRafRef.current = requestAnimationFrame(tick);
+      };
+      vaultRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setVaultHoverProgress(null);
+      if (vaultRafRef.current) cancelAnimationFrame(vaultRafRef.current);
+    }
+    return () => { if (vaultRafRef.current) cancelAnimationFrame(vaultRafRef.current); };
   }, [hoveredSection]);
 
   useEffect(() => {
@@ -759,7 +781,7 @@ export default function AkeylessDashboard() {
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="font-semibold text-[#111]" style={{ fontSize: 25 }}>
-              <AnimatedNumber value={89} progress={p.vault} />
+              <AnimatedNumber value={89} progress={vaultHoverProgress !== null ? vaultHoverProgress : p.vault} />
             </span>
             <span className="text-[#111]" style={{ fontSize: 6.5 }}>Total Items</span>
           </div>
@@ -777,7 +799,7 @@ export default function AkeylessDashboard() {
               <span className="flex-1 text-[#555]" style={{ fontSize: 8.5 }}>{item.label}</span>
               <div className="rounded-[3px] flex-shrink-0" style={{ width: 28, height: 12, background: item.color, borderRadius: 3 }} />
               <span className="text-[#111] font-medium" style={{ fontSize: 8.5, width: 16, textAlign: "right" }}>
-                <AnimatedNumber value={item.val} progress={p.vault} />
+                <AnimatedNumber value={item.val} progress={vaultHoverProgress !== null ? vaultHoverProgress : p.vault} />
               </span>
             </div>
           ))}
