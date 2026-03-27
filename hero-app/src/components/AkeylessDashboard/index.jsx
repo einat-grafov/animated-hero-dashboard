@@ -233,8 +233,15 @@ export default function AkeylessDashboard() {
 
         {/* Table header */}
         <div className="absolute flex items-center" style={{ left: 14, top: 103, right: 14 }}>
-          {["Agent Session ID","User","Risk Score","Target Type","Status","Date"].map((h) => (
-            <span key={h} className="font-semibold flex-1 text-[#ADAEB0]" style={{ fontSize: 7 }}>{h}</span>
+          {[
+            { label: "Agent Session ID", width: "22%" },
+            { label: "User", width: "22%" },
+            { label: "Risk Score", width: "10%" },
+            { label: "Target Type", width: "14%" },
+            { label: "Status", width: "10%" },
+            { label: "Date", width: "20%" },
+          ].map((h) => (
+            <span key={h.label} className="font-semibold text-[#ADAEB0]" style={{ fontSize: 7, width: h.width, flexShrink: 0 }}>{h.label}</span>
           ))}
           <span style={{ width: 10, flexShrink: 0 }} />
         </div>
@@ -249,17 +256,17 @@ export default function AkeylessDashboard() {
             className="absolute flex items-center"
             style={{ left: 14, top: 117 + i * 30, right: 14 }}
           >
-            <span className="flex-1 text-[#111] tracking-[-0.16px] truncate pr-[4px]" style={{ fontSize: 7.5 }}>{row.id}</span>
-            <span className="flex-1 text-[#111] tracking-[-0.16px] truncate pr-[12px]" style={{ fontSize: 7.5 }}>{row.user}</span>
-            <span className="flex-1 text-[#111] tracking-[-0.16px] font-medium" style={{ fontSize: 7.5 }}>{row.risk}</span>
-            <div className="flex-1 flex items-center gap-[4px]">
+            <span className="text-[#111] tracking-[-0.16px] truncate pr-[4px]" style={{ fontSize: 7.5, width: "22%", flexShrink: 0 }}>{row.id}</span>
+            <span className="text-[#111] tracking-[-0.16px] truncate pr-[4px]" style={{ fontSize: 7.5, width: "22%", flexShrink: 0 }}>{row.user}</span>
+            <span className="text-[#111] tracking-[-0.16px] font-medium" style={{ fontSize: 7.5, width: "10%", flexShrink: 0 }}>{row.risk}</span>
+            <div className="flex items-center gap-[4px]" style={{ width: "14%", flexShrink: 0 }}>
               {row.logo && <img src={row.logo} alt="" style={{ width: 12, height: 12 }} />}
               <span className="text-[#111]" style={{ fontSize: 8 }}>{row.target}</span>
             </div>
-            <div className="flex-1">
+            <div style={{ width: "10%", flexShrink: 0 }}>
               <StatusBadge status={row.status} />
             </div>
-            <span className="flex-1 text-[#111] tracking-[-0.16px]" style={{ fontSize: 7.5 }}>{row.date}</span>
+            <span className="text-[#111] tracking-[-0.16px]" style={{ fontSize: 7.5, width: "20%", flexShrink: 0 }}>{row.date}</span>
             <img src={dotsIcon} alt="" style={{ width: 10, height: 10, opacity: 0.5, flexShrink: 0 }} />
           </motion.div>
         ))}
