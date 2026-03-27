@@ -110,6 +110,22 @@ export default function AkeylessDashboard() {
     };
   }, []);
 
+  // KPI hover re-count animation
+  const kpiHoverRaf = useRef(null);
+  useEffect(() => {
+    if (!agenticHovered || progress < 1) return;
+    let start = null;
+    setKpiHoverProgress(0);
+    const tick = (ts) => {
+      if (!start) start = ts;
+      const t = Math.min((ts - start) / 800, 1);
+      setKpiHoverProgress(easeOut(t));
+      if (t < 1) kpiHoverRaf.current = requestAnimationFrame(tick);
+    };
+    kpiHoverRaf.current = requestAnimationFrame(tick);
+    return () => { if (kpiHoverRaf.current) cancelAnimationFrame(kpiHoverRaf.current); };
+  }, [agenticHovered]);
+
   // Section progress slices
   const p = {
     cards:      sliceProgress(progress, 0,    0.15),
@@ -124,6 +140,8 @@ export default function AkeylessDashboard() {
     encryption: sliceProgress(progress, 0.55, 0.85),
     password:   sliceProgress(progress, 0.6,  0.9),
   };
+
+  const kpiProgress = kpiHoverProgress >= 0 ? kpiHoverProgress : p.cards;
 
   const FORENSIC_STAGE = progress < 0.3 ? 0 : progress < 0.55 ? 1 : 2;
 
