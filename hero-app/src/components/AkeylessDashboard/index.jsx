@@ -248,7 +248,7 @@ export default function AkeylessDashboard() {
             { icon: iconSession,  value: 14,  label: "Active Session",         color: "#05D9C2" },
             { icon: iconBlocked,  value: 7,   label: "Blocked Requests",       color: "#FD2B11" },
             { icon: iconActions,  value: 23,  label: "Total Actions",          color: "#05D9C2" },
-            { icon: iconRisk,     value: 31,  label: "Average Risk Score",     color: "#F3982E", sub: "53 - 81.9.5" },
+            { icon: iconRisk,     value: 31,  label: "Average Risk Score",     color: "#F3982E", sub: "53 - 81.5" },
           ].map((card, i) => (
             <motion.div
               key={i}
