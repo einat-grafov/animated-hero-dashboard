@@ -141,10 +141,10 @@ export default function AkeylessDashboard() {
   const [agenticHovered, setAgenticHovered] = useState(false);
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
   const [hoveredSection, setHoveredSection] = useState(null);
-  const [forensicFlickerNode, setForensicFlickerNode] = useState(-1);
+  const [forensicHoverProgress, setForensicHoverProgress] = useState(null);
   const [identityHoverProgress, setIdentityHoverProgress] = useState(null);
   const rafRef = useRef(null);
-  const forensicFlickerRef = useRef(null);
+  const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
 
   // Forensic flicker: sequentially blink each node once on hover (not looping)
