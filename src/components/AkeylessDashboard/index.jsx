@@ -447,7 +447,7 @@ export default function AkeylessDashboard() {
         {/* Node 1: IDENTIFIED - card ABOVE, timestamp BELOW dot */}
         <div className="absolute rounded-full" style={{
           left: 200, top: 123, width: 16, height: 16, zIndex: 2,
-          border: `2.5px solid ${FORENSIC_STAGE >= 1 ? "#05D9C2" : "#E8E9EF"}`,
+          border: "2.5px solid #05D9C2",
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
           transition: "opacity 0.08s ease",
           opacity: forensicFlickerNode === 1 ? 0 : 1,
