@@ -147,12 +147,14 @@ export default function AkeylessDashboard() {
   const [landscapeHoverProgress, setLandscapeHoverProgress] = useState(null);
   const [vaultHoverProgress, setVaultHoverProgress] = useState(null);
   const [passwordHoverProgress, setPasswordHoverProgress] = useState(null);
+  const [encryptionHoverProgress, setEncryptionHoverProgress] = useState(null);
   const rafRef = useRef(null);
   const forensicRafRef = useRef(null);
   const identityRafRef = useRef(null);
   const landscapeRafRef = useRef(null);
   const vaultRafRef = useRef(null);
   const passwordRafRef = useRef(null);
+  const encryptionRafRef = useRef(null);
   const riskFlickerRef = useRef(null);
 
   // Forensic: replay timeline animation on hover
@@ -273,6 +275,26 @@ export default function AkeylessDashboard() {
       if (passwordRafRef.current) cancelAnimationFrame(passwordRafRef.current);
     }
     return () => { if (passwordRafRef.current) cancelAnimationFrame(passwordRafRef.current); };
+  }, [hoveredSection]);
+
+  // Encryption: replay bars + counters on hover
+  useEffect(() => {
+    if (hoveredSection === "encryption" && progress >= 0.85) {
+      setEncryptionHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setEncryptionHoverProgress(elapsed);
+        if (elapsed < 1) encryptionRafRef.current = requestAnimationFrame(tick);
+      };
+      encryptionRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setEncryptionHoverProgress(null);
+      if (encryptionRafRef.current) cancelAnimationFrame(encryptionRafRef.current);
+    }
+    return () => { if (encryptionRafRef.current) cancelAnimationFrame(encryptionRafRef.current); };
   }, [hoveredSection]);
 
   useEffect(() => {
@@ -956,23 +978,27 @@ export default function AkeylessDashboard() {
         </p>
         <div className="absolute flex flex-col gap-[14px]" style={{ left: 14, top: 38, right: 14 }}>
           {[
-            { label: "Transactions",   barPct: 90, display: "2M" },
-            { label: "Tokenizers",     barPct: 35, display: "50" },
-            { label: "Cloud Accounts", barPct: 30, display: "45" },
-          ].map((item, i) => (
+            { label: "Transactions",   barPct: 90, value: 2, suffix: "M" },
+            { label: "Tokenizers",     barPct: 35, value: 50, suffix: "" },
+            { label: "Cloud Accounts", barPct: 30, value: 45, suffix: "" },
+          ].map((item, i) => {
+            const ep = encryptionHoverProgress !== null ? encryptionHoverProgress : p.encryption;
+            return (
             <div key={i} className="flex flex-col gap-[3px]">
               <span className="text-[#111]" style={{ fontSize: 8 }}>{item.label}</span>
               <div className="flex items-center gap-[6px]">
                 <div className="flex-1 h-[12px] rounded-[3px] bg-gray-100 overflow-hidden">
                   <div
                     className="h-full rounded-[3px]"
-                    style={{ width: `${item.barPct * p.encryption}%`, backgroundColor: "#1ADDC7", transition: "none" }}
+                    style={{ width: `${item.barPct * ep}%`, backgroundColor: "#1ADDC7", transition: "none" }}
                   />
                 </div>
-                <span className="font-medium text-[#111] flex-shrink-0" style={{ fontSize: 8.5, minWidth: 18 }}>{item.display}</span>
+                <span className="font-medium text-[#111] flex-shrink-0" style={{ fontSize: 8.5, minWidth: 18 }}>
+                  <AnimatedNumber value={item.value} progress={ep} />{item.suffix}
+                </span>
               </div>
             </div>
-          ))}
+          )})}
         </div>
       </motion.div>
 
