@@ -395,26 +395,26 @@ export default function AkeylessDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
         className="absolute rounded-[11px]"
-        style={{ left: 18, top: 322, width: 332, height: 89,
+        style={{ left: 18, top: 322, width: 332, height: 189,
           background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
       >
-        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
+        <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 14, fontSize: 10 }}>
           Identity Authentication Methods in Use
         </p>
-        <div className="absolute flex flex-col gap-[6px]" style={{ left: 14, top: 32, right: 14 }}>
+        <div className="absolute flex flex-col gap-[18px]" style={{ left: 14, top: 42, right: 14 }}>
           {[
             { logo: awsLogo,     name: "AWS",     val: 200, max: 200, color: "#F3982E" },
             { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
             { logo: gcpLogo,     name: "GCP",     val: 140, max: 200, color: "#05D9C2" },
             { logo: windowsLogo, name: "Windows", val: 60,  max: 200, color: "#5C7FC6" },
-          ].map((item, i) => (
-            <div key={item.name} className="flex items-center gap-[6px]">
-              <img src={item.logo} alt={item.name} style={{ width: 12, height: 12, flexShrink: 0 }} />
-              <span className="text-[#111] w-[40px] flex-shrink-0" style={{ fontSize: 8 }}>{item.name}</span>
+          ].map((item) => (
+            <div key={item.name} className="flex items-center gap-[8px]">
+              <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0 }} />
+              <span className="text-[#111] w-[44px] flex-shrink-0" style={{ fontSize: 8.5 }}>{item.name}</span>
               <div className="flex-1">
                 <HBar value={item.val} max={item.max} color={item.color} progress={p.identity} />
               </div>
-              <span className="text-[#111] w-[24px] text-right flex-shrink-0" style={{ fontSize: 8 }}>
+              <span className="text-[#111] w-[26px] text-right flex-shrink-0 font-medium" style={{ fontSize: 8.5 }}>
                 <AnimatedNumber value={item.val} progress={p.identity} />
               </span>
             </div>
