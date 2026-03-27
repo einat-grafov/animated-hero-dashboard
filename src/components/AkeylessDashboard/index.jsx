@@ -565,8 +565,6 @@ export default function AkeylessDashboard() {
           ].map((item, i) => (
             <div key={item.name} className="flex items-center gap-[8px]" style={{
               position: "relative", borderRadius: 4, padding: "2px 4px", margin: "-2px -4px",
-              opacity: identityScanRow === 99 ? 0 : 1,
-              transition: "opacity 0.08s ease",
             }}>
               <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0, objectFit: "contain" }} />
               <span className="text-[#111] w-[44px] flex-shrink-0" style={{ fontSize: 8.5 }}>{item.name}</span>
@@ -575,15 +573,14 @@ export default function AkeylessDashboard() {
                   <div
                     className="h-full rounded-full"
                     style={{
-                      width: `${(item.val / item.max) * 100 * p.identity}%`,
+                      width: `${(item.val / item.max) * 100 * (identityHoverProgress !== null ? identityHoverProgress : p.identity)}%`,
                       backgroundColor: item.color,
-                      transition: "none",
                     }}
                   />
                 </div>
               </div>
               <span className="text-[#111] w-[26px] text-right flex-shrink-0 font-medium" style={{ fontSize: 8.5 }}>
-                <AnimatedNumber value={item.val} progress={p.identity} />
+                <AnimatedNumber value={item.val} progress={identityHoverProgress !== null ? identityHoverProgress : p.identity} />
               </span>
             </div>
           ))}
