@@ -217,24 +217,35 @@ export default function AkeylessDashboard() {
             boxShadow: agenticHovered
               ? "0 8px 40px rgba(0,0,0,0.14)"
               : "0 4px 27px rgba(0,0,0,0.07)",
-            border: "1.5px solid transparent",
-            transition: "box-shadow 0.3s ease",
+            border: agenticHovered ? "1.5px solid rgba(5,217,194,0.15)" : "1.5px solid transparent",
+            transition: "box-shadow 0.3s ease, border-color 0.3s ease",
           }}
         />
         {/* Glow border overlay */}
         {agenticHovered && (
-          <div
-            className="absolute inset-0 rounded-[11px] pointer-events-none"
-            style={{
-              border: "1.5px solid transparent",
-              maskImage: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-              maskComposite: "exclude",
-              WebkitMaskComposite: "xor",
-              padding: "1.5px",
-              background: `radial-gradient(300px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(5,217,194,0.7), rgba(5,217,194,0.15) 40%, transparent 70%)`,
-              transition: "opacity 0.3s ease",
-            }}
-          />
+          <>
+            {/* Outer glow behind the card */}
+            <div
+              className="absolute pointer-events-none rounded-[13px]"
+              style={{
+                inset: -4,
+                background: `radial-gradient(350px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(5,217,194,0.35), transparent 70%)`,
+                filter: "blur(6px)",
+                zIndex: -1,
+              }}
+            />
+            {/* Border glow on edge */}
+            <div
+              className="absolute inset-0 rounded-[11px] pointer-events-none"
+              style={{
+                padding: "2px",
+                background: `radial-gradient(350px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(5,217,194,0.8), rgba(5,217,194,0.2) 40%, transparent 70%)`,
+                maskImage: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                maskComposite: "exclude",
+                WebkitMaskComposite: "xor",
+              }}
+            />
+          </>
         )}
 
         {/* Stat cards row */}
