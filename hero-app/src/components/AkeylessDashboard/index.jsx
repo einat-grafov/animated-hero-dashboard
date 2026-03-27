@@ -340,10 +340,12 @@ export default function AkeylessDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
         className="absolute"
-        style={{ left: 559, top: 18, width: 480, height: 292, overflow: "hidden" }}
+        style={{ left: 559, top: 18, width: 480, height: 292, overflow: "hidden", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredSection("forensic")}
+        onMouseLeave={() => setHoveredSection(null)}
       >
         <div className="absolute inset-0 rounded-[11px]"
-          style={{ background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }} />
+          style={{ background: "#fff", boxShadow: hoveredSection === "forensic" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "forensic" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease" }} />
 
         <div className="absolute" style={{ left: 22, top: 12 }}>
           <p className="font-semibold text-[#111]" style={{ fontSize: 10 }}>Forensic Traceability</p>
@@ -457,7 +459,9 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.5 }}
         className="absolute rounded-[11px]"
         style={{ left: 18, top: 322, width: 332, height: 189,
-          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          background: "#fff", boxShadow: hoveredSection === "identity" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "identity" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredSection("identity")}
+        onMouseLeave={() => setHoveredSection(null)}
       >
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 14, fontSize: 10 }}>
           Identity Authentication Methods in Use
@@ -491,7 +495,8 @@ export default function AkeylessDashboard() {
         className="absolute rounded-[11px]"
         style={{ left: 362, top: 322, width: 333, height: 89,
           background: "#fff", boxShadow: hoveredSection === "landscape" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)",
-          transition: "box-shadow 0.3s", cursor: "pointer" }}
+          border: hoveredSection === "landscape" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent",
+          transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("landscape")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -532,7 +537,9 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.65 }}
         className="absolute rounded-[11px]"
         style={{ left: 362, top: 422, width: 333, height: 89,
-          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          background: "#fff", boxShadow: hoveredSection === "risk" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "risk" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredSection("risk")}
+        onMouseLeave={() => setHoveredSection(null)}
       >
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Identity Risk &amp; Exposure Analysis
@@ -573,7 +580,9 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.7 }}
         className="absolute rounded-[11px]"
         style={{ left: 706, top: 322, width: 333, height: 190,
-          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          background: "#fff", boxShadow: hoveredSection === "vault" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "vault" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredSection("vault")}
+        onMouseLeave={() => setHoveredSection(null)}
       >
         <p className="absolute font-semibold text-[#111]" style={{ left: 22, top: 14, fontSize: 10 }}>
           External Vault &amp; Secrets Integrations
@@ -625,7 +634,9 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.75 }}
         className="absolute rounded-[11px]"
         style={{ left: 18, top: 523, width: 250, height: 170,
-          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          background: "#fff", boxShadow: hoveredSection === "cert" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "cert" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredSection("cert")}
+        onMouseLeave={() => setHoveredSection(null)}
       >
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Certificate Lifecycle Health
@@ -663,7 +674,9 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.8 }}
         className="absolute rounded-[11px]"
         style={{ left: 280, top: 523, width: 250, height: 170,
-          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          background: "#fff", boxShadow: hoveredSection === "secrets" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "secrets" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredSection("secrets")}
+        onMouseLeave={() => setHoveredSection(null)}
       >
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Dynamic Secrets Issued
@@ -706,7 +719,9 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.85 }}
         className="absolute rounded-[11px] overflow-hidden"
         style={{ left: 542, top: 523, width: 250, height: 170,
-          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          background: "#fff", boxShadow: hoveredSection === "encryption" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "encryption" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredSection("encryption")}
+        onMouseLeave={() => setHoveredSection(null)}
       >
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 14, fontSize: 10 }}>
           Enterprise Encryption &amp; Key Operations
@@ -740,7 +755,9 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.9 }}
         className="absolute rounded-[11px]"
         style={{ left: 804, top: 523, width: 235, height: 170,
-          background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.07)" }}
+          background: "#fff", boxShadow: hoveredSection === "password" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "password" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
+        onMouseEnter={() => setHoveredSection("password")}
+        onMouseLeave={() => setHoveredSection(null)}
       >
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Password Health
