@@ -378,8 +378,8 @@ export default function AkeylessDashboard() {
         {/* Action buttons */}
         <motion.div
           animate={{ opacity: p.forensic > 0.8 ? 1 : 0 }}
-          className="absolute flex gap-[10px] items-center justify-center"
-          style={{ left: 0, right: 0, bottom: 10 }}
+          className="absolute flex gap-[10px] items-center justify-end"
+          style={{ right: 14, bottom: 10 }}
         >
           <button className="rounded-full border border-gray-300 px-[14px] py-[4px] text-[7px] text-gray-600 font-medium" style={{ background: "#fff" }}>Cancel</button>
           <button className="rounded-full px-[14px] py-[4px] text-[7px] text-white font-semibold"
