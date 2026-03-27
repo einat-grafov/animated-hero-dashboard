@@ -968,7 +968,7 @@ export default function AkeylessDashboard() {
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="font-semibold text-[#111]" style={{ fontSize: 20 }}>
-              <AnimatedNumber value={60} progress={p.secrets} />K
+              <AnimatedNumber value={60} progress={secretsHoverProgress !== null ? secretsHoverProgress : p.secrets} />K
             </span>
             <span className="text-[#111] text-center leading-tight" style={{ fontSize: 5.5 }}>Total Dynamic<br/>Secrets</span>
           </div>
