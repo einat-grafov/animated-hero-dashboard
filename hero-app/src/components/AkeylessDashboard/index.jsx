@@ -167,16 +167,23 @@ export default function AkeylessDashboard() {
 
   // Identity scan: spotlight sweeps down rows once on hover
   useEffect(() => {
-    if (hoveredSection === "identity") {
-      const timers = [];
-      timers.push(setTimeout(() => setIdentityScanRow(99), 200));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 350));
-      identityScanRef.current = timers;
+  useEffect(() => {
+    if (hoveredSection === "identity" && progress >= 0.6) {
+      setIdentityHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setIdentityHoverProgress(elapsed);
+        if (elapsed < 1) identityRafRef.current = requestAnimationFrame(tick);
+      };
+      identityRafRef.current = requestAnimationFrame(tick);
     } else {
-      setIdentityScanRow(-1);
-      if (identityScanRef.current) identityScanRef.current.forEach(clearTimeout);
+      setIdentityHoverProgress(null);
+      if (identityRafRef.current) cancelAnimationFrame(identityRafRef.current);
     }
-    return () => { if (identityScanRef.current) identityScanRef.current.forEach(clearTimeout); };
+    return () => { if (identityRafRef.current) cancelAnimationFrame(identityRafRef.current); };
   }, [hoveredSection]);
 
   useEffect(() => {
