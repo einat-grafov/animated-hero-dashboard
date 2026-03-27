@@ -924,7 +924,13 @@ export default function AkeylessDashboard() {
         </p>
         {/* Pie Chart */}
         <div className="absolute" style={{ left: 10, top: 30, width: 110, height: 110 }}>
-          <img src={figpie} alt="" style={{ width: "100%", height: "100%" }} />
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              background: "conic-gradient(from -90deg, #F3982E 0% 30%, #275AC2 30% 50%, #5C7FC6 50% 65%, #05D9C2 65% 78.333%, #111111 78.333% 90%, #4A8FF0 90% 100%)",
+              boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.7)",
+            }}
+          />
           <div className="absolute inset-[8%] rounded-full overflow-hidden"
             style={{
               background: "radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.97) 0%, rgba(240,242,248,0.85) 60%, rgba(220,225,238,0.7) 100%)",
@@ -947,7 +953,7 @@ export default function AkeylessDashboard() {
             { color: "#5C7FC6", label: "PostgreSQL", val: 9 },
             { color: "#05D9C2", label: "MySQL",      val: 8 },
             { color: "#111",    label: "OpenAI",     val: 7 },
-            { color: "#275AC2", label: "Docker",     val: 6 },
+            { color: "#4A8FF0", label: "Docker",     val: 6 },
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-[6px]" style={{ width: 100 }}>
               <span className="flex-1 text-[#111]" style={{ fontSize: 8 }}>{item.label}</span>
