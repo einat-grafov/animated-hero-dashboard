@@ -436,14 +436,14 @@ export default function AkeylessDashboard() {
         </p>
         <div className="absolute flex items-start gap-[24px]" style={{ left: 14, top: 34 }}>
           {[
-            { icon: vector4,     label: "Ai Adgents",       value: 200, format: (v) => String(v), width: 50 },
-            { icon: dubleUser,   label: "Human Identity",   value: 8,   format: (v) => `${v}K`, width: 50 },
-            { icon: groupMachine,label: "Maschine Identity", value: 30,  format: (v) => `${v}K`, width: 55 },
+            { icon: vector4,     label: "Ai Adgents",       value: 200, format: (v) => String(v) },
+            { icon: dubleUser,   label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
+            { icon: groupMachine,label: "Maschine Identity", value: 30,  format: (v) => `${v}K` },
           ].map((item, i) => (
-            <div key={i} className="flex flex-col items-start gap-[2px]" style={{ minWidth: item.width }}>
+            <div key={i} className="flex flex-col items-start gap-[2px]" style={{ width: 90 }}>
               <div className="flex items-center gap-[6px]">
                 <img src={item.icon} alt="" style={{ width: 18, height: 18, flexShrink: 0 }} />
-                <span className="font-bold text-[#111]" style={{ fontSize: 24 }}>
+                <span className="font-bold text-[#111]" style={{ fontSize: 24, minWidth: 40 }}>
                   {item.format(Math.round(lerp(0, item.value, p.landscape)))}
                 </span>
               </div>
