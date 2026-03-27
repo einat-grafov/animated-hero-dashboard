@@ -154,6 +154,7 @@ export default function AkeylessDashboard() {
   const landscapeRafRef = useRef(null);
   const vaultRafRef = useRef(null);
   const passwordRafRef = useRef(null);
+  const encryptionRafRef = useRef(null);
   const riskFlickerRef = useRef(null);
 
   // Forensic: replay timeline animation on hover
