@@ -480,6 +480,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("identity")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "identity" && (
+            <Tooltip
+              text="Authentication method usage across cloud providers and platforms."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 14, fontSize: 10 }}>
           Identity Authentication Methods in Use
         </p>
