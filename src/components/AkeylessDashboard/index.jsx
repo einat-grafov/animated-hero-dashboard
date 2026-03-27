@@ -283,23 +283,6 @@ export default function AkeylessDashboard() {
             transition: "box-shadow 0.3s ease, border-color 0.3s ease",
           }}
         />
-  // Identity scan: spotlight sweeps down rows once on hover
-  useEffect(() => {
-    if (hoveredSection === "identity") {
-      const timers = [];
-      timers.push(setTimeout(() => setIdentityScanRow(0), 150));
-      timers.push(setTimeout(() => setIdentityScanRow(1), 400));
-      timers.push(setTimeout(() => setIdentityScanRow(2), 650));
-      timers.push(setTimeout(() => setIdentityScanRow(3), 900));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 1150));
-      identityScanRef.current = timers;
-    } else {
-      setIdentityScanRow(-1);
-      if (identityScanRef.current) identityScanRef.current.forEach(clearTimeout);
-    }
-    return () => { if (identityScanRef.current) identityScanRef.current.forEach(clearTimeout); };
-  }, [hoveredSection]);
-
 
         {/* Stat cards row */}
         <div className="absolute flex gap-[6px]" style={{ left: 14, top: 14, width: 497, height: 49 }}>
