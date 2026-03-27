@@ -664,18 +664,23 @@ export default function AkeylessDashboard() {
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 12, fontSize: 10 }}>
           Enterprise Encryption &amp; Key Operations
         </p>
-        <div className="absolute flex flex-col gap-[8px]" style={{ left: 14, top: 34, right: 14 }}>
+        <div className="absolute flex flex-col gap-[20px]" style={{ left: 14, top: 42, right: 14 }}>
           {[
-            { label: "Transactions",  val: 2000000, display: "2M",  max: 100 },
-            { label: "Tokenizers",    val: 50,      display: "50",  max: 100 },
-            { label: "Cloud Accounts",val: 45,      display: "45",  max: 100 },
+            { label: "Transactions",   barPct: 90, display: "2M" },
+            { label: "Tokenizers",     barPct: 35, display: "50" },
+            { label: "Cloud Accounts", barPct: 30, display: "45" },
           ].map((item, i) => (
-            <div key={i} className="flex flex-col gap-[2px]">
-              <div className="flex justify-between">
-                <span className="text-[#111]" style={{ fontSize: 8 }}>{item.label}</span>
-                <span className="font-medium text-[#111]" style={{ fontSize: 8 }}>{item.display}</span>
+            <div key={i} className="flex flex-col gap-[4px]">
+              <span className="text-[#111]" style={{ fontSize: 8.5 }}>{item.label}</span>
+              <div className="flex items-center gap-[6px]">
+                <div className="flex-1 h-[14px] rounded-[4px] bg-gray-100 overflow-hidden">
+                  <div
+                    className="h-full rounded-[4px]"
+                    style={{ width: `${item.barPct * p.encryption}%`, backgroundColor: "#1ADDC7", transition: "none" }}
+                  />
+                </div>
+                <span className="font-medium text-[#111] flex-shrink-0" style={{ fontSize: 9, minWidth: 20 }}>{item.display}</span>
               </div>
-              <HBar value={70 + i * 5} max={100} color="#05D9C2" progress={p.encryption} />
             </div>
           ))}
         </div>
