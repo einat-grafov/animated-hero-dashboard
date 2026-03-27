@@ -299,82 +299,88 @@ export default function AkeylessDashboard() {
           />
         </div>
 
-        {/* Node 0: IDENTIFIED - card BELOW timeline */}
-        <div className="absolute" style={{ left: 60, top: 140 }}>
-          <span className="absolute text-gray-400" style={{ fontSize: 7, top: -12, left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
-          <div className="rounded-full" style={{
-            width: 16, height: 16, position: "relative", zIndex: 2,
-            border: `2.5px solid ${FORENSIC_STAGE >= 0 ? "#05D9C2" : "#E8E9EF"}`,
-            background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-            transition: "all 0.4s ease",
-          }}>
-            {FORENSIC_STAGE >= 0 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
-          </div>
-          <motion.div animate={{ opacity: p.forensic > 0.1 ? 1 : 0 }}
-            style={{ width: 1.5, height: 20, background: "#05D9C2", margin: "0 auto" }} />
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : 8 }}
-            className="rounded-[8px] p-[6px]"
-            style={{ width: 120, marginLeft: -52,
-              background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-            <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#05D9C2", fontSize: 6 }}>
-              <span className="font-bold text-white tracking-wide">IDENTIFIED</span>
-            </div>
-            <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>User</p>
-            <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>'testuser@example.com' accessing HubSpot 'Walmart'.</p>
-          </motion.div>
+        {/* Node 0: IDENTIFIED - card BELOW, timestamp ABOVE dot */}
+        {/* Timestamp */}
+        <span className="absolute text-gray-400" style={{ fontSize: 7, left: 68, top: 128, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
+        {/* Dot */}
+        <div className="absolute rounded-full" style={{
+          left: 60, top: 141, width: 16, height: 16, zIndex: 2,
+          border: `2.5px solid ${FORENSIC_STAGE >= 0 ? "#05D9C2" : "#E8E9EF"}`,
+          background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+          transition: "all 0.4s ease",
+        }}>
+          {FORENSIC_STAGE >= 0 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
         </div>
+        {/* Connector down */}
+        <motion.div animate={{ opacity: p.forensic > 0.1 ? 1 : 0 }}
+          className="absolute" style={{ left: 67.25, top: 157, width: 1.5, height: 18, background: "#05D9C2" }} />
+        {/* Card */}
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : 8 }}
+          className="absolute rounded-[8px] p-[6px]"
+          style={{ left: 8, top: 175, width: 120,
+            background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#05D9C2", fontSize: 6 }}>
+            <span className="font-bold text-white tracking-wide">IDENTIFIED</span>
+          </div>
+          <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>User</p>
+          <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>'testuser@example.com' accessing HubSpot 'Walmart'.</p>
+        </motion.div>
 
-        {/* Node 1: INTERCEPTED - card ABOVE timeline */}
-        <div className="absolute" style={{ left: 200, top: 140 }}>
-          <span className="absolute text-gray-400" style={{ fontSize: 7, top: -78, left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
-          <div className="rounded-full" style={{
-            width: 16, height: 16, position: "relative", zIndex: 2,
-            border: `2.5px solid ${FORENSIC_STAGE >= 1 ? "#05D9C2" : "#E8E9EF"}`,
-            background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-            transition: "all 0.4s ease",
-          }}>
-            {FORENSIC_STAGE >= 1 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
-          </div>
-          <motion.div animate={{ opacity: p.forensic > 0.35 ? 1 : 0 }}
-            style={{ width: 1.5, height: 20, background: "#05D9C2", margin: "0 auto", position: "absolute", bottom: 16, left: "50%", marginLeft: -0.75 }} />
-          <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: p.forensic > 0.35 ? 1 : 0, y: p.forensic > 0.35 ? 0 : -8 }}
-            className="absolute rounded-[8px] p-[6px]"
-            style={{ width: 120, bottom: 36, left: "50%", marginLeft: -60,
-              background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-            <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#05D9C2", fontSize: 6 }}>
-              <span className="font-bold text-white tracking-wide">INTERCEPTED</span>
-            </div>
-            <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>Raw Prompt</p>
-            <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>"What is the Walmart deal ARR?"</p>
-          </motion.div>
+        {/* Node 1: INTERCEPTED - card ABOVE, timestamp BELOW dot */}
+        {/* Dot */}
+        <div className="absolute rounded-full" style={{
+          left: 200, top: 141, width: 16, height: 16, zIndex: 2,
+          border: `2.5px solid ${FORENSIC_STAGE >= 1 ? "#05D9C2" : "#E8E9EF"}`,
+          background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+          transition: "all 0.4s ease",
+        }}>
+          {FORENSIC_STAGE >= 1 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
         </div>
+        {/* Timestamp below dot */}
+        <span className="absolute text-gray-400" style={{ fontSize: 7, left: 208, top: 160, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
+        {/* Connector up */}
+        <motion.div animate={{ opacity: p.forensic > 0.35 ? 1 : 0 }}
+          className="absolute" style={{ left: 207.25, top: 123, width: 1.5, height: 18, background: "#05D9C2" }} />
+        {/* Card above */}
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: p.forensic > 0.35 ? 1 : 0, y: p.forensic > 0.35 ? 0 : -8 }}
+          className="absolute rounded-[8px] p-[6px]"
+          style={{ left: 148, bottom: 195, width: 120,
+            background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#05D9C2", fontSize: 6 }}>
+            <span className="font-bold text-white tracking-wide">INTERCEPTED</span>
+          </div>
+          <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>Raw Prompt</p>
+          <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>"What is the Walmart deal ARR?"</p>
+        </motion.div>
 
-        {/* Node 2: BLOCKED - card BELOW timeline */}
-        <div className="absolute" style={{ left: 350, top: 140 }}>
-          <span className="absolute text-gray-400" style={{ fontSize: 7, top: -12, left: "50%", transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.176</span>
-          <div className="rounded-full" style={{
-            width: 16, height: 16, position: "relative", zIndex: 2,
-            border: `2.5px solid ${FORENSIC_STAGE >= 2 ? "#05D9C2" : "#E8E9EF"}`,
-            background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-            transition: "all 0.4s ease",
-          }}>
-            {FORENSIC_STAGE >= 2 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
-          </div>
-          <motion.div animate={{ opacity: p.forensic > 0.65 ? 1 : 0 }}
-            style={{ width: 1.5, height: 20, background: "#05D9C2", margin: "0 auto" }} />
-          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.65 ? 1 : 0, y: p.forensic > 0.65 ? 0 : 8 }}
-            className="rounded-[8px] p-[6px]"
-            style={{ width: 130, marginLeft: -57,
-              background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-            <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#FD2B11", fontSize: 6 }}>
-              <span className="font-bold text-white tracking-wide">BLOCKED</span>
-            </div>
-            <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>Access Denied</p>
-            <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>Command not allowed by policy.</p>
-            <p className="text-gray-400 mt-[2px] uppercase" style={{ fontSize: 5.5, lineHeight: 1.3 }}>Policy that blocked: ForbiddenTerm</p>
-            <p className="text-gray-400 uppercase" style={{ fontSize: 5.5 }}>Matched Term: arr</p>
-          </motion.div>
+        {/* Node 2: BLOCKED - card BELOW, timestamp ABOVE dot */}
+        {/* Timestamp */}
+        <span className="absolute text-gray-400" style={{ fontSize: 7, left: 358, top: 128, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.176</span>
+        {/* Dot */}
+        <div className="absolute rounded-full" style={{
+          left: 350, top: 141, width: 16, height: 16, zIndex: 2,
+          border: `2.5px solid ${FORENSIC_STAGE >= 2 ? "#05D9C2" : "#E8E9EF"}`,
+          background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
+          transition: "all 0.4s ease",
+        }}>
+          {FORENSIC_STAGE >= 2 && <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />}
         </div>
+        {/* Connector down */}
+        <motion.div animate={{ opacity: p.forensic > 0.65 ? 1 : 0 }}
+          className="absolute" style={{ left: 357.25, top: 157, width: 1.5, height: 18, background: "#05D9C2" }} />
+        {/* Card */}
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.65 ? 1 : 0, y: p.forensic > 0.65 ? 0 : 8 }}
+          className="absolute rounded-[8px] p-[6px]"
+          style={{ left: 293, top: 175, width: 130,
+            background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#FD2B11", fontSize: 6 }}>
+            <span className="font-bold text-white tracking-wide">BLOCKED</span>
+          </div>
+          <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>Access Denied</p>
+          <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>Command not allowed by policy.</p>
+          <p className="text-gray-400 mt-[2px] uppercase" style={{ fontSize: 5.5, lineHeight: 1.3 }}>Policy that blocked: ForbiddenTerm</p>
+          <p className="text-gray-400 uppercase" style={{ fontSize: 5.5 }}>Matched Term: arr</p>
+        </motion.div>
 
         {/* Action buttons */}
         <motion.div
