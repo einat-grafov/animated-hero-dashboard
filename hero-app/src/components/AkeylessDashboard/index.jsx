@@ -494,14 +494,13 @@ export default function AkeylessDashboard() {
           left: 350, top: 123, width: 16, height: 16, zIndex: 2,
           border: "2.5px solid #05D9C2",
           background: "#fff", display: "flex", alignItems: "center", justifyContent: "center",
-          transition: "opacity 0.08s ease",
-          opacity: forensicFlickerNode === 2 ? 0 : 1,
+          opacity: fp > 0.6 ? 1 : 0, transition: "opacity 0.15s ease",
         }}>
           <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
         </div>
-        <motion.div animate={{ opacity: (p.forensic > 0.65 && forensicFlickerNode !== 2) ? 1 : 0 }}
+        <motion.div animate={{ opacity: fp > 0.65 ? 1 : 0 }}
           className="absolute" style={{ left: 357.25, top: 139, width: 1.5, height: 14, background: "#05D9C2" }} />
-        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: (p.forensic > 0.65 && forensicFlickerNode !== 2) ? 1 : 0, y: p.forensic > 0.65 ? 0 : 8 }}
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: fp > 0.65 ? 1 : 0, y: fp > 0.65 ? 0 : 8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 293, top: 153, width: 140,
             background: "rgba(253,43,17,0.04)", border: "1px solid rgba(253,43,17,0.15)", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
@@ -521,7 +520,7 @@ export default function AkeylessDashboard() {
 
         {/* Action buttons */}
         <motion.div
-          animate={{ opacity: p.forensic > 0.8 ? 1 : 0 }}
+          animate={{ opacity: fp > 0.8 ? 1 : 0 }}
           className="absolute flex gap-[10px] items-center justify-end"
           style={{ right: 14, bottom: 10 }}
         >
