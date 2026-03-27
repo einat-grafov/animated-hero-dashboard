@@ -167,8 +167,7 @@ export default function AkeylessDashboard() {
     return () => { if (forensicRafRef.current) cancelAnimationFrame(forensicRafRef.current); };
   }, [hoveredSection]);
 
-  // Identity scan: spotlight sweeps down rows once on hover
-  useEffect(() => {
+  // Identity: replay bar fill animation on hover
   useEffect(() => {
     if (hoveredSection === "identity" && progress >= 0.6) {
       setIdentityHoverProgress(0);
