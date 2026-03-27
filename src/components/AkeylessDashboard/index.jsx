@@ -436,7 +436,7 @@ export default function AkeylessDashboard() {
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p.forensic > 0.1 ? 1 : 0, y: p.forensic > 0.1 ? 0 : 8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 8, top: 153, width: 120,
-            background: "#fff", border: forensicFlickerNode === 0 ? "1.5px solid rgba(5,217,194,0.5)" : "1px solid #E8E9EF", boxShadow: forensicFlickerNode === 0 ? "0 0 12px rgba(5,217,194,0.25)" : "0 2px 12px rgba(0,0,0,0.06)", transition: "border 0.3s ease, box-shadow 0.3s ease" }}>
+            background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", transition: "opacity 0.08s ease", opacity: forensicFlickerNode === 0 ? 0 : 1 }}>
           <div className="inline-flex items-center px-[5px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#05D9C2", fontSize: 5.5 }}>
             <span className="font-bold text-white tracking-wide">INTERCEPTED</span>
           </div>
