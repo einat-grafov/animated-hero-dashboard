@@ -172,18 +172,9 @@ export default function AkeylessDashboard() {
   useEffect(() => {
     if (hoveredSection === "identity") {
       const timers = [];
-      // Row 0: flicker (disappear then reappear)
-      timers.push(setTimeout(() => setIdentityScanRow(0), 200));
+      // All rows flicker together: disappear then reappear
+      timers.push(setTimeout(() => setIdentityScanRow(99), 200));
       timers.push(setTimeout(() => setIdentityScanRow(-1), 350));
-      // Row 1: flicker
-      timers.push(setTimeout(() => setIdentityScanRow(1), 550));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 700));
-      // Row 2: flicker
-      timers.push(setTimeout(() => setIdentityScanRow(2), 900));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 1050));
-      // Row 3: flicker
-      timers.push(setTimeout(() => setIdentityScanRow(3), 1250));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 1400));
       identityScanRef.current = timers;
     } else {
       setIdentityScanRow(-1);
@@ -569,7 +560,7 @@ export default function AkeylessDashboard() {
           ].map((item, i) => (
             <div key={item.name} className="flex items-center gap-[8px]" style={{
               position: "relative", borderRadius: 4, padding: "2px 4px", margin: "-2px -4px",
-              opacity: identityScanRow === i ? 0 : 1,
+              opacity: identityScanRow === 99 ? 0 : 1,
               transition: "opacity 0.08s ease",
             }}>
               <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0, objectFit: "contain" }} />
