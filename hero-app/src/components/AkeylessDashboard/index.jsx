@@ -194,13 +194,13 @@ export default function AkeylessDashboard() {
     if (hoveredSection === "risk") {
       const timers = [];
       timers.push(setTimeout(() => setRiskFlickerIdx(0), 200));
-      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 350));
-      timers.push(setTimeout(() => setRiskFlickerIdx(1), 550));
-      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 700));
-      timers.push(setTimeout(() => setRiskFlickerIdx(2), 900));
-      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 1050));
-      timers.push(setTimeout(() => setRiskFlickerIdx(3), 1250));
-      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 1400));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 600));
+      timers.push(setTimeout(() => setRiskFlickerIdx(1), 800));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 1200));
+      timers.push(setTimeout(() => setRiskFlickerIdx(2), 1400));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 1800));
+      timers.push(setTimeout(() => setRiskFlickerIdx(3), 2000));
+      timers.push(setTimeout(() => setRiskFlickerIdx(-1), 2400));
       riskFlickerRef.current = timers;
     } else {
       setRiskFlickerIdx(-1);
@@ -681,7 +681,7 @@ export default function AkeylessDashboard() {
           ].map((seg, i) => (
             <div key={i} className="flex items-center justify-center relative"
               style={{ flex: seg.width, backgroundColor: seg.color, minWidth: 0,
-                opacity: riskFlickerIdx === i ? 0 : 1, transition: "opacity 0.08s ease" }}>
+                opacity: riskFlickerIdx === i ? 0.15 : 1, transition: "opacity 0.3s ease-in-out" }}>
               <span className="font-semibold text-white absolute" style={{ fontSize: 6.5 }}>{seg.label}</span>
             </div>
           ))}
@@ -694,7 +694,7 @@ export default function AkeylessDashboard() {
             { color: "#1ADDC7", label: "Low" },
           ].map((l, i) => (
             <div key={l.label} className="flex items-center gap-[3px]" style={{
-              opacity: riskFlickerIdx === i ? 0 : 1, transition: "opacity 0.08s ease" }}>
+              opacity: riskFlickerIdx === i ? 0.15 : 1, transition: "opacity 0.3s ease-in-out" }}>
               <div className="rounded-[2px]" style={{ width: 9, height: 9, background: l.color }} />
               <span style={{ fontSize: 7 }}>{l.label}</span>
             </div>
