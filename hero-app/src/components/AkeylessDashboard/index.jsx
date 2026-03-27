@@ -555,7 +555,7 @@ export default function AkeylessDashboard() {
         </p>
         <div className="absolute flex items-start gap-[24px]" style={{ left: 14, top: 34 }}>
           {[
-            { icon: vector4,     label: "Ai Adgents",       value: 200, format: (v) => String(v) },
+            { icon: vector4,     label: "AI Agents",        value: 200, format: (v) => String(v) },
             { icon: dubleUser,   label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
             { icon: groupMachine,label: "Maschine Identity", value: 30,  format: (v) => `${v}K` },
           ].map((item, i) => (
