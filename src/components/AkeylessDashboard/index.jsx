@@ -142,10 +142,10 @@ export default function AkeylessDashboard() {
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
   const [hoveredSection, setHoveredSection] = useState(null);
   const [forensicFlickerNode, setForensicFlickerNode] = useState(-1);
-  const [identityScanRow, setIdentityScanRow] = useState(-1);
+  const [identityHoverProgress, setIdentityHoverProgress] = useState(null);
   const rafRef = useRef(null);
   const forensicFlickerRef = useRef(null);
-  const identityScanRef = useRef(null);
+  const identityRafRef = useRef(null);
 
   // Forensic flicker: sequentially blink each node once on hover (not looping)
   useEffect(() => {
@@ -168,19 +168,24 @@ export default function AkeylessDashboard() {
     return () => { if (forensicFlickerRef.current) (Array.isArray(forensicFlickerRef.current) ? forensicFlickerRef.current.forEach(clearTimeout) : clearInterval(forensicFlickerRef.current)); };
   }, [hoveredSection]);
 
-  // Identity scan: spotlight sweeps down rows once on hover
+  // Identity: replay bar fill animation on hover
   useEffect(() => {
-    if (hoveredSection === "identity") {
-      const timers = [];
-      // All rows flicker together: disappear then reappear
-      timers.push(setTimeout(() => setIdentityScanRow(99), 200));
-      timers.push(setTimeout(() => setIdentityScanRow(-1), 350));
-      identityScanRef.current = timers;
+    if (hoveredSection === "identity" && progress >= 0.6) {
+      setIdentityHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setIdentityHoverProgress(elapsed);
+        if (elapsed < 1) identityRafRef.current = requestAnimationFrame(tick);
+      };
+      identityRafRef.current = requestAnimationFrame(tick);
     } else {
-      setIdentityScanRow(-1);
-      if (identityScanRef.current) identityScanRef.current.forEach(clearTimeout);
+      setIdentityHoverProgress(null);
+      if (identityRafRef.current) cancelAnimationFrame(identityRafRef.current);
     }
-    return () => { if (identityScanRef.current) identityScanRef.current.forEach(clearTimeout); };
+    return () => { if (identityRafRef.current) cancelAnimationFrame(identityRafRef.current); };
   }, [hoveredSection]);
 
   useEffect(() => {
@@ -560,8 +565,6 @@ export default function AkeylessDashboard() {
           ].map((item, i) => (
             <div key={item.name} className="flex items-center gap-[8px]" style={{
               position: "relative", borderRadius: 4, padding: "2px 4px", margin: "-2px -4px",
-              opacity: identityScanRow === 99 ? 0 : 1,
-              transition: "opacity 0.08s ease",
             }}>
               <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0, objectFit: "contain" }} />
               <span className="text-[#111] w-[44px] flex-shrink-0" style={{ fontSize: 8.5 }}>{item.name}</span>
@@ -570,15 +573,14 @@ export default function AkeylessDashboard() {
                   <div
                     className="h-full rounded-full"
                     style={{
-                      width: `${(item.val / item.max) * 100 * p.identity}%`,
+                      width: `${(item.val / item.max) * 100 * (identityHoverProgress !== null ? identityHoverProgress : p.identity)}%`,
                       backgroundColor: item.color,
-                      transition: "none",
                     }}
                   />
                 </div>
               </div>
               <span className="text-[#111] w-[26px] text-right flex-shrink-0 font-medium" style={{ fontSize: 8.5 }}>
-                <AnimatedNumber value={item.val} progress={p.identity} />
+                <AnimatedNumber value={item.val} progress={identityHoverProgress !== null ? identityHoverProgress : p.identity} />
               </span>
             </div>
           ))}
