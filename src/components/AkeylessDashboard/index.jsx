@@ -780,6 +780,14 @@ export default function AkeylessDashboard() {
         onMouseEnter={() => setHoveredSection("encryption")}
         onMouseLeave={() => setHoveredSection(null)}
       >
+        <AnimatePresence>
+          {hoveredSection === "encryption" && (
+            <Tooltip
+              text="Encryption transactions, tokenizers, and connected cloud accounts at a glance."
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+            />
+          )}
+        </AnimatePresence>
         <p className="absolute font-semibold text-[#111]" style={{ left: 14, top: 14, fontSize: 10 }}>
           Enterprise Encryption &amp; Key Operations
         </p>
