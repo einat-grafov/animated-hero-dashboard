@@ -233,6 +233,26 @@ export default function AkeylessDashboard() {
     return () => { if (landscapeRafRef.current) cancelAnimationFrame(landscapeRafRef.current); };
   }, [hoveredSection]);
 
+  // Vault: replay number count on hover
+  useEffect(() => {
+    if (hoveredSection === "vault" && progress >= 0.7) {
+      setVaultHoverProgress(0);
+      let start = null;
+      const duration = 800;
+      const tick = (ts) => {
+        if (!start) start = ts;
+        const elapsed = Math.min((ts - start) / duration, 1);
+        setVaultHoverProgress(elapsed);
+        if (elapsed < 1) vaultRafRef.current = requestAnimationFrame(tick);
+      };
+      vaultRafRef.current = requestAnimationFrame(tick);
+    } else {
+      setVaultHoverProgress(null);
+      if (vaultRafRef.current) cancelAnimationFrame(vaultRafRef.current);
+    }
+    return () => { if (vaultRafRef.current) cancelAnimationFrame(vaultRafRef.current); };
+  }, [hoveredSection]);
+
   useEffect(() => {
     let startTime = null;
     const delay = setTimeout(() => {
