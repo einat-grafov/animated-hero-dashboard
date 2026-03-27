@@ -366,7 +366,7 @@ export default function AkeylessDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
         className="absolute"
-        style={{ left: 559, top: 18, width: 480, height: 292, overflow: "hidden", cursor: "pointer" }}
+        style={{ left: 559, top: 18, width: 480, height: 292, cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("forensic")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -802,8 +802,8 @@ export default function AkeylessDashboard() {
           {hoveredSection === "encryption" && (
             <Tooltip
               text="Encryption transactions, tokenizers, and connected cloud accounts at a glance."
-              position="bottom"
-              style={{ top: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
+              position="top"
+              style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
           )}
         </AnimatePresence>
