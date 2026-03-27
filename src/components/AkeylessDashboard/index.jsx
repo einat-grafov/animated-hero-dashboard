@@ -347,10 +347,10 @@ export default function AkeylessDashboard() {
           style={{ left: 148, bottom: 195, width: 120,
             background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
           <div className="inline-flex items-center px-[6px] py-[2px] rounded-[3px] mb-[4px]" style={{ background: "#05D9C2", fontSize: 6 }}>
-            <span className="font-bold text-white tracking-wide">INTERCEPTED</span>
+            <span className="font-bold text-white tracking-wide">IDENTIFIED</span>
           </div>
-          <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>Raw Prompt</p>
-          <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>"What is the Walmart deal ARR?"</p>
+          <p className="font-semibold text-[#111] mb-[2px]" style={{ fontSize: 8 }}>User</p>
+          <p className="text-gray-500" style={{ fontSize: 6.5, lineHeight: 1.3 }}>'testuser@example.com' accessing HubSpot 'Walmart'.</p>
         </motion.div>
 
         {/* Node 2: BLOCKED - card BELOW, timestamp ABOVE dot */}
