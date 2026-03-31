@@ -799,7 +799,7 @@ export default function AkeylessDashboard() {
         <AnimatePresence>
           {hoveredSection === "risk" && (
             <Tooltip
-              text="Risk distribution across identities — from critical to low exposure levels."
+              text="AI-powered risk detection across identities and secrets."
               style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
           )}
