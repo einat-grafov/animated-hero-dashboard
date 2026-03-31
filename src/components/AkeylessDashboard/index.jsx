@@ -441,39 +441,14 @@ export default function AkeylessDashboard() {
           }}
         />
 
-        {/* Stat cards row */}
-        <div className="absolute flex gap-[6px]" style={{ left: 14, top: 14, width: 497, height: 49 }}>
-          {[
-            { icon: iconSession,  value: 14,  label: "Active Session",         color: "#05D9C2" },
-            { icon: iconBlocked,  value: 7,   label: "Blocked Requests",       color: "#FD2B11" },
-            { icon: iconActions,  value: 23,  label: "Total Actions",          color: "#05D9C2" },
-            { icon: iconRisk,     value: 31,  label: "Average Risk Score",     color: "#F3982E", sub: "53 - 81.5" },
-          ].map((card, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
-              className="flex-1 rounded-[10px] p-[7px] flex flex-col gap-[3px]"
-              style={{ background: "#fff", boxShadow: "0 4px 27px rgba(0,0,0,0.06)" }}
-            >
-              <div className="flex items-start gap-[5px]">
-                <img src={card.icon} alt="" style={{ width: 20, height: 20, flexShrink: 0 }} />
-                <div className="flex flex-col">
-                  <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 17 }}>
-                    <AnimatedNumber value={card.value} progress={kpiProgress} />
-                  </span>
-                  <span className="text-[#111]" style={{ fontSize: 7 }}>{card.label}</span>
-                  {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 6 }}>{card.sub}</span>}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/* Section title */}
+        <p className="absolute font-semibold text-[#0E0D1E]" style={{ left: 14, top: 12, fontSize: 10 }}>
+          Agentic Access Overview
+        </p>
 
-        {/* Table title + filter bar */}
-        <div className="absolute flex items-center gap-[5px]" style={{ left: 14, top: 83, right: 14 }}>
-          <span className="font-semibold text-[#0E0D1E] shrink-0" style={{ fontSize: 10 }}>Agentic Access Overview</span>
+        {/* Stat cards row */}
+        <div className="absolute flex gap-[6px]" style={{ left: 14, top: 28, width: 497, height: 49 }}>
+
 
           {/* Filter icon button */}
           <div className="flex items-center justify-center rounded-[5px] shrink-0"
