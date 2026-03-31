@@ -891,7 +891,7 @@ export default function AkeylessDashboard() {
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-[6px]" style={{ width: 150 }}>
               <span className="flex-1 text-[#555]" style={{ fontSize: 8.5 }}>{item.label}</span>
-              <div className="rounded-[3px] flex-shrink-0" style={{ width: 28, height: 12, background: item.color, borderRadius: 3 }} />
+              <div className="rounded-[3px] flex-shrink-0" style={{ width: 12, height: 12, background: item.color, borderRadius: 3 }} />
               <span className="text-[#111] font-medium" style={{ fontSize: 8.5, width: 16, textAlign: "right" }}>
                 <AnimatedNumber value={item.val} progress={vaultHoverProgress !== null ? vaultHoverProgress : p.vault} />
               </span>
