@@ -851,7 +851,7 @@ export default function AkeylessDashboard() {
         <AnimatePresence>
           {hoveredSection === "vault" && (
             <Tooltip
-              text="Secrets synced from external vaults — AWS, Azure, HashiCorp, GCP, and K8s."
+              text="Centralized governance across distributed secrets vaults."
               style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
           )}
