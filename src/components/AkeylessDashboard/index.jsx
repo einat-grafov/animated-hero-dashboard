@@ -884,7 +884,7 @@ export default function AkeylessDashboard() {
           </div>
         </div>
         {/* Legend */}
-        <div className="absolute flex flex-col gap-[10px]" style={{ left: 160, top: 52 }}>
+        <div className="absolute flex flex-col gap-[3px]" style={{ left: 160, top: 52 }}>
           {[
             { color: "#F3982E", label: "AWS",            val: 32 },
             { color: "#5C7FC6", label: "Azure",          val: 19 },
