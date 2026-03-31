@@ -1083,7 +1083,7 @@ export default function AkeylessDashboard() {
         <AnimatePresence>
           {hoveredSection === "password" && (
             <Tooltip
-              text="Overall password strength score based on complexity, reuse, and rotation policies."
+              text="Real-time evaluation of password and credential security posture."
               style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
           )}
