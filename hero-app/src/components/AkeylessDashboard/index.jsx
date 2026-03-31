@@ -1034,7 +1034,7 @@ export default function AkeylessDashboard() {
         <AnimatePresence>
           {hoveredSection === "encryption" && (
             <Tooltip
-              text="Unified visibility across AI, human, and machine identities."
+              text="Centralized encryption and key management across cloud platforms."
               position="top"
               style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
