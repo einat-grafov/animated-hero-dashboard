@@ -441,8 +441,13 @@ export default function AkeylessDashboard() {
           }}
         />
 
+        {/* Section title */}
+        <p className="absolute font-semibold text-[#0E0D1E]" style={{ left: 14, top: 12, fontSize: 10 }}>
+          Agentic Access Overview
+        </p>
+
         {/* Stat cards row */}
-        <div className="absolute flex gap-[6px]" style={{ left: 14, top: 14, width: 497, height: 49 }}>
+        <div className="absolute flex gap-[6px]" style={{ left: 14, top: 28, width: 497, height: 49 }}>
           {[
             { icon: iconSession,  value: 14,  label: "Active Session",         color: "#05D9C2" },
             { icon: iconBlocked,  value: 7,   label: "Blocked Requests",       color: "#FD2B11" },
@@ -471,9 +476,8 @@ export default function AkeylessDashboard() {
           ))}
         </div>
 
-        {/* Table title + filter bar */}
-        <div className="absolute flex items-center gap-[5px]" style={{ left: 14, top: 83, right: 14 }}>
-          <span className="font-semibold text-[#0E0D1E] shrink-0" style={{ fontSize: 10 }}>Agentic Access Overview</span>
+        {/* Filter bar */}
+        <div className="absolute flex items-center gap-[5px]" style={{ left: 14, top: 95, right: 14 }}>
 
           {/* Filter icon button */}
           <div className="flex items-center justify-center rounded-[5px] shrink-0"
