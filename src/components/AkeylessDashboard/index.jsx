@@ -821,7 +821,7 @@ export default function AkeylessDashboard() {
             </div>
           ))}
         </div>
-        <div className="absolute flex items-center gap-[8px]" style={{ left: 14, top: 62 }}>
+        <div className="absolute flex items-center justify-between" style={{ left: 14, top: 62, right: 14 }}>
           {[
             { color: "#A70808", label: "Critical" },
             { color: "#C62828", label: "High" },
