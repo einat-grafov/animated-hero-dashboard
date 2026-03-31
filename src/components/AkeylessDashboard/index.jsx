@@ -477,7 +477,7 @@ export default function AkeylessDashboard() {
         </div>
 
         {/* Filter bar */}
-        <div className="absolute flex items-center gap-[5px]" style={{ left: 14, top: 95, right: 14 }}>
+        <div className="absolute flex items-center gap-[5px]" style={{ left: 14, top: 82, right: 14 }}>
           {/* Filter icon button */}
           <div className="flex items-center justify-center rounded-[5px] shrink-0"
             style={{ width: 22, height: 22, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
