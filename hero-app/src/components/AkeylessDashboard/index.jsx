@@ -521,7 +521,7 @@ export default function AkeylessDashboard() {
         </div>
 
         {/* Table header */}
-        <div className="absolute flex items-center" style={{ left: 14, top: 113, right: 14 }}>
+        <div className="absolute flex items-center" style={{ left: 14, top: 125, right: 14 }}>
           {[
             { label: "Agent Session ID", width: "22%" },
             { label: "User", width: "22%" },
