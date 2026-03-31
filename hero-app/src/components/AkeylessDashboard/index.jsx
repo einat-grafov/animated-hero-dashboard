@@ -477,7 +477,7 @@ export default function AkeylessDashboard() {
         </div>
 
         {/* Filter bar */}
-        <div className="absolute flex items-center gap-[5px]" style={{ left: 14, top: 95, right: 14 }}>
+        <div className="absolute flex items-center gap-[5px]" style={{ left: 14, top: 82, right: 14 }}>
 
           {/* Filter icon button */}
           <div className="flex items-center justify-center rounded-[5px] shrink-0"
@@ -521,7 +521,7 @@ export default function AkeylessDashboard() {
         </div>
 
         {/* Table header */}
-        <div className="absolute flex items-center" style={{ left: 14, top: 125, right: 14 }}>
+        <div className="absolute flex items-center" style={{ left: 14, top: 110, right: 14 }}>
           {[
             { label: "Agent Session ID", width: "22%" },
             { label: "User", width: "22%" },
