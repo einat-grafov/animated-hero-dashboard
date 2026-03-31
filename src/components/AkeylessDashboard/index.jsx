@@ -574,7 +574,7 @@ export default function AkeylessDashboard() {
         <AnimatePresence>
           {hoveredSection === "forensic" && (
             <Tooltip
-              text="End-to-end session tracing with intercepted prompts, identity resolution, and policy enforcement."
+              text="See exactly why agent actions were blocked by policy."
               position="bottom"
               style={{ top: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
