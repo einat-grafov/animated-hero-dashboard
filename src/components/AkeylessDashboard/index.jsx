@@ -702,7 +702,7 @@ export default function AkeylessDashboard() {
         <AnimatePresence>
           {hoveredSection === "identity" && (
             <Tooltip
-              text="Authentication method usage across cloud providers and platforms."
+              text="Unified authentication and access across cloud, workloads, and enterprise identities."
               style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
           )}
