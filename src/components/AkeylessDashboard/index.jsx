@@ -919,7 +919,7 @@ export default function AkeylessDashboard() {
         <AnimatePresence>
           {hoveredSection === "cert" && (
             <Tooltip
-              text="Certificate expiration tracking — from expired to 180-day renewal windows."
+              text="Prevent outages with automated certificate lifecycle monitoring."
               style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
           )}
