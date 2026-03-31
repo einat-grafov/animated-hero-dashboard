@@ -935,6 +935,10 @@ export default function AkeylessDashboard() {
               <span key={v} className="text-[#888]" style={{ fontSize: 5.5 }}>{v}</span>
             ))}
           </div>
+          {/* Horizontal grid lines */}
+          {[0, 1, 2, 3, 4].map((i) => (
+            <div key={i} className="absolute" style={{ left: 24, right: 0, top: `${(i / 4) * (100 - 14)}%`, height: 0, borderTop: "1px solid #EDEDF0" }} />
+          ))}
           <div className="absolute flex items-end justify-around pb-[14px]" style={{ left: 24, top: 0, right: 0, bottom: 0 }}>
             {[
               { label: "Expired",     gradient: "linear-gradient(180deg, #FD2B11 0%, #E8837A 100%)", heightPct: 23 },
