@@ -968,7 +968,7 @@ export default function AkeylessDashboard() {
         <AnimatePresence>
           {hoveredSection === "secrets" && (
             <Tooltip
-              text="Dynamic, short-lived secrets issued across AWS, GCP, databases, and AI services."
+              text="Just-in-time credentials replacing static access keys."
               style={{ bottom: "calc(100% + 10px)", left: "50%", transform: "translateX(-50%)" }}
             />
           )}
