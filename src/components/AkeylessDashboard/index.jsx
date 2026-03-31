@@ -664,11 +664,11 @@ export default function AkeylessDashboard() {
             <span className="font-bold text-white tracking-wide">BLOCKED</span>
           </div>
           <p className="mb-[3px]" style={{ fontSize: 6.5, lineHeight: 1.3 }}><span className="font-semibold text-[#111]">Access Denied:</span> <span className="text-gray-500">Command not allowed by policy.</span></p>
-          <div className="rounded-[3px] p-[3px] mb-[2px]" style={{ background: "rgba(253,43,17,0.06)" }}>
+          <div className="rounded-[3px] p-[3px] mb-[2px]" style={{ background: "rgba(253,43,17,0.06)", borderLeft: "2px solid #FD2B11" }}>
             <p className="uppercase text-gray-400" style={{ fontSize: 4.5, lineHeight: 1.2, letterSpacing: "0.3px" }}>POLICY THAT BLOCKED</p>
             <p className="text-[#FD2B11] font-medium" style={{ fontSize: 6 }}>ForbiddenTerm</p>
           </div>
-          <div className="rounded-[3px] p-[3px]" style={{ background: "rgba(253,43,17,0.06)" }}>
+          <div className="rounded-[3px] p-[3px]" style={{ background: "rgba(253,43,17,0.06)", borderLeft: "2px solid #F3C623" }}>
             <p className="uppercase text-gray-400" style={{ fontSize: 4.5, lineHeight: 1.2, letterSpacing: "0.3px" }}>MATCHED TERM</p>
             <p className="text-[#FD2B11] font-medium" style={{ fontSize: 6 }}>arr</p>
           </div>
