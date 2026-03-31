@@ -491,7 +491,7 @@ export default function AkeylessDashboard() {
           </div>
 
           {/* DB tabs */}
-          <div className="flex gap-[3px] items-center ml-auto">
+          <div className="flex gap-[3px] items-center">
             {[
               { label: "MySQL",      logo: mysqlLogo },
               { label: "Kubernetes", logo: k8sLogoCorrect },
