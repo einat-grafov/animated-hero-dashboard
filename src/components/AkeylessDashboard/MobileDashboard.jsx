@@ -366,27 +366,21 @@ function IdentityCombinedSection({ isActive }) {
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Identity Risk &amp; Exposure Analysis
       </p>
-      <div className="relative rounded-[8px] overflow-hidden" style={{ height: 34, marginBottom: 10, border: "1px solid #E8E9EF" }}>
-        <div className="absolute inset-0 bg-gray-100" />
-        <div
-          className="absolute inset-0 flex rounded-[8px] overflow-hidden"
-          style={{ transform: `scaleX(${p})`, transformOrigin: "left center", transition: "none" }}
-        >
-          {[
-            { color: "#A70808", flex: 5,  label: "120" },
-            { color: "#C62828", flex: 8,  label: "450" },
-            { color: "#F3982E", flex: 25, label: "2200" },
-            { color: "#1ADDC7", flex: 55, label: "8000" },
-          ].map((seg, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-center relative"
-              style={{ flex: seg.flex, backgroundColor: seg.color, minWidth: 0, overflow: "hidden" }}
-            >
-              <span className="font-semibold text-white absolute" style={{ fontSize: 8, whiteSpace: "nowrap" }}>{seg.label}</span>
-            </div>
-          ))}
-        </div>
+      <div className="rounded-[8px] overflow-hidden flex" style={{ height: 34, marginBottom: 10, border: "1px solid #E8E9EF", background: "#F3F4F6" }}>
+        {[
+          { color: "#A70808", flex: 5,  label: "120" },
+          { color: "#C62828", flex: 8,  label: "450" },
+          { color: "#F3982E", flex: 25, label: "2200" },
+          { color: "#1ADDC7", flex: 55, label: "8000" },
+        ].map((seg, i) => (
+          <div
+            key={i}
+            className="flex items-center justify-center relative"
+            style={{ flex: seg.flex, backgroundColor: seg.color, minWidth: 0, overflow: "hidden" }}
+          >
+            <span className="font-semibold text-white absolute" style={{ fontSize: 8, whiteSpace: "nowrap" }}>{seg.label}</span>
+          </div>
+        ))}
       </div>
       <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
         {[
