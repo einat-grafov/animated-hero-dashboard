@@ -342,7 +342,7 @@ function IdentityCombinedSection({ isActive }) {
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
         Enterprise Identity Landscape
       </p>
-      <div className="flex items-start justify-center" style={{ marginBottom: 6 }}>
+      <div className="flex items-start justify-center" style={{ marginBottom: 10 }}>
         {[
           { icon: vector4,      label: "AI Agents",        value: 200, format: (v) => String(v) },
           { icon: dubleUser,    label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
