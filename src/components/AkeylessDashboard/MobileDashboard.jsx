@@ -671,7 +671,7 @@ export default function MobileDashboard() {
         }}
       >
         {SECTIONS.map(({ Component }, i) => (
-          <div key={i} style={{ width: `${100 / SECTIONS.length}%`, height: "100%", flexShrink: 0, overflow: "auto" }}>
+          <div key={i} style={{ width: `${100 / SECTIONS.length}%`, height: "100%", flexShrink: 0, overflow: "hidden" }}>
             <Component isActive={i === activeIndex} />
           </div>
         ))}
