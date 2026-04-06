@@ -696,25 +696,33 @@ export default function MobileDashboard() {
       <div
         className="absolute left-0 right-0 bottom-0 flex flex-col items-center"
         style={{
-          background: "linear-gradient(180deg, transparent 0%, rgba(252,252,252,0.98) 20%)",
-          padding: "8px 20px 12px",
+          background: "linear-gradient(180deg, rgba(252,252,252,0) 0%, rgba(17,17,17,0.95) 30%)",
+          padding: "24px 20px 14px",
         }}
       >
         <AnimatePresence mode="wait">
-          <motion.p
+          <motion.div
             key={activeIndex}
-            initial={{ opacity: 0, y: 6 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.2 }}
-            className="text-center text-[#555]"
-            style={{ fontSize: 11, lineHeight: 1.4, maxWidth: 300, marginBottom: 8 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25 }}
+            className="flex flex-col items-center gap-[6px]"
+            style={{ marginBottom: 12, maxWidth: 340 }}
           >
-            {SECTIONS[activeIndex].description}
-          </motion.p>
+            {SECTIONS[activeIndex].description.map((line, li) => (
+              <p key={li} className="text-center" style={{
+                fontSize: 12,
+                lineHeight: 1.5,
+                color: "rgba(255,255,255,0.95)",
+                fontWeight: 500,
+                letterSpacing: "0.01em",
+              }}>
+                {line}
+              </p>
+            ))}
+          </motion.div>
         </AnimatePresence>
-
-        {/* Dot indicators */}
         <div className="flex gap-[8px]">
           {SECTIONS.map((_, i) => (
             <button
