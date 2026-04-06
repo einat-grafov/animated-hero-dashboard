@@ -49,14 +49,13 @@ function StatusBadge({ status }) {
   );
 }
 
-// ─── Animation hook: animates from 0→1 once when triggered ───
+// ─── Animation hook: animates from 0→1, replays each time isActive becomes true ───
 function useOnceAnimation(isActive, duration = 1200) {
   const [progress, setProgress] = useState(0);
-  const [completed, setCompleted] = useState(false);
   const rafRef = useRef(null);
 
   useEffect(() => {
-    if (isActive && !completed) {
+    if (isActive) {
       setProgress(0);
       let start = null;
       let cancelled = false;
@@ -67,8 +66,6 @@ function useOnceAnimation(isActive, duration = 1200) {
         setProgress(easeOut(t));
         if (t < 1) {
           rafRef.current = requestAnimationFrame(tick);
-        } else {
-          setCompleted(true);
         }
       };
       rafRef.current = requestAnimationFrame(tick);
@@ -76,10 +73,12 @@ function useOnceAnimation(isActive, duration = 1200) {
         cancelled = true;
         if (rafRef.current) cancelAnimationFrame(rafRef.current);
       };
+    } else {
+      setProgress(0);
     }
-  }, [isActive, duration, completed]);
+  }, [isActive, duration]);
 
-  return completed ? 1 : progress;
+  return progress;
 }
 
 // ─── TABLE DATA ───
