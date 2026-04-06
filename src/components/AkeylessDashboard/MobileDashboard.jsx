@@ -710,33 +710,42 @@ export default function MobileDashboard() {
       <div
         className="absolute left-0 right-0 bottom-0 flex flex-col items-center"
         style={{
-          background: "linear-gradient(180deg, rgba(252,252,252,0) 0%, rgba(17,17,17,0.95) 30%)",
-          padding: "24px 20px 14px",
+          background: "linear-gradient(180deg, rgba(252,252,252,0) 0%, rgba(252,252,252,0.95) 30%)",
+          padding: "16px 20px 14px",
         }}
       >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="flex flex-col items-center gap-[6px]"
-            style={{ marginBottom: 12, maxWidth: 340 }}
-          >
-            {SECTIONS[activeIndex].description.map((line, li) => (
-              <p key={li} className="text-center" style={{
-                fontSize: 12,
-                lineHeight: 1.5,
-                color: "rgba(255,255,255,0.95)",
+        {/* Only show bottom tooltip for non-identity slides (identity has inline tooltips) */}
+        {SECTIONS[activeIndex].description.length === 1 && (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25 }}
+              className="flex items-center gap-[6px] rounded-[10px]"
+              style={{
+                marginBottom: 12,
+                maxWidth: 340,
+                padding: "8px 14px",
+                background: "linear-gradient(135deg, rgba(5,217,194,0.08) 0%, rgba(92,127,198,0.08) 100%)",
+                border: "1px solid rgba(5,217,194,0.2)",
+              }}
+            >
+              <div className="flex-shrink-0 rounded-full" style={{ width: 5, height: 5, background: "#05D9C2" }} />
+              <p className="text-center" style={{
+                fontSize: 11,
+                lineHeight: 1.4,
+                color: "#444",
                 fontWeight: 500,
-                letterSpacing: "0.01em",
               }}>
-                {line}
+                {SECTIONS[activeIndex].description[0]}
               </p>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+        {/* Dot indicators */}
         <div className="flex gap-[8px]">
           {SECTIONS.map((_, i) => (
             <button
@@ -746,7 +755,7 @@ export default function MobileDashboard() {
               style={{
                 width: i === activeIndex ? 24 : 8,
                 height: 8,
-                background: i === activeIndex ? "#05D9C2" : "rgba(255,255,255,0.35)",
+                background: i === activeIndex ? "#05D9C2" : "#D1D5DB",
                 border: "none",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
