@@ -43,7 +43,7 @@ function StatusBadge({ status }) {
   };
   const c = colors[status];
   return (
-    <span className={`inline-flex items-center justify-center py-[2px] rounded-[4px] text-[10px] font-semibold ${c.bg} ${c.text}`} style={{ width: 60 }}>
+    <span className={`inline-flex items-center justify-center py-[2px] rounded-[4px] text-[11px] font-semibold ${c.bg} ${c.text}`} style={{ width: 64 }}>
       {status}
     </span>
   );
@@ -118,8 +118,8 @@ function AgenticSection({ isActive }) {
               <span className="font-semibold text-[#111]" style={{ fontSize: 22, lineHeight: 1 }}>
                 <AnimatedNumber value={card.value} progress={p} />
               </span>
-              <span className="text-[#111]" style={{ fontSize: 9 }}>{card.label}</span>
-              {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 8 }}>{card.sub}</span>}
+              <span className="text-[#111]" style={{ fontSize: 10 }}>{card.label}</span>
+              {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 9 }}>{card.sub}</span>}
             </div>
           </div>
         ))}
@@ -144,47 +144,47 @@ function AgenticSection({ isActive }) {
           <div key={tab.label} className="flex items-center gap-[4px] rounded-[5px] px-[6px]"
             style={{ height: 28, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
             <img src={tab.logo} alt={tab.label} style={{ width: 14, height: 14, objectFit: "contain" }} />
-            <span style={{ fontSize: 9, color: "#111" }}>{tab.label}</span>
+            <span style={{ fontSize: 10, color: "#111" }}>{tab.label}</span>
           </div>
         ))}
         <div className="flex items-center rounded-[5px] px-[6px] gap-[4px]"
           style={{ height: 28, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
           <img src={searchIconSvg} alt="search" style={{ width: 14, height: 14, opacity: 0.5 }} />
-          <span style={{ fontSize: 9, color: "#999" }}>Search</span>
+          <span style={{ fontSize: 10, color: "#999" }}>Search</span>
         </div>
       </div>
 
       {/* Table */}
       <div className="flex-1 overflow-auto rounded-[8px]" style={{ background: "#fff", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
         {/* Header */}
-        <div className="flex items-center px-[8px] py-[5px]" style={{ borderBottom: "1px solid #EDEDF0" }}>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "28%", flexShrink: 0 }}>Session ID</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "32%", flexShrink: 0 }}>User</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "12%", flexShrink: 0 }}>Risk</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "28%", flexShrink: 0 }}>Target</span>
+        <div className="flex items-center px-[8px] py-[6px]" style={{ borderBottom: "1px solid #EDEDF0" }}>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>Session ID</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "32%", flexShrink: 0 }}>User</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "12%", flexShrink: 0 }}>Risk</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>Target</span>
         </div>
         {TABLE_ROWS.map((row, i) => (
           <motion.div
             key={row.id}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: p > i / 5 ? 1 : 0, x: p > i / 5 ? 0 : -10 }}
-            className="flex flex-col px-[8px] py-[5px]"
+            className="flex flex-col px-[8px] py-[6px]"
             style={{ borderBottom: "1px solid #F5F5F7" }}
           >
             {/* Row 1: Session ID, User, Risk, Target */}
             <div className="flex items-center">
-              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 7.5, width: "28%", flexShrink: 0 }}>{row.id}</span>
-              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 7.5, width: "32%", flexShrink: 0 }}>{row.user}</span>
-              <span className="text-[#111] font-medium" style={{ fontSize: 7.5, width: "12%", flexShrink: 0 }}>{row.risk}</span>
-              <div className="flex items-center gap-[2px]" style={{ width: "28%", flexShrink: 0 }}>
-                <img src={row.logo} alt="" style={{ width: 12, height: 12 }} />
-                <span className="text-[#111]" style={{ fontSize: 7.5 }}>{row.target}</span>
+              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>{row.id}</span>
+              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 9, width: "32%", flexShrink: 0 }}>{row.user}</span>
+              <span className="text-[#111] font-medium" style={{ fontSize: 9, width: "12%", flexShrink: 0 }}>{row.risk}</span>
+              <div className="flex items-center gap-[3px]" style={{ width: "28%", flexShrink: 0 }}>
+                <img src={row.logo} alt="" style={{ width: 14, height: 14 }} />
+                <span className="text-[#111]" style={{ fontSize: 9 }}>{row.target}</span>
               </div>
             </div>
             {/* Row 2: Status + Date */}
-            <div className="flex items-center gap-[8px]" style={{ marginTop: 3 }}>
+            <div className="flex items-center gap-[8px]" style={{ marginTop: 4 }}>
               <StatusBadge status={row.status} />
-              <span className="text-[#888]" style={{ fontSize: 7 }}>{row.date}</span>
+              <span className="text-[#888]" style={{ fontSize: 8 }}>{row.date}</span>
             </div>
           </motion.div>
         ))}
