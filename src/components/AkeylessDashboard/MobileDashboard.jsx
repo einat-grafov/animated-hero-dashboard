@@ -295,13 +295,12 @@ function ForensicSection({ isActive }) {
 
 function InlineTooltip({ text }) {
   return (
-    <div className="flex items-center gap-[6px] rounded-[8px]" style={{
-      padding: "6px 10px",
+    <div className="flex items-center rounded-[8px]" style={{
+      padding: "8px 12px",
       background: "linear-gradient(135deg, rgba(5,217,194,0.08) 0%, rgba(92,127,198,0.08) 100%)",
       border: "1px solid rgba(5,217,194,0.2)",
     }}>
-      <div className="flex-shrink-0 rounded-full" style={{ width: 4, height: 4, background: "#05D9C2" }} />
-      <span style={{ fontSize: 9.5, color: "#444", lineHeight: 1.4, fontWeight: 500 }}>{text}</span>
+      <span style={{ fontSize: 12, color: "#444", lineHeight: 1.4, fontWeight: 500 }}>{text}</span>
     </div>
   );
 }
