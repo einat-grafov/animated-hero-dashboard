@@ -366,24 +366,19 @@ function IdentityCombinedSection({ isActive }) {
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Identity Risk &amp; Exposure Analysis
       </p>
-      <div style={{ marginBottom: 10 }}>
+      <div style={{ marginBottom: 8 }}>
         <div className="flex rounded-[8px] overflow-hidden" style={{ height: 18, background: "#F3F4F6", border: "1px solid #E8E9EF" }}>
           {[
-            { color: "#A70808", flex: 5 },
-            { color: "#C62828", flex: 8 },
-            { color: "#F3982E", flex: 25 },
-            { color: "#1ADDC7", flex: 55 },
+            { color: "#A70808", width: 5 * p },
+            { color: "#C62828", width: 8 * p },
+            { color: "#F3982E", width: 25 * p },
+            { color: "#1ADDC7", width: 55 * p },
           ].map((seg, i) => (
-            <div key={i} style={{ flex: seg.flex, backgroundColor: seg.color, minWidth: i < 2 ? 14 : 0 }} />
+            <div key={i} style={{ flex: seg.width, backgroundColor: seg.color, minWidth: p > 0.2 && i < 2 ? 14 : 0 }} />
           ))}
         </div>
         <div className="flex items-center justify-between" style={{ marginTop: 6, padding: "0 2px" }}>
-          {[
-            "120",
-            "450",
-            "2200",
-            "8000",
-          ].map((label) => (
+          {["120", "450", "2200", "8000"].map((label) => (
             <span key={label} className="font-semibold text-[#111]" style={{ fontSize: 9 }}>{label}</span>
           ))}
         </div>
