@@ -732,7 +732,7 @@ export default function MobileDashboard() {
               style={{
                 width: i === activeIndex ? 24 : 8,
                 height: 8,
-                background: i === activeIndex ? "#05D9C2" : "#D1D5DB",
+                background: i === activeIndex ? "#05D9C2" : "rgba(255,255,255,0.35)",
                 border: "none",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
