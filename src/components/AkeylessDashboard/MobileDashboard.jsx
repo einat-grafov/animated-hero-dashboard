@@ -168,23 +168,23 @@ function AgenticSection({ isActive }) {
             key={row.id}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: p > i / 5 ? 1 : 0, x: p > i / 5 ? 0 : -10 }}
-            className="flex flex-col px-[8px] py-[5px]"
+            className="flex flex-col px-[8px] py-[6px]"
             style={{ borderBottom: "1px solid #F5F5F7" }}
           >
             {/* Row 1: Session ID, User, Risk, Target */}
             <div className="flex items-center">
-              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 7.5, width: "28%", flexShrink: 0 }}>{row.id}</span>
-              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 7.5, width: "32%", flexShrink: 0 }}>{row.user}</span>
-              <span className="text-[#111] font-medium" style={{ fontSize: 7.5, width: "12%", flexShrink: 0 }}>{row.risk}</span>
-              <div className="flex items-center gap-[2px]" style={{ width: "28%", flexShrink: 0 }}>
-                <img src={row.logo} alt="" style={{ width: 12, height: 12 }} />
-                <span className="text-[#111]" style={{ fontSize: 7.5 }}>{row.target}</span>
+              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>{row.id}</span>
+              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 9, width: "32%", flexShrink: 0 }}>{row.user}</span>
+              <span className="text-[#111] font-medium" style={{ fontSize: 9, width: "12%", flexShrink: 0 }}>{row.risk}</span>
+              <div className="flex items-center gap-[3px]" style={{ width: "28%", flexShrink: 0 }}>
+                <img src={row.logo} alt="" style={{ width: 14, height: 14 }} />
+                <span className="text-[#111]" style={{ fontSize: 9 }}>{row.target}</span>
               </div>
             </div>
             {/* Row 2: Status + Date */}
-            <div className="flex items-center gap-[8px]" style={{ marginTop: 3 }}>
+            <div className="flex items-center gap-[8px]" style={{ marginTop: 4 }}>
               <StatusBadge status={row.status} />
-              <span className="text-[#888]" style={{ fontSize: 7 }}>{row.date}</span>
+              <span className="text-[#888]" style={{ fontSize: 8 }}>{row.date}</span>
             </div>
           </motion.div>
         ))}
