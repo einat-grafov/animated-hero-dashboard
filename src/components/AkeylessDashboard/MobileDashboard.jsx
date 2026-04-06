@@ -43,7 +43,7 @@ function StatusBadge({ status }) {
   };
   const c = colors[status];
   return (
-    <span className={`inline-flex items-center justify-center py-[2px] rounded-[4px] text-[10px] font-semibold ${c.bg} ${c.text}`} style={{ width: 60 }}>
+    <span className={`inline-flex items-center justify-center py-[2px] rounded-[4px] text-[11px] font-semibold ${c.bg} ${c.text}`} style={{ width: 64 }}>
       {status}
     </span>
   );
