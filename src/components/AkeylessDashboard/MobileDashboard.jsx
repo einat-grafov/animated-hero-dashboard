@@ -518,15 +518,16 @@ function CertSection({ isActive }) {
   );
 }
 
-function EncryptionSection({ isActive }) {
+function EncryptionPasswordCombinedSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1200);
 
   return (
-    <div className="flex flex-col h-full" style={{ padding: 20 }}>
-      <p className="font-semibold text-[#111]" style={{ fontSize: 16, marginBottom: 20 }}>
+    <div className="flex flex-col h-full" style={{ padding: 16 }}>
+      {/* Enterprise Encryption & Key Operations */}
+      <p className="font-semibold text-[#111]" style={{ fontSize: 15, marginBottom: 14 }}>
         Enterprise Encryption &amp; Key Operations
       </p>
-      <div className="flex flex-col gap-[24px]">
+      <div className="flex flex-col gap-[16px]" style={{ marginBottom: 12 }}>
         {[
           { label: "Transactions",   barPct: 90, value: 2, suffix: "M" },
           { label: "Tokenizers",     barPct: 35, value: 50, suffix: "" },
@@ -535,7 +536,7 @@ function EncryptionSection({ isActive }) {
           <div key={i} className="flex flex-col gap-[4px]">
             <span className="text-[#111]" style={{ fontSize: 12 }}>{item.label}</span>
             <div className="flex items-center gap-[8px]">
-              <div className="flex-1 h-[16px] rounded-[4px] bg-gray-100 overflow-hidden">
+              <div className="flex-1 h-[14px] rounded-[4px] bg-gray-100 overflow-hidden">
                 <div className="h-full rounded-[4px]" style={{ width: `${item.barPct * p}%`, backgroundColor: "#1ADDC7" }} />
               </div>
               <span className="font-medium text-[#111] flex-shrink-0" style={{ fontSize: 12, minWidth: 24 }}>
@@ -545,30 +546,31 @@ function EncryptionSection({ isActive }) {
           </div>
         ))}
       </div>
-    </div>
-  );
-}
+      <InlineTooltip text="Centralized encryption and key management across cloud platforms." />
 
-function PasswordSection({ isActive }) {
-  const p = useOnceAnimation(isActive, 1200);
+      <div style={{ height: 1, background: "#E8E9EF", margin: "16px 0" }} />
 
-  return (
-    <div className="flex flex-col h-full items-center justify-center" style={{ padding: 20 }}>
-      <p className="font-semibold text-[#111] self-start" style={{ fontSize: 16, marginBottom: 20 }}>
+      {/* Password Health */}
+      <p className="font-semibold text-[#111]" style={{ fontSize: 15, marginBottom: 12 }}>
         Password Health
       </p>
-      <div className="relative" style={{ width: 220, height: 130 }}>
-        <svg viewBox="0 0 220 130" width="220" height="130">
-          <path d="M 22 120 A 90 90 0 0 1 198 120" fill="none" stroke="#EBEBEB" strokeWidth="16" strokeLinecap="round" />
-          <path d="M 22 120 A 90 90 0 0 1 198 120" fill="none" stroke="#1ADDC7" strokeWidth="16" strokeLinecap="round"
-            strokeDasharray={`${283 * 0.92 * p} 283`} />
-        </svg>
-        <div className="absolute inset-0 flex flex-col items-center justify-end" style={{ paddingBottom: 0 }}>
-          <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 48 }}>
-            <AnimatedNumber value={92} progress={p} />
-          </span>
-          <span className="text-[#111]" style={{ fontSize: 11, marginTop: 4 }}>Out of 100</span>
+      <div className="flex items-center justify-center">
+        <div className="relative" style={{ width: 200, height: 120 }}>
+          <svg viewBox="0 0 220 130" width="200" height="120">
+            <path d="M 22 120 A 90 90 0 0 1 198 120" fill="none" stroke="#EBEBEB" strokeWidth="16" strokeLinecap="round" />
+            <path d="M 22 120 A 90 90 0 0 1 198 120" fill="none" stroke="#1ADDC7" strokeWidth="16" strokeLinecap="round"
+              strokeDasharray={`${283 * 0.92 * p} 283`} />
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-end" style={{ paddingBottom: 6 }}>
+            <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 40 }}>
+              <AnimatedNumber value={92} progress={p} />
+            </span>
+            <span className="text-[#111]" style={{ fontSize: 11, marginTop: 8 }}>Out of 100</span>
+          </div>
         </div>
+      </div>
+      <div style={{ marginTop: 12 }}>
+        <InlineTooltip text="Real-time evaluation of password and credential security posture." />
       </div>
     </div>
   );
@@ -591,8 +593,10 @@ const SECTIONS = [
     "Just-in-time credentials replacing static access keys.",
   ]},
   { Component: CertSection,                description: ["Prevent outages with automated certificate lifecycle monitoring."] },
-  { Component: EncryptionSection,           description: ["Centralized encryption and key management across cloud platforms."] },
-  { Component: PasswordSection,             description: ["Real-time evaluation of password and credential security posture."] },
+  { Component: EncryptionPasswordCombinedSection, description: [
+    "Centralized encryption and key management across cloud platforms.",
+    "Real-time evaluation of password and credential security posture.",
+  ]},
 ];
 
 export default function MobileDashboard() {
