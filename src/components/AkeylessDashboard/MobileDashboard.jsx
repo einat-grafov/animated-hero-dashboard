@@ -554,18 +554,18 @@ function EncryptionPasswordCombinedSection({ isActive }) {
       <p className="font-semibold text-[#111]" style={{ fontSize: 15, marginBottom: 12 }}>
         Password Health
       </p>
-      <div className="flex items-center justify-center">
-        <div className="relative" style={{ width: 200, height: 120 }}>
-          <svg viewBox="0 0 220 130" width="200" height="120">
-            <path d="M 22 120 A 90 90 0 0 1 198 120" fill="none" stroke="#EBEBEB" strokeWidth="16" strokeLinecap="round" />
-            <path d="M 22 120 A 90 90 0 0 1 198 120" fill="none" stroke="#1ADDC7" strokeWidth="16" strokeLinecap="round"
-              strokeDasharray={`${283 * 0.92 * p} 283`} />
+      <div className="flex flex-col items-center justify-center">
+        <div className="relative" style={{ width: 200, height: 110 }}>
+          <svg viewBox="0 0 190 105" width="200" height="110">
+            <path d="M 18 97 A 77 77 0 0 1 172 97" fill="none" stroke="#EBEBEB" strokeWidth="13" strokeLinecap="round" />
+            <path d="M 18 97 A 77 77 0 0 1 172 97" fill="none" stroke="#1ADDC7" strokeWidth="13" strokeLinecap="round"
+              strokeDasharray={`${242 * 0.92 * p} 242`} />
           </svg>
-          <div className="absolute inset-0 flex flex-col items-center justify-end" style={{ paddingBottom: 6 }}>
-            <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 40 }}>
+          <div className="absolute inset-0 flex flex-col items-center justify-end" style={{ paddingBottom: 0 }}>
+            <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 38 }}>
               <AnimatedNumber value={92} progress={p} />
             </span>
-            <span className="text-[#111]" style={{ fontSize: 11, marginTop: 8 }}>Out of 100</span>
+            <span className="text-[#111]" style={{ fontSize: 8, marginTop: 2 }}>Out of 100</span>
           </div>
         </div>
       </div>
