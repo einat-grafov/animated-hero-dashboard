@@ -144,7 +144,7 @@ function AgenticSection({ isActive }) {
           <div key={tab.label} className="flex items-center gap-[4px] rounded-[5px] px-[6px]"
             style={{ height: 28, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
             <img src={tab.logo} alt={tab.label} style={{ width: 14, height: 14, objectFit: "contain" }} />
-            <span style={{ fontSize: 9, color: "#111" }}>{tab.label}</span>
+            <span style={{ fontSize: 10, color: "#111" }}>{tab.label}</span>
           </div>
         ))}
         <div className="flex items-center rounded-[5px] px-[6px] gap-[4px]"
