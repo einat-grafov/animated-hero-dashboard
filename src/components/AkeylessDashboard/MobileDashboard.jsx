@@ -710,7 +710,7 @@ export default function MobileDashboard() {
         className="absolute left-0 right-0 bottom-0 flex flex-col items-center"
         style={{
           background: "linear-gradient(180deg, rgba(252,252,252,0) 0%, rgba(252,252,252,0.95) 30%)",
-          padding: "16px 20px 14px",
+          padding: SECTIONS[activeIndex].description.length > 1 ? "8px 20px 10px" : "16px 20px 14px",
         }}
       >
         {/* Only show bottom tooltip for non-identity slides (identity has inline tooltips) */}
