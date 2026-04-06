@@ -314,7 +314,7 @@ function IdentityCombinedSection({ isActive }) {
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
         Identity Authentication Methods in Use
       </p>
-      <div className="flex flex-col gap-[8px]" style={{ marginBottom: 10 }}>
+      <div className="flex flex-col gap-[6px]" style={{ marginBottom: 8 }}>
         {[
           { logo: awsLogo,     name: "AWS",     val: 200, max: 200, color: "#F3982E" },
           { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
