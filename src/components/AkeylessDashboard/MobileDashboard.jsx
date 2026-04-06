@@ -293,16 +293,29 @@ function ForensicSection({ isActive }) {
   );
 }
 
+function InlineTooltip({ text }) {
+  return (
+    <div className="flex items-center gap-[6px] rounded-[8px]" style={{
+      padding: "6px 10px",
+      background: "linear-gradient(135deg, rgba(5,217,194,0.08) 0%, rgba(92,127,198,0.08) 100%)",
+      border: "1px solid rgba(5,217,194,0.2)",
+    }}>
+      <div className="flex-shrink-0 rounded-full" style={{ width: 4, height: 4, background: "#05D9C2" }} />
+      <span style={{ fontSize: 9.5, color: "#444", lineHeight: 1.4, fontWeight: 500 }}>{text}</span>
+    </div>
+  );
+}
+
 function IdentityCombinedSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1500);
 
   return (
     <div className="flex flex-col h-full" style={{ padding: 16 }}>
       {/* Identity Authentication Methods in Use */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Identity Authentication Methods in Use
       </p>
-      <div className="flex flex-col gap-[10px]" style={{ marginBottom: 18 }}>
+      <div className="flex flex-col gap-[8px]" style={{ marginBottom: 6 }}>
         {[
           { logo: awsLogo,     name: "AWS",     val: 200, max: 200, color: "#F3982E" },
           { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
@@ -321,15 +334,16 @@ function IdentityCombinedSection({ isActive }) {
           </div>
         ))}
       </div>
+      <InlineTooltip text="Unified authentication and access across cloud, workloads, and enterprise identities." />
 
       {/* Divider */}
-      <div style={{ height: 1, background: "#E8E9EF", marginBottom: 14 }} />
+      <div style={{ height: 1, background: "#E8E9EF", margin: "10px 0" }} />
 
       {/* Enterprise Identity Landscape */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Enterprise Identity Landscape
       </p>
-      <div className="flex items-start justify-center" style={{ marginBottom: 18 }}>
+      <div className="flex items-start justify-center" style={{ marginBottom: 6 }}>
         {[
           { icon: vector4,      label: "AI Agents",        value: 200, format: (v) => String(v) },
           { icon: dubleUser,    label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
@@ -344,18 +358,17 @@ function IdentityCombinedSection({ isActive }) {
           </div>
         ))}
       </div>
+      <InlineTooltip text="Unified visibility across AI, human, and machine identities." />
 
       {/* Divider */}
-      <div style={{ height: 1, background: "#E8E9EF", marginBottom: 14 }} />
+      <div style={{ height: 1, background: "#E8E9EF", margin: "10px 0" }} />
 
       {/* Identity Risk & Exposure Analysis */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Identity Risk &amp; Exposure Analysis
       </p>
-      <div className="relative rounded-[6px] overflow-hidden" style={{ height: 30, marginBottom: 10 }}>
-        {/* Background track */}
+      <div className="relative rounded-[6px] overflow-hidden" style={{ height: 28, marginBottom: 8 }}>
         <div className="absolute inset-0 bg-gray-100" />
-        {/* Animated segments */}
         <div className="absolute inset-0 flex" style={{ width: `${p * 100}%`, transition: "none" }}>
           {[
             { color: "#A70808", flex: 5,  label: "120" },
@@ -370,7 +383,7 @@ function IdentityCombinedSection({ isActive }) {
           ))}
         </div>
       </div>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between" style={{ marginBottom: 6 }}>
         {[
           { color: "#A70808", label: "Critical" },
           { color: "#C62828", label: "High" },
@@ -383,6 +396,7 @@ function IdentityCombinedSection({ isActive }) {
           </div>
         ))}
       </div>
+      <InlineTooltip text="AI-powered risk detection across identities and secrets." />
     </div>
   );
 }
