@@ -704,7 +704,7 @@ export default function MobileDashboard() {
       <div
         className="absolute left-0 right-0 bottom-0 flex flex-col items-center"
         style={{
-          background: "linear-gradient(180deg, rgba(252,252,252,0) 0%, rgba(252,252,252,0.95) 30%)",
+          background: "transparent",
           padding: SECTIONS[activeIndex].description.length > 1 ? "8px 20px 10px" : "16px 20px 14px",
         }}
       >
