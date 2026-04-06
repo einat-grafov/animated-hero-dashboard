@@ -56,19 +56,26 @@ function useOnceAnimation(isActive, duration = 1200) {
   const rafRef = useRef(null);
 
   useEffect(() => {
-    if (isActive && !hasPlayed.current) {
+    if (isActive) {
       hasPlayed.current = true;
       setProgress(0);
       let start = null;
+      let cancelled = false;
       const tick = (ts) => {
+        if (cancelled) return;
         if (!start) start = ts;
         const t = Math.min((ts - start) / duration, 1);
         setProgress(easeOut(t));
         if (t < 1) rafRef.current = requestAnimationFrame(tick);
       };
       rafRef.current = requestAnimationFrame(tick);
+      return () => {
+        cancelled = true;
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        // Reset hasPlayed so StrictMode re-mount can replay
+        hasPlayed.current = false;
+      };
     }
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
   }, [isActive, duration]);
 
   return progress;
