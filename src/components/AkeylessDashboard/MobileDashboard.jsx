@@ -309,7 +309,7 @@ function IdentityCombinedSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1500);
 
   return (
-    <div className="flex flex-col h-full overflow-auto" style={{ padding: 16 }}>
+    <div className="flex flex-col h-full" style={{ padding: 14 }}>
       {/* Identity Authentication Methods in Use */}
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Identity Authentication Methods in Use
@@ -336,7 +336,7 @@ function IdentityCombinedSection({ isActive }) {
       <InlineTooltip text="Unified authentication and access across cloud, workloads, and enterprise identities." />
 
       {/* Divider */}
-      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF", margin: "16px 0" }} />
+      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF", margin: "12px 0" }} />
 
       {/* Enterprise Identity Landscape */}
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
@@ -360,30 +360,25 @@ function IdentityCombinedSection({ isActive }) {
       <InlineTooltip text="Unified visibility across AI, human, and machine identities." />
 
       {/* Divider */}
-      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF", margin: "16px 0" }} />
+      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF", margin: "12px 0" }} />
 
       {/* Identity Risk & Exposure Analysis */}
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Identity Risk &amp; Exposure Analysis
       </p>
-      <div style={{ marginBottom: 10 }}>
+      <div style={{ marginBottom: 8 }}>
         <div className="flex rounded-[8px] overflow-hidden" style={{ height: 18, background: "#F3F4F6", border: "1px solid #E8E9EF" }}>
           {[
-            { color: "#A70808", flex: 5 },
-            { color: "#C62828", flex: 8 },
-            { color: "#F3982E", flex: 25 },
-            { color: "#1ADDC7", flex: 55 },
+            { color: "#A70808", width: 5 * p },
+            { color: "#C62828", width: 8 * p },
+            { color: "#F3982E", width: 25 * p },
+            { color: "#1ADDC7", width: 55 * p },
           ].map((seg, i) => (
-            <div key={i} style={{ flex: seg.flex, backgroundColor: seg.color, minWidth: i < 2 ? 14 : 0 }} />
+            <div key={i} style={{ flex: seg.width, backgroundColor: seg.color, minWidth: p > 0.2 && i < 2 ? 14 : 0 }} />
           ))}
         </div>
         <div className="flex items-center justify-between" style={{ marginTop: 6, padding: "0 2px" }}>
-          {[
-            "120",
-            "450",
-            "2200",
-            "8000",
-          ].map((label) => (
+          {["120", "450", "2200", "8000"].map((label) => (
             <span key={label} className="font-semibold text-[#111]" style={{ fontSize: 9 }}>{label}</span>
           ))}
         </div>
@@ -697,7 +692,7 @@ export default function MobileDashboard() {
           top: 0,
           left: 0,
           right: 0,
-          bottom: 80,
+          bottom: SECTIONS[activeIndex].description.length > 1 ? 56 : 80,
           width: `${SECTIONS.length * 100}%`,
           transform: `translateX(calc(-${activeIndex * (100 / SECTIONS.length)}% + ${dragOffset}px))`,
           transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -715,7 +710,7 @@ export default function MobileDashboard() {
         className="absolute left-0 right-0 bottom-0 flex flex-col items-center"
         style={{
           background: "linear-gradient(180deg, rgba(252,252,252,0) 0%, rgba(252,252,252,0.95) 30%)",
-          padding: "16px 20px 14px",
+          padding: SECTIONS[activeIndex].description.length > 1 ? "8px 20px 10px" : "16px 20px 14px",
         }}
       >
         {/* Only show bottom tooltip for non-identity slides (identity has inline tooltips) */}
