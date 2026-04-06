@@ -573,14 +573,18 @@ function PasswordSection({ isActive }) {
 // ═══════════════════════════════════════════════
 
 const SECTIONS = [
-  { Component: AgenticSection,          description: "Track every agent session from prompt to action." },
-  { Component: ForensicSection,         description: "See exactly why agent actions were blocked by policy." },
-  { Component: IdentityCombinedSection, description: "Unified authentication, identity landscape, and risk analysis." },
-  { Component: VaultSection,            description: "Centralized governance across distributed secrets vaults." },
-  { Component: CertSection,             description: "Prevent outages with automated certificate lifecycle monitoring." },
-  { Component: SecretsSection,          description: "Just-in-time credentials replacing static access keys." },
-  { Component: EncryptionSection,       description: "Centralized encryption and key management across cloud platforms." },
-  { Component: PasswordSection,         description: "Real-time evaluation of password and credential security posture." },
+  { Component: AgenticSection,          description: ["Track every agent session from prompt to action."] },
+  { Component: ForensicSection,         description: ["See exactly why agent actions were blocked by policy."] },
+  { Component: IdentityCombinedSection, description: [
+    "Unified authentication and access across cloud, workloads, and enterprise identities.",
+    "Unified visibility across AI, human, and machine identities.",
+    "AI-powered risk detection across identities and secrets.",
+  ]},
+  { Component: VaultSection,            description: ["Centralized governance across distributed secrets vaults."] },
+  { Component: CertSection,             description: ["Prevent outages with automated certificate lifecycle monitoring."] },
+  { Component: SecretsSection,          description: ["Just-in-time credentials replacing static access keys."] },
+  { Component: EncryptionSection,       description: ["Centralized encryption and key management across cloud platforms."] },
+  { Component: PasswordSection,         description: ["Real-time evaluation of password and credential security posture."] },
 ];
 
 export default function MobileDashboard() {
