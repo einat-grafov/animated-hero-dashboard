@@ -311,7 +311,7 @@ function IdentityCombinedSection({ isActive }) {
   return (
     <div className="flex flex-col h-full overflow-auto" style={{ padding: 14 }}>
       {/* Identity Authentication Methods in Use */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
         Identity Authentication Methods in Use
       </p>
       <div className="flex flex-col gap-[8px]" style={{ marginBottom: 10 }}>
