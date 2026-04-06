@@ -360,7 +360,7 @@ function IdentityCombinedSection({ isActive }) {
       <InlineTooltip text="Unified visibility across AI, human, and machine identities." />
 
       {/* Divider */}
-      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF", margin: "16px 0" }} />
+      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF", margin: "12px 0" }} />
 
       {/* Identity Risk & Exposure Analysis */}
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
