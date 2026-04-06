@@ -721,7 +721,7 @@ export default function MobileDashboard() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.25 }}
-              className="flex items-center gap-[6px] rounded-[10px]"
+              className="flex items-center rounded-[10px]"
               style={{
                 marginBottom: 12,
                 maxWidth: 340,
@@ -730,9 +730,8 @@ export default function MobileDashboard() {
                 border: "1px solid rgba(5,217,194,0.2)",
               }}
             >
-              <div className="flex-shrink-0 rounded-full" style={{ width: 5, height: 5, background: "#05D9C2" }} />
               <p className="text-center" style={{
-                fontSize: 11,
+                fontSize: 12,
                 lineHeight: 1.4,
                 color: "#444",
                 fontWeight: 500,
