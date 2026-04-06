@@ -147,6 +147,11 @@ function AgenticSection({ isActive }) {
             <span style={{ fontSize: 9, color: "#111" }}>{tab.label}</span>
           </div>
         ))}
+        <div className="flex items-center rounded-[5px] px-[6px] gap-[4px]"
+          style={{ height: 28, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
+          <img src={searchIconSvg} alt="search" style={{ width: 14, height: 14, opacity: 0.5 }} />
+          <span style={{ fontSize: 9, color: "#999" }}>Search</span>
+        </div>
       </div>
 
       {/* Table */}
