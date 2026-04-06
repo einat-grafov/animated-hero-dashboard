@@ -339,7 +339,7 @@ function IdentityCombinedSection({ isActive }) {
       <div style={{ height: 1, background: "#E8E9EF", margin: "8px 0" }} />
 
       {/* Enterprise Identity Landscape */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
         Enterprise Identity Landscape
       </p>
       <div className="flex items-start justify-center" style={{ marginBottom: 10 }}>
