@@ -336,7 +336,7 @@ function IdentityCombinedSection({ isActive }) {
       <InlineTooltip text="Unified authentication and access across cloud, workloads, and enterprise identities." />
 
       {/* Divider */}
-      <div style={{ height: 1, background: "#E8E9EF", margin: "14px 0" }} />
+      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF", margin: "16px 0" }} />
 
       {/* Enterprise Identity Landscape */}
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
@@ -360,23 +360,29 @@ function IdentityCombinedSection({ isActive }) {
       <InlineTooltip text="Unified visibility across AI, human, and machine identities." />
 
       {/* Divider */}
-      <div style={{ height: 1, background: "#E8E9EF", margin: "14px 0" }} />
+      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF", margin: "16px 0" }} />
 
       {/* Identity Risk & Exposure Analysis */}
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Identity Risk &amp; Exposure Analysis
       </p>
-      <div className="relative rounded-[6px] overflow-hidden" style={{ height: 28, marginBottom: 8 }}>
+      <div className="relative rounded-[8px] overflow-hidden" style={{ height: 34, marginBottom: 10, border: "1px solid #E8E9EF" }}>
         <div className="absolute inset-0 bg-gray-100" />
-        <div className="absolute inset-0 flex" style={{ width: `${p * 100}%`, transition: "none" }}>
+        <div
+          className="absolute inset-0 flex rounded-[8px] overflow-hidden"
+          style={{ transform: `scaleX(${p})`, transformOrigin: "left center", transition: "none" }}
+        >
           {[
             { color: "#A70808", flex: 5,  label: "120" },
             { color: "#C62828", flex: 8,  label: "450" },
             { color: "#F3982E", flex: 25, label: "2200" },
             { color: "#1ADDC7", flex: 55, label: "8000" },
           ].map((seg, i) => (
-            <div key={i} className="flex items-center justify-center relative"
-              style={{ flex: seg.flex, backgroundColor: seg.color, minWidth: 0, overflow: "hidden" }}>
+            <div
+              key={i}
+              className="flex items-center justify-center relative"
+              style={{ flex: seg.flex, backgroundColor: seg.color, minWidth: 0, overflow: "hidden" }}
+            >
               <span className="font-semibold text-white absolute" style={{ fontSize: 8, whiteSpace: "nowrap" }}>{seg.label}</span>
             </div>
           ))}
