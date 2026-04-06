@@ -423,7 +423,7 @@ function VaultSecretsCombinedSection({ isActive }) {
             <span className="text-[#111]" style={{ fontSize: 10 }}>Total Items</span>
           </div>
         </div>
-        <div className="flex flex-col gap-[6px]">
+        <div className="flex flex-col gap-[6px]" style={{ minWidth: 150 }}>
           {[
             { color: "#F3982E", label: "AWS", val: 32 },
             { color: "#5C7FC6", label: "Azure", val: 19 },
@@ -433,8 +433,8 @@ function VaultSecretsCombinedSection({ isActive }) {
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-[8px]">
               <div className="rounded-[2px] flex-shrink-0" style={{ width: 12, height: 12, background: item.color }} />
-              <span className="flex-1 text-[#555]" style={{ fontSize: 12 }}>{item.label}</span>
-              <span className="text-[#111] font-medium" style={{ fontSize: 12, width: 28, textAlign: "right" }}>
+              <span className="text-[#555]" style={{ fontSize: 12, width: 100 }}>{item.label}</span>
+              <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 12, width: 28, textAlign: "right" }}>
                 <AnimatedNumber value={item.val} progress={p} />
               </span>
             </div>
@@ -462,7 +462,7 @@ function VaultSecretsCombinedSection({ isActive }) {
             <span className="text-[#111] text-center leading-tight" style={{ fontSize: 9 }}>Total Dynamic<br/>Secrets</span>
           </div>
         </div>
-        <div className="flex flex-col gap-[6px]">
+        <div className="flex flex-col gap-[6px]" style={{ minWidth: 150 }}>
           {[
             { color: "#F3982E", label: "AWS", val: 18 },
             { color: "#275AC2", label: "GCP", val: 12 },
@@ -473,8 +473,8 @@ function VaultSecretsCombinedSection({ isActive }) {
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-[8px]">
               <div className="rounded-[2px] flex-shrink-0" style={{ width: 12, height: 12, background: item.color }} />
-              <span className="flex-1 text-[#111]" style={{ fontSize: 12 }}>{item.label}</span>
-              <span className="text-[#111] font-medium" style={{ fontSize: 12, width: 28, textAlign: "right" }}>
+              <span className="text-[#111]" style={{ fontSize: 12, width: 100 }}>{item.label}</span>
+              <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 12, width: 28, textAlign: "right" }}>
                 <AnimatedNumber value={item.val} progress={p} />K
               </span>
             </div>
