@@ -52,12 +52,11 @@ function StatusBadge({ status }) {
 // ─── Animation hook: animates from 0→1 once when triggered ───
 function useOnceAnimation(isActive, duration = 1200) {
   const [progress, setProgress] = useState(0);
-  const hasPlayed = useRef(false);
+  const [completed, setCompleted] = useState(false);
   const rafRef = useRef(null);
 
   useEffect(() => {
-    if (isActive) {
-      hasPlayed.current = true;
+    if (isActive && !completed) {
       setProgress(0);
       let start = null;
       let cancelled = false;
@@ -66,19 +65,21 @@ function useOnceAnimation(isActive, duration = 1200) {
         if (!start) start = ts;
         const t = Math.min((ts - start) / duration, 1);
         setProgress(easeOut(t));
-        if (t < 1) rafRef.current = requestAnimationFrame(tick);
+        if (t < 1) {
+          rafRef.current = requestAnimationFrame(tick);
+        } else {
+          setCompleted(true);
+        }
       };
       rafRef.current = requestAnimationFrame(tick);
       return () => {
         cancelled = true;
         if (rafRef.current) cancelAnimationFrame(rafRef.current);
-        // Reset hasPlayed so StrictMode re-mount can replay
-        hasPlayed.current = false;
       };
     }
-  }, [isActive, duration]);
+  }, [isActive, duration, completed]);
 
-  return progress;
+  return completed ? 1 : progress;
 }
 
 // ─── TABLE DATA ───
