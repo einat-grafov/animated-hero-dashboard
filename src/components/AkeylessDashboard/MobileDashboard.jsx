@@ -136,7 +136,7 @@ function Tooltip({ text, style, position = "top" }) {
   );
 }
 
-export default function AkeylessDashboard() {
+export default function MobileDashboard() {
   const [progress, setProgress] = useState(0);
   const [agenticHovered, setAgenticHovered] = useState(false);
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
