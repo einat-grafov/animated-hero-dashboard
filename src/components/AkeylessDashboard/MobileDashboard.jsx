@@ -382,7 +382,7 @@ function IdentityCombinedSection({ isActive }) {
           ))}
         </div>
       </div>
-      <div className="flex items-center justify-between" style={{ marginBottom: 6 }}>
+      <div className="flex items-center justify-between" style={{ marginBottom: 10 }}>
         {[
           { color: "#A70808", label: "Critical" },
           { color: "#C62828", label: "High" },
