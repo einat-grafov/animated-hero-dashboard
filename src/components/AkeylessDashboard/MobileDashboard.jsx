@@ -189,6 +189,9 @@ function AgenticSection({ isActive }) {
           </motion.div>
         ))}
       </div>
+      <div style={{ marginTop: 10 }}>
+        <InlineTooltip text="Track every agent session from prompt to action." />
+      </div>
     </div>
   );
 }
