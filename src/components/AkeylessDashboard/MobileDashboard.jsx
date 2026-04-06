@@ -408,6 +408,7 @@ function IdentityCombinedSection({ isActive }) {
           ))}
         </div>
         <InlineTooltip text="AI-powered risk detection across identities and secrets." />
+      </div>
     </div>
   );
 }
