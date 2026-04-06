@@ -486,50 +486,7 @@ function VaultSecretsCombinedSection({ isActive }) {
   );
 }
 
-  return (
-    <div className="flex flex-col h-full" style={{ padding: 20 }}>
-      <p className="font-semibold text-[#111]" style={{ fontSize: 16, marginBottom: 20 }}>
-        External Vault &amp; Secrets Integrations
-      </p>
-      <div className="flex items-center gap-[24px]">
-        {/* Donut */}
-        <div className="relative" style={{ width: 140, height: 140, flexShrink: 0 }}>
-          <div className="absolute inset-0 rounded-full"
-            style={{ background: "conic-gradient(from -90deg, #F3982E 0% 35.96%, #5C7FC6 35.96% 57.30%, #111111 57.30% 77.53%, #05D9C2 77.53% 88.76%, #275AC2 88.76% 100%)" }} />
-          <div className="absolute inset-[8%] rounded-full overflow-hidden"
-            style={{ background: "radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.95) 0%, rgba(230,235,245,0.7) 50%, rgba(200,210,230,0.5) 100%)", backdropFilter: "blur(8px)" }} />
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-semibold text-[#111]" style={{ fontSize: 30 }}>
-              <AnimatedNumber value={89} progress={p} />
-            </span>
-            <span className="text-[#111]" style={{ fontSize: 9 }}>Total Items</span>
-          </div>
-        </div>
-        {/* Legend */}
-        <div className="flex flex-col gap-[6px]">
-          {[
-            { color: "#F3982E", label: "AWS", val: 32 },
-            { color: "#5C7FC6", label: "Azure", val: 19 },
-            { color: "#111",    label: "Hashicorp Vault", val: 18 },
-            { color: "#05D9C2", label: "GCP", val: 10 },
-            { color: "#275AC2", label: "K8s", val: 10 },
-          ].map((item) => (
-            <div key={item.label} className="flex items-center gap-[8px]">
-              <div className="rounded-[3px] flex-shrink-0" style={{ width: 14, height: 14, background: item.color }} />
-              <span className="flex-1 text-[#555]" style={{ fontSize: 11 }}>{item.label}</span>
-              <span className="text-[#111] font-medium" style={{ fontSize: 11, width: 20, textAlign: "right" }}>
-                <AnimatedNumber value={item.val} progress={p} />
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
-function CertSection({ isActive }) {
-  const p = useOnceAnimation(isActive, 1200);
 
   return (
     <div className="flex flex-col h-full" style={{ padding: 20 }}>
