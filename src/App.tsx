@@ -46,10 +46,9 @@ function MobilePage() {
       width: "100%",
       minHeight: "100vh",
       display: "flex",
-      alignItems: "center",
+      alignItems: "flex-start",
       justifyContent: "center",
       background: "#eef0f5",
-      padding: "20px",
       overflow: "hidden",
     }}>
       <MobileDashboard />
