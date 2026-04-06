@@ -487,6 +487,8 @@ function VaultSecretsCombinedSection({ isActive }) {
 }
 
 
+function CertSection({ isActive }) {
+  const p = useOnceAnimation(isActive, 1200);
 
   return (
     <div className="flex flex-col h-full" style={{ padding: 20 }}>
@@ -494,13 +496,11 @@ function VaultSecretsCombinedSection({ isActive }) {
         Certificate Lifecycle Health
       </p>
       <div className="flex-1 relative" style={{ minHeight: 200 }}>
-        {/* Y axis */}
         <div className="absolute left-0 top-0 flex flex-col justify-between items-end" style={{ height: "calc(100% - 30px)", width: 30 }}>
           {["1000","750","500","250","0"].map((v) => (
             <span key={v} className="text-[#888]" style={{ fontSize: 9 }}>{v}</span>
           ))}
         </div>
-        {/* Bars */}
         <div className="absolute flex items-end justify-around" style={{ left: 36, top: 0, right: 0, bottom: 30 }}>
           {[
             { label: "Expired",     gradient: "linear-gradient(180deg, #FD2B11 0%, #E8837A 100%)", heightPct: 23 },
@@ -511,52 +511,6 @@ function VaultSecretsCombinedSection({ isActive }) {
             <div key={i} className="flex flex-col items-center justify-end gap-[6px]" style={{ height: "100%", flex: 1 }}>
               <div className="rounded-t-[4px]" style={{ background: bar.gradient, height: `${bar.heightPct * p}%`, width: "60%", maxWidth: 50 }} />
               <span className="text-[#555] whitespace-nowrap" style={{ fontSize: 8 }}>{bar.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SecretsSection({ isActive }) {
-  const p = useOnceAnimation(isActive, 1200);
-
-  return (
-    <div className="flex flex-col h-full" style={{ padding: 20 }}>
-      <p className="font-semibold text-[#111]" style={{ fontSize: 16, marginBottom: 20 }}>
-        Dynamic Secrets Issued
-      </p>
-      <div className="flex items-center gap-[24px]">
-        {/* Pie */}
-        <div className="relative" style={{ width: 140, height: 140, flexShrink: 0 }}>
-          <div className="absolute inset-0 rounded-full"
-            style={{ background: "conic-gradient(from -90deg, #F3982E 0% 30%, #275AC2 30% 50%, #5C7FC6 50% 65%, #05D9C2 65% 78.333%, #111111 78.333% 90%, #4A8FF0 90% 100%)" }} />
-          <div className="absolute inset-[8%] rounded-full overflow-hidden"
-            style={{ background: "radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.97) 0%, rgba(240,242,248,0.85) 60%, rgba(220,225,238,0.7) 100%)", backdropFilter: "blur(8px)" }} />
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="font-semibold text-[#111]" style={{ fontSize: 24 }}>
-              <AnimatedNumber value={60} progress={p} />K
-            </span>
-            <span className="text-[#111] text-center leading-tight" style={{ fontSize: 8 }}>Total Dynamic<br/>Secrets</span>
-          </div>
-        </div>
-        {/* Legend */}
-        <div className="flex flex-col gap-[6px]">
-          {[
-            { color: "#F3982E", label: "AWS", val: 18 },
-            { color: "#275AC2", label: "GCP", val: 12 },
-            { color: "#5C7FC6", label: "PostgreSQL", val: 9 },
-            { color: "#05D9C2", label: "MySQL", val: 8 },
-            { color: "#111",    label: "OpenAI", val: 7 },
-            { color: "#4A8FF0", label: "Docker", val: 6 },
-          ].map((item) => (
-            <div key={item.label} className="flex items-center gap-[8px]">
-              <div className="rounded-[2px] flex-shrink-0" style={{ width: 12, height: 12, background: item.color }} />
-              <span className="flex-1 text-[#111]" style={{ fontSize: 10 }}>{item.label}</span>
-              <span className="text-[#111] font-medium" style={{ fontSize: 10, width: 24, textAlign: "right" }}>
-                <AnimatedNumber value={item.val} progress={p} />K
-              </span>
             </div>
           ))}
         </div>
