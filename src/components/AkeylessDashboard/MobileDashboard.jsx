@@ -667,11 +667,6 @@ export default function MobileDashboard() {
       style={{
         width: "100%",
         height: "75vh",
-        borderRadius: 16,
-        background: "rgba(252,252,252,0.96)",
-        backdropFilter: "blur(14px)",
-        border: "1px solid rgba(255,255,255,0.3)",
-        boxShadow: "0 10px 40px rgba(0,0,0,0.10)",
         fontFamily: "'Poppins', sans-serif",
         touchAction: "pan-y",
         userSelect: "none",
@@ -709,7 +704,7 @@ export default function MobileDashboard() {
       <div
         className="absolute left-0 right-0 bottom-0 flex flex-col items-center"
         style={{
-          background: "linear-gradient(180deg, rgba(252,252,252,0) 0%, rgba(252,252,252,0.95) 30%)",
+          background: "transparent",
           padding: SECTIONS[activeIndex].description.length > 1 ? "8px 20px 10px" : "16px 20px 14px",
         }}
       >
