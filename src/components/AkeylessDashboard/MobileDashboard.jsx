@@ -692,7 +692,7 @@ export default function MobileDashboard() {
           top: 0,
           left: 0,
           right: 0,
-          bottom: 80,
+          bottom: SECTIONS[activeIndex].description.length > 1 ? 56 : 80,
           width: `${SECTIONS.length * 100}%`,
           transform: `translateX(calc(-${activeIndex * (100 / SECTIONS.length)}% + ${dragOffset}px))`,
           transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
