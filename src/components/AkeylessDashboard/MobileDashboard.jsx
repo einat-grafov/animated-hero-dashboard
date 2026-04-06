@@ -542,7 +542,7 @@ function EncryptionPasswordCombinedSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1200);
 
   return (
-    <div className="flex flex-col h-full" style={{ padding: 16 }}>
+    <div className="flex flex-col h-full justify-between" style={{ padding: 16 }}>
       {/* Enterprise Encryption & Key Operations */}
       <p className="font-semibold text-[#111]" style={{ fontSize: 15, marginBottom: 14 }}>
         Enterprise Encryption &amp; Key Operations
