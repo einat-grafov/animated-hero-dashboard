@@ -521,6 +521,9 @@ function CertSection({ isActive }) {
           ))}
         </div>
       </div>
+      <div style={{ marginTop: 10 }}>
+        <InlineTooltip text="Prevent outages with automated certificate lifecycle monitoring." />
+      </div>
     </div>
   );
 }
