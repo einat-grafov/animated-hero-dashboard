@@ -286,73 +286,66 @@ function ForensicSection({ isActive }) {
   );
 }
 
-function IdentitySection({ isActive }) {
-  const p = useOnceAnimation(isActive, 1200);
+function IdentityCombinedSection({ isActive }) {
+  const p = useOnceAnimation(isActive, 1500);
 
   return (
-    <div className="flex flex-col h-full" style={{ padding: 20 }}>
-      <p className="font-semibold text-[#111]" style={{ fontSize: 16, marginBottom: 20 }}>
+    <div className="flex flex-col h-full" style={{ padding: 16 }}>
+      {/* Identity Authentication Methods in Use */}
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
         Identity Authentication Methods in Use
       </p>
-      <div className="flex flex-col gap-[24px]">
+      <div className="flex flex-col gap-[10px]" style={{ marginBottom: 18 }}>
         {[
           { logo: awsLogo,     name: "AWS",     val: 200, max: 200, color: "#F3982E" },
           { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
           { logo: gcpLogo,     name: "GCP",     val: 140, max: 200, color: "#05D9C2" },
           { logo: windowsLogo, name: "Windows", val: 60,  max: 200, color: "#5C7FC6" },
         ].map((item) => (
-          <div key={item.name} className="flex items-center gap-[10px]">
-            <img src={item.logo} alt={item.name} style={{ width: 24, height: 24, flexShrink: 0, objectFit: "contain" }} />
-            <span className="text-[#111] flex-shrink-0" style={{ fontSize: 12, width: 55 }}>{item.name}</span>
-            <div className="flex-1 h-[10px] rounded-full bg-gray-100 overflow-hidden">
+          <div key={item.name} className="flex items-center gap-[8px]">
+            <img src={item.logo} alt={item.name} style={{ width: 20, height: 20, flexShrink: 0, objectFit: "contain" }} />
+            <span className="text-[#111] flex-shrink-0" style={{ fontSize: 10, width: 48 }}>{item.name}</span>
+            <div className="flex-1 h-[8px] rounded-full bg-gray-100 overflow-hidden">
               <div className="h-full rounded-full" style={{ width: `${(item.val / item.max) * 100 * p}%`, backgroundColor: item.color }} />
             </div>
-            <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 12, width: 32, textAlign: "right" }}>
+            <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 10, width: 28, textAlign: "right" }}>
               <AnimatedNumber value={item.val} progress={p} />
             </span>
           </div>
         ))}
       </div>
-    </div>
-  );
-}
 
-function LandscapeSection({ isActive }) {
-  const p = useOnceAnimation(isActive, 1000);
+      {/* Divider */}
+      <div style={{ height: 1, background: "#E8E9EF", marginBottom: 14 }} />
 
-  return (
-    <div className="flex flex-col h-full items-center justify-center" style={{ padding: 20 }}>
-      <p className="font-semibold text-[#111] self-start" style={{ fontSize: 16, marginBottom: 30 }}>
+      {/* Enterprise Identity Landscape */}
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
         Enterprise Identity Landscape
       </p>
-      <div className="flex items-start gap-[32px] justify-center">
+      <div className="flex items-start gap-[20px] justify-center" style={{ marginBottom: 18 }}>
         {[
           { icon: vector4,      label: "AI Agents",        value: 200, format: (v) => String(v) },
           { icon: dubleUser,    label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
           { icon: groupMachine, label: "Machine Identity", value: 30,  format: (v) => `${v}K` },
         ].map((item, i) => (
-          <div key={i} className="flex flex-col items-center gap-[6px]">
-            <img src={item.icon} alt="" style={{ width: 32, height: 32 }} />
-            <span className="font-bold text-[#111]" style={{ fontSize: 36 }}>
+          <div key={i} className="flex flex-col items-center gap-[4px]">
+            <img src={item.icon} alt="" style={{ width: 26, height: 26 }} />
+            <span className="font-bold text-[#111]" style={{ fontSize: 28 }}>
               {item.format(Math.round(lerp(0, item.value, p)))}
             </span>
-            <span className="text-[#111]" style={{ fontSize: 11 }}>{item.label}</span>
+            <span className="text-[#111]" style={{ fontSize: 9 }}>{item.label}</span>
           </div>
         ))}
       </div>
-    </div>
-  );
-}
 
-function RiskSection({ isActive }) {
-  const p = useOnceAnimation(isActive, 1200);
+      {/* Divider */}
+      <div style={{ height: 1, background: "#E8E9EF", marginBottom: 14 }} />
 
-  return (
-    <div className="flex flex-col h-full" style={{ padding: 20 }}>
-      <p className="font-semibold text-[#111]" style={{ fontSize: 16, marginBottom: 20 }}>
+      {/* Identity Risk & Exposure Analysis */}
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
         Identity Risk &amp; Exposure Analysis
       </p>
-      <div className="flex rounded-[6px] overflow-hidden" style={{ height: 36, marginBottom: 16 }}>
+      <div className="flex rounded-[6px] overflow-hidden" style={{ height: 30, marginBottom: 10 }}>
         {[
           { color: "#A70808", width: 5 * p,  label: "120", name: "Critical" },
           { color: "#C62828", width: 8 * p,  label: "450", name: "High" },
@@ -361,7 +354,7 @@ function RiskSection({ isActive }) {
         ].map((seg, i) => (
           <div key={i} className="flex items-center justify-center relative"
             style={{ flex: seg.width || 0.001, backgroundColor: seg.color, minWidth: 0 }}>
-            <span className="font-semibold text-white absolute" style={{ fontSize: 9 }}>{seg.label}</span>
+            <span className="font-semibold text-white absolute" style={{ fontSize: 8 }}>{seg.label}</span>
           </div>
         ))}
       </div>
@@ -373,8 +366,8 @@ function RiskSection({ isActive }) {
           { color: "#1ADDC7", label: "Low" },
         ].map((l) => (
           <div key={l.label} className="flex items-center gap-[4px]">
-            <div className="rounded-[2px]" style={{ width: 12, height: 12, background: l.color }} />
-            <span style={{ fontSize: 10 }}>{l.label}</span>
+            <div className="rounded-[2px]" style={{ width: 10, height: 10, background: l.color }} />
+            <span style={{ fontSize: 9 }}>{l.label}</span>
           </div>
         ))}
       </div>
@@ -568,16 +561,14 @@ function PasswordSection({ isActive }) {
 // ═══════════════════════════════════════════════
 
 const SECTIONS = [
-  { Component: AgenticSection,    description: "Track every agent session from prompt to action." },
-  { Component: ForensicSection,   description: "See exactly why agent actions were blocked by policy." },
-  { Component: IdentitySection,   description: "Unified authentication and access across cloud, workloads, and enterprise identities." },
-  { Component: LandscapeSection,  description: "Unified visibility across AI, human, and machine identities." },
-  { Component: RiskSection,       description: "AI-powered risk detection across identities and secrets." },
-  { Component: VaultSection,      description: "Centralized governance across distributed secrets vaults." },
-  { Component: CertSection,       description: "Prevent outages with automated certificate lifecycle monitoring." },
-  { Component: SecretsSection,    description: "Just-in-time credentials replacing static access keys." },
-  { Component: EncryptionSection, description: "Centralized encryption and key management across cloud platforms." },
-  { Component: PasswordSection,   description: "Real-time evaluation of password and credential security posture." },
+  { Component: AgenticSection,          description: "Track every agent session from prompt to action." },
+  { Component: ForensicSection,         description: "See exactly why agent actions were blocked by policy." },
+  { Component: IdentityCombinedSection, description: "Unified authentication, identity landscape, and risk analysis." },
+  { Component: VaultSection,            description: "Centralized governance across distributed secrets vaults." },
+  { Component: CertSection,             description: "Prevent outages with automated certificate lifecycle monitoring." },
+  { Component: SecretsSection,          description: "Just-in-time credentials replacing static access keys." },
+  { Component: EncryptionSection,       description: "Centralized encryption and key management across cloud platforms." },
+  { Component: PasswordSection,         description: "Real-time evaluation of password and credential security posture." },
 ];
 
 export default function MobileDashboard() {
