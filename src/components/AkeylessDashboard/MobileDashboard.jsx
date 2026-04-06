@@ -155,36 +155,36 @@ function AgenticSection({ isActive }) {
       </div>
 
       {/* Table */}
-      <div className="flex-1 overflow-auto rounded-[8px]" style={{ background: "#fff", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+      <div className="flex-1 flex flex-col rounded-[8px]" style={{ background: "#fff", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
         {/* Header */}
-        <div className="flex items-center px-[8px] py-[6px]" style={{ borderBottom: "1px solid #EDEDF0" }}>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>Session ID</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "32%", flexShrink: 0 }}>User</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "12%", flexShrink: 0 }}>Risk</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>Target</span>
+        <div className="flex items-center px-[8px] py-[8px]" style={{ borderBottom: "1px solid #EDEDF0" }}>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 10, width: "28%", flexShrink: 0 }}>Session ID</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 10, width: "32%", flexShrink: 0 }}>User</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 10, width: "12%", flexShrink: 0 }}>Risk</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 10, width: "28%", flexShrink: 0 }}>Target</span>
         </div>
         {TABLE_ROWS.map((row, i) => (
           <motion.div
             key={row.id}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: p > i / 5 ? 1 : 0, x: p > i / 5 ? 0 : -10 }}
-            className="flex flex-col px-[8px] py-[6px]"
+            className="flex flex-col px-[8px] flex-1 justify-center"
             style={{ borderBottom: "1px solid #F5F5F7" }}
           >
             {/* Row 1: Session ID, User, Risk, Target */}
             <div className="flex items-center">
-              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>{row.id}</span>
-              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 9, width: "32%", flexShrink: 0 }}>{row.user}</span>
-              <span className="text-[#111] font-medium" style={{ fontSize: 9, width: "12%", flexShrink: 0 }}>{row.risk}</span>
+              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 10, width: "28%", flexShrink: 0 }}>{row.id}</span>
+              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 10, width: "32%", flexShrink: 0 }}>{row.user}</span>
+              <span className="text-[#111] font-medium" style={{ fontSize: 10, width: "12%", flexShrink: 0 }}>{row.risk}</span>
               <div className="flex items-center gap-[3px]" style={{ width: "28%", flexShrink: 0 }}>
-                <img src={row.logo} alt="" style={{ width: 14, height: 14 }} />
-                <span className="text-[#111]" style={{ fontSize: 9 }}>{row.target}</span>
+                <img src={row.logo} alt="" style={{ width: 16, height: 16 }} />
+                <span className="text-[#111]" style={{ fontSize: 10 }}>{row.target}</span>
               </div>
             </div>
             {/* Row 2: Status + Date */}
             <div className="flex items-center gap-[8px]" style={{ marginTop: 4 }}>
               <StatusBadge status={row.status} />
-              <span className="text-[#888]" style={{ fontSize: 8 }}>{row.date}</span>
+              <span className="text-[#888]" style={{ fontSize: 9 }}>{row.date}</span>
             </div>
           </motion.div>
         ))}
