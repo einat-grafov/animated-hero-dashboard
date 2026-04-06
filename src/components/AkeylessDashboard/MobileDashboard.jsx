@@ -292,6 +292,9 @@ function ForensicSection({ isActive }) {
         <button className="rounded-full px-[18px] py-[6px] text-[10px] text-white font-semibold" style={{ background: "#05D9C2" }}>Kill Switch</button>
         <button className="rounded-full px-[18px] py-[6px] text-[10px] font-medium" style={{ background: "#fff", border: "1px solid #FD2B11", color: "#FD2B11" }}>Revoke Lease</button>
       </motion.div>
+      <div style={{ marginTop: 12 }}>
+        <InlineTooltip text="See exactly why agent actions were blocked by policy." />
+      </div>
     </div>
   );
 }
