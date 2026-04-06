@@ -329,18 +329,18 @@ function IdentityCombinedSection({ isActive }) {
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
         Enterprise Identity Landscape
       </p>
-      <div className="flex items-start gap-[20px] justify-center" style={{ marginBottom: 18 }}>
+      <div className="flex items-start justify-center" style={{ marginBottom: 18 }}>
         {[
           { icon: vector4,      label: "AI Agents",        value: 200, format: (v) => String(v) },
           { icon: dubleUser,    label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
           { icon: groupMachine, label: "Machine Identity", value: 30,  format: (v) => `${v}K` },
         ].map((item, i) => (
-          <div key={i} className="flex flex-col items-center gap-[4px]">
-            <img src={item.icon} alt="" style={{ width: 26, height: 26 }} />
-            <span className="font-bold text-[#111]" style={{ fontSize: 28 }}>
+          <div key={i} className="flex flex-col items-center" style={{ width: "33.33%" }}>
+            <img src={item.icon} alt="" style={{ width: 26, height: 26, marginBottom: 4 }} />
+            <span className="font-bold text-[#111]" style={{ fontSize: 28, lineHeight: 1, height: 28 }}>
               {item.format(Math.round(lerp(0, item.value, p)))}
             </span>
-            <span className="text-[#111]" style={{ fontSize: 9 }}>{item.label}</span>
+            <span className="text-[#111]" style={{ fontSize: 9, marginTop: 4 }}>{item.label}</span>
           </div>
         ))}
       </div>
@@ -352,18 +352,23 @@ function IdentityCombinedSection({ isActive }) {
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
         Identity Risk &amp; Exposure Analysis
       </p>
-      <div className="flex rounded-[6px] overflow-hidden" style={{ height: 30, marginBottom: 10 }}>
-        {[
-          { color: "#A70808", width: 5 * p,  label: "120", name: "Critical" },
-          { color: "#C62828", width: 8 * p,  label: "450", name: "High" },
-          { color: "#F3982E", width: 25 * p, label: "2200", name: "Medium" },
-          { color: "#1ADDC7", width: 55 * p, label: "8000", name: "Low" },
-        ].map((seg, i) => (
-          <div key={i} className="flex items-center justify-center relative"
-            style={{ flex: seg.width || 0.001, backgroundColor: seg.color, minWidth: 0 }}>
-            <span className="font-semibold text-white absolute" style={{ fontSize: 8 }}>{seg.label}</span>
-          </div>
-        ))}
+      <div className="relative rounded-[6px] overflow-hidden" style={{ height: 30, marginBottom: 10 }}>
+        {/* Background track */}
+        <div className="absolute inset-0 bg-gray-100" />
+        {/* Animated segments */}
+        <div className="absolute inset-0 flex" style={{ width: `${p * 100}%`, transition: "none" }}>
+          {[
+            { color: "#A70808", flex: 5,  label: "120" },
+            { color: "#C62828", flex: 8,  label: "450" },
+            { color: "#F3982E", flex: 25, label: "2200" },
+            { color: "#1ADDC7", flex: 55, label: "8000" },
+          ].map((seg, i) => (
+            <div key={i} className="flex items-center justify-center relative"
+              style={{ flex: seg.flex, backgroundColor: seg.color, minWidth: 0, overflow: "hidden" }}>
+              <span className="font-semibold text-white absolute" style={{ fontSize: 8, whiteSpace: "nowrap" }}>{seg.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="flex items-center justify-between">
         {[
