@@ -366,21 +366,27 @@ function IdentityCombinedSection({ isActive }) {
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Identity Risk &amp; Exposure Analysis
       </p>
-      <div className="rounded-[8px] overflow-hidden flex" style={{ height: 34, marginBottom: 10, border: "1px solid #E8E9EF", background: "#F3F4F6" }}>
-        {[
-          { color: "#A70808", flex: 5,  label: "120" },
-          { color: "#C62828", flex: 8,  label: "450" },
-          { color: "#F3982E", flex: 25, label: "2200" },
-          { color: "#1ADDC7", flex: 55, label: "8000" },
-        ].map((seg, i) => (
-          <div
-            key={i}
-            className="flex items-center justify-center relative"
-            style={{ flex: seg.flex, backgroundColor: seg.color, minWidth: 0, overflow: "hidden" }}
-          >
-            <span className="font-semibold text-white absolute" style={{ fontSize: 8, whiteSpace: "nowrap" }}>{seg.label}</span>
-          </div>
-        ))}
+      <div style={{ marginBottom: 10 }}>
+        <div className="flex rounded-[8px] overflow-hidden" style={{ height: 18, background: "#F3F4F6", border: "1px solid #E8E9EF" }}>
+          {[
+            { color: "#A70808", flex: 5 },
+            { color: "#C62828", flex: 8 },
+            { color: "#F3982E", flex: 25 },
+            { color: "#1ADDC7", flex: 55 },
+          ].map((seg, i) => (
+            <div key={i} style={{ flex: seg.flex, backgroundColor: seg.color, minWidth: i < 2 ? 14 : 0 }} />
+          ))}
+        </div>
+        <div className="flex items-center justify-between" style={{ marginTop: 6, padding: "0 2px" }}>
+          {[
+            "120",
+            "450",
+            "2200",
+            "8000",
+          ].map((label) => (
+            <span key={label} className="font-semibold text-[#111]" style={{ fontSize: 9 }}>{label}</span>
+          ))}
+        </div>
       </div>
       <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
         {[
