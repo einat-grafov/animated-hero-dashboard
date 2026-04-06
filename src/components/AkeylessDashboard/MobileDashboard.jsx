@@ -678,7 +678,7 @@ export default function MobileDashboard() {
         className="absolute left-0 right-0 bottom-0 flex flex-col items-center"
         style={{
           background: "linear-gradient(180deg, transparent 0%, rgba(252,252,252,0.98) 20%)",
-          padding: "16px 20px 24px",
+          padding: "8px 20px 12px",
         }}
       >
         <AnimatePresence mode="wait">
@@ -689,7 +689,7 @@ export default function MobileDashboard() {
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2 }}
             className="text-center text-[#555]"
-            style={{ fontSize: 13, lineHeight: 1.5, maxWidth: 340, marginBottom: 16 }}
+            style={{ fontSize: 11, lineHeight: 1.4, maxWidth: 300, marginBottom: 8 }}
           >
             {SECTIONS[activeIndex].description}
           </motion.p>
