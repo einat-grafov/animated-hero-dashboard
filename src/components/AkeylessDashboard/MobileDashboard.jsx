@@ -315,94 +315,99 @@ function IdentityCombinedSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1500);
 
   return (
-    <div className="flex flex-col h-full" style={{ padding: 14 }}>
+    <div className="flex flex-col h-full justify-between" style={{ padding: 14 }}>
       {/* Identity Authentication Methods in Use */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
-        Identity Authentication Methods in Use
-      </p>
-      <div className="flex flex-col gap-[6px]" style={{ marginBottom: 12 }}>
-        {[
-          { logo: awsLogo,     name: "AWS",     val: 200, max: 200, color: "#F3982E" },
-          { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
-          { logo: gcpLogo,     name: "GCP",     val: 140, max: 200, color: "#05D9C2" },
-          { logo: windowsLogo, name: "Windows", val: 60,  max: 200, color: "#5C7FC6" },
-        ].map((item) => (
-          <div key={item.name} className="flex items-center gap-[8px]">
-            <img src={item.logo} alt={item.name} style={{ width: 20, height: 20, flexShrink: 0, objectFit: "contain" }} />
-            <span className="text-[#111] flex-shrink-0" style={{ fontSize: 10, width: 48 }}>{item.name}</span>
-            <div className="flex-1 h-[8px] rounded-full bg-gray-100 overflow-hidden">
-              <div className="h-full rounded-full" style={{ width: `${(item.val / item.max) * 100 * p}%`, backgroundColor: item.color }} />
+      <div>
+        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
+          Identity Authentication Methods in Use
+        </p>
+        <div className="flex flex-col gap-[6px]" style={{ marginBottom: 8 }}>
+          {[
+            { logo: awsLogo,     name: "AWS",     val: 200, max: 200, color: "#F3982E" },
+            { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
+            { logo: gcpLogo,     name: "GCP",     val: 140, max: 200, color: "#05D9C2" },
+            { logo: windowsLogo, name: "Windows", val: 60,  max: 200, color: "#5C7FC6" },
+          ].map((item) => (
+            <div key={item.name} className="flex items-center gap-[8px]">
+              <img src={item.logo} alt={item.name} style={{ width: 20, height: 20, flexShrink: 0, objectFit: "contain" }} />
+              <span className="text-[#111] flex-shrink-0" style={{ fontSize: 10, width: 48 }}>{item.name}</span>
+              <div className="flex-1 h-[8px] rounded-full bg-gray-100 overflow-hidden">
+                <div className="h-full rounded-full" style={{ width: `${(item.val / item.max) * 100 * p}%`, backgroundColor: item.color }} />
+              </div>
+              <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 10, width: 28, textAlign: "right" }}>
+                <AnimatedNumber value={item.val} progress={p} />
+              </span>
             </div>
-            <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 10, width: 28, textAlign: "right" }}>
-              <AnimatedNumber value={item.val} progress={p} />
-            </span>
-          </div>
-        ))}
+          ))}
+        </div>
+        <InlineTooltip text="Unified authentication and access across cloud, workloads, and enterprise identities." />
       </div>
-      <InlineTooltip text="Unified authentication and access across cloud, workloads, and enterprise identities." />
 
       {/* Divider */}
-      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF", margin: "12px 0" }} />
+      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF" }} />
 
       {/* Enterprise Identity Landscape */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
-        Enterprise Identity Landscape
-      </p>
-      <div className="flex items-start justify-center" style={{ marginBottom: 12 }}>
-        {[
-          { icon: vector4,      label: "AI Agents",        value: 200, format: (v) => String(v) },
-          { icon: dubleUser,    label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
-          { icon: groupMachine, label: "Machine Identity", value: 30,  format: (v) => `${v}K` },
-        ].map((item, i) => (
-          <div key={i} className="flex flex-col items-center" style={{ width: "33.33%" }}>
-            <img src={item.icon} alt="" style={{ width: 26, height: 26, marginBottom: 4 }} />
-            <span className="font-bold text-[#111]" style={{ fontSize: 28, lineHeight: 1, height: 28 }}>
-              {item.format(Math.round(lerp(0, item.value, p)))}
-            </span>
-            <span className="text-[#111]" style={{ fontSize: 9, marginTop: 4 }}>{item.label}</span>
-          </div>
-        ))}
+      <div>
+        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
+          Enterprise Identity Landscape
+        </p>
+        <div className="flex items-start justify-center" style={{ marginBottom: 8 }}>
+          {[
+            { icon: vector4,      label: "AI Agents",        value: 200, format: (v) => String(v) },
+            { icon: dubleUser,    label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
+            { icon: groupMachine, label: "Machine Identity", value: 30,  format: (v) => `${v}K` },
+          ].map((item, i) => (
+            <div key={i} className="flex flex-col items-center" style={{ width: "33.33%" }}>
+              <img src={item.icon} alt="" style={{ width: 26, height: 26, marginBottom: 4 }} />
+              <span className="font-bold text-[#111]" style={{ fontSize: 28, lineHeight: 1, height: 28 }}>
+                {item.format(Math.round(lerp(0, item.value, p)))}
+              </span>
+              <span className="text-[#111]" style={{ fontSize: 9, marginTop: 4 }}>{item.label}</span>
+            </div>
+          ))}
+        </div>
+        <InlineTooltip text="Unified visibility across AI, human, and machine identities." />
       </div>
-      <InlineTooltip text="Unified visibility across AI, human, and machine identities." />
 
       {/* Divider */}
-      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF", margin: "12px 0" }} />
+      <div style={{ height: 2, borderRadius: 999, background: "#E8E9EF" }} />
 
       {/* Identity Risk & Exposure Analysis */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
-        Identity Risk &amp; Exposure Analysis
-      </p>
-      <div style={{ marginBottom: 8 }}>
-        <div className="flex rounded-[8px] overflow-hidden" style={{ height: 18, background: "#F3F4F6", border: "1px solid #E8E9EF" }}>
-          {[
-            { color: "#A70808", width: 5 * p },
-            { color: "#C62828", width: 8 * p },
-            { color: "#F3982E", width: 25 * p },
-            { color: "#1ADDC7", width: 55 * p },
-          ].map((seg, i) => (
-            <div key={i} style={{ flex: seg.width, backgroundColor: seg.color, minWidth: p > 0.2 && i < 2 ? 14 : 0 }} />
-          ))}
-        </div>
-        <div className="flex items-center justify-between" style={{ marginTop: 6, padding: "0 2px" }}>
-          {["120", "450", "2200", "8000"].map((label) => (
-            <span key={label} className="font-semibold text-[#111]" style={{ fontSize: 9 }}>{label}</span>
-          ))}
-        </div>
-      </div>
-      <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
-        {[
-          { color: "#A70808", label: "Critical" },
-          { color: "#C62828", label: "High" },
-          { color: "#F3982E", label: "Medium" },
-          { color: "#1ADDC7", label: "Low" },
-        ].map((l) => (
-          <div key={l.label} className="flex items-center gap-[4px]">
-            <div className="rounded-[2px]" style={{ width: 10, height: 10, background: l.color }} />
-            <span style={{ fontSize: 9 }}>{l.label}</span>
+      <div>
+        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
+          Identity Risk &amp; Exposure Analysis
+        </p>
+        <div style={{ marginBottom: 8 }}>
+          <div className="flex rounded-[8px] overflow-hidden" style={{ height: 18, background: "#F3F4F6", border: "1px solid #E8E9EF" }}>
+            {[
+              { color: "#A70808", width: 5 * p },
+              { color: "#C62828", width: 8 * p },
+              { color: "#F3982E", width: 25 * p },
+              { color: "#1ADDC7", width: 55 * p },
+            ].map((seg, i) => (
+              <div key={i} style={{ flex: seg.width, backgroundColor: seg.color, minWidth: p > 0.2 && i < 2 ? 14 : 0 }} />
+            ))}
           </div>
-        ))}
-      </div>
-      <InlineTooltip text="AI-powered risk detection across identities and secrets." />
+          <div className="flex items-center justify-between" style={{ marginTop: 6, padding: "0 2px" }}>
+            {["120", "450", "2200", "8000"].map((label) => (
+              <span key={label} className="font-semibold text-[#111]" style={{ fontSize: 9 }}>{label}</span>
+            ))}
+          </div>
+        </div>
+        <div className="flex items-center justify-between" style={{ marginBottom: 8 }}>
+          {[
+            { color: "#A70808", label: "Critical" },
+            { color: "#C62828", label: "High" },
+            { color: "#F3982E", label: "Medium" },
+            { color: "#1ADDC7", label: "Low" },
+          ].map((l) => (
+            <div key={l.label} className="flex items-center gap-[4px]">
+              <div className="rounded-[2px]" style={{ width: 10, height: 10, background: l.color }} />
+              <span style={{ fontSize: 9 }}>{l.label}</span>
+            </div>
+          ))}
+        </div>
+        <InlineTooltip text="AI-powered risk detection across identities and secrets." />
     </div>
   );
 }
