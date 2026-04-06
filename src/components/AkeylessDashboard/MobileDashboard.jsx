@@ -118,8 +118,8 @@ function AgenticSection({ isActive }) {
               <span className="font-semibold text-[#111]" style={{ fontSize: 22, lineHeight: 1 }}>
                 <AnimatedNumber value={card.value} progress={p} />
               </span>
-              <span className="text-[#111]" style={{ fontSize: 9 }}>{card.label}</span>
-              {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 8 }}>{card.sub}</span>}
+              <span className="text-[#111]" style={{ fontSize: 10 }}>{card.label}</span>
+              {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 9 }}>{card.sub}</span>}
             </div>
           </div>
         ))}
