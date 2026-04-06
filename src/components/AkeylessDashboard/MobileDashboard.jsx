@@ -634,8 +634,12 @@ export default function MobileDashboard() {
       className="relative overflow-hidden"
       style={{
         width: "100%",
-        height: "100vh",
+        height: "50vh",
+        borderRadius: 16,
         background: "rgba(252,252,252,0.96)",
+        backdropFilter: "blur(14px)",
+        border: "1px solid rgba(255,255,255,0.3)",
+        boxShadow: "0 10px 40px rgba(0,0,0,0.10)",
         fontFamily: "'Poppins', sans-serif",
         touchAction: "pan-y",
         userSelect: "none",
@@ -650,17 +654,20 @@ export default function MobileDashboard() {
     >
       {/* Slides container */}
       <div
-        className="absolute inset-0"
+        className="absolute"
         style={{
           display: "flex",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 80,
           width: `${SECTIONS.length * 100}%`,
           transform: `translateX(calc(-${activeIndex * (100 / SECTIONS.length)}% + ${dragOffset}px))`,
           transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
-          bottom: 100,
         }}
       >
         {SECTIONS.map(({ Component }, i) => (
-          <div key={i} style={{ width: `${100 / SECTIONS.length}%`, height: "100%", flexShrink: 0 }}>
+          <div key={i} style={{ width: `${100 / SECTIONS.length}%`, height: "100%", flexShrink: 0, overflow: "auto" }}>
             <Component isActive={i === activeIndex} />
           </div>
         ))}
@@ -671,7 +678,7 @@ export default function MobileDashboard() {
         className="absolute left-0 right-0 bottom-0 flex flex-col items-center"
         style={{
           background: "linear-gradient(180deg, transparent 0%, rgba(252,252,252,0.98) 20%)",
-          padding: "16px 20px 24px",
+          padding: "8px 20px 12px",
         }}
       >
         <AnimatePresence mode="wait">
@@ -682,7 +689,7 @@ export default function MobileDashboard() {
             exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2 }}
             className="text-center text-[#555]"
-            style={{ fontSize: 13, lineHeight: 1.5, maxWidth: 340, marginBottom: 16 }}
+            style={{ fontSize: 11, lineHeight: 1.4, maxWidth: 300, marginBottom: 8 }}
           >
             {SECTIONS[activeIndex].description}
           </motion.p>
