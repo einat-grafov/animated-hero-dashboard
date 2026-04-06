@@ -363,7 +363,7 @@ function IdentityCombinedSection({ isActive }) {
       <div style={{ height: 1, background: "#E8E9EF", margin: "14px 0" }} />
 
       {/* Identity Risk & Exposure Analysis */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
         Identity Risk &amp; Exposure Analysis
       </p>
       <div className="relative rounded-[6px] overflow-hidden" style={{ height: 28, marginBottom: 8 }}>
