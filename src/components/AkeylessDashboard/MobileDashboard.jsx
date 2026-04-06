@@ -434,7 +434,7 @@ function VaultSecretsCombinedSection({ isActive }) {
             <div key={item.label} className="flex items-center gap-[8px]">
               <div className="rounded-[2px] flex-shrink-0" style={{ width: 12, height: 12, background: item.color }} />
               <span className="flex-1 text-[#555]" style={{ fontSize: 12 }}>{item.label}</span>
-              <span className="text-[#111] font-medium" style={{ fontSize: 12, width: 22, textAlign: "right" }}>
+              <span className="text-[#111] font-medium" style={{ fontSize: 12, width: 28, textAlign: "right" }}>
                 <AnimatedNumber value={item.val} progress={p} />
               </span>
             </div>
@@ -474,7 +474,7 @@ function VaultSecretsCombinedSection({ isActive }) {
             <div key={item.label} className="flex items-center gap-[8px]">
               <div className="rounded-[2px] flex-shrink-0" style={{ width: 12, height: 12, background: item.color }} />
               <span className="flex-1 text-[#111]" style={{ fontSize: 12 }}>{item.label}</span>
-              <span className="text-[#111] font-medium" style={{ fontSize: 12, width: 24, textAlign: "right" }}>
+              <span className="text-[#111] font-medium" style={{ fontSize: 12, width: 28, textAlign: "right" }}>
                 <AnimatedNumber value={item.val} progress={p} />K
               </span>
             </div>
