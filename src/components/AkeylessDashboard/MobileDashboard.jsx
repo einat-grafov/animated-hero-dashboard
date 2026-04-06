@@ -157,11 +157,11 @@ function AgenticSection({ isActive }) {
       {/* Table */}
       <div className="flex-1 overflow-auto rounded-[8px]" style={{ background: "#fff", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
         {/* Header */}
-        <div className="flex items-center px-[8px] py-[5px]" style={{ borderBottom: "1px solid #EDEDF0" }}>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "28%", flexShrink: 0 }}>Session ID</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "32%", flexShrink: 0 }}>User</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "12%", flexShrink: 0 }}>Risk</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "28%", flexShrink: 0 }}>Target</span>
+        <div className="flex items-center px-[8px] py-[6px]" style={{ borderBottom: "1px solid #EDEDF0" }}>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>Session ID</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "32%", flexShrink: 0 }}>User</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "12%", flexShrink: 0 }}>Risk</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>Target</span>
         </div>
         {TABLE_ROWS.map((row, i) => (
           <motion.div
