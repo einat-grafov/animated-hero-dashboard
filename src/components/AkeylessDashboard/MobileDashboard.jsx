@@ -309,12 +309,12 @@ function IdentityCombinedSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1500);
 
   return (
-    <div className="flex flex-col h-full overflow-auto" style={{ padding: 14 }}>
+    <div className="flex flex-col h-full overflow-auto" style={{ padding: 16 }}>
       {/* Identity Authentication Methods in Use */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Identity Authentication Methods in Use
       </p>
-      <div className="flex flex-col gap-[6px]" style={{ marginBottom: 8 }}>
+      <div className="flex flex-col gap-[6px]" style={{ marginBottom: 12 }}>
         {[
           { logo: awsLogo,     name: "AWS",     val: 200, max: 200, color: "#F3982E" },
           { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
@@ -336,13 +336,13 @@ function IdentityCombinedSection({ isActive }) {
       <InlineTooltip text="Unified authentication and access across cloud, workloads, and enterprise identities." />
 
       {/* Divider */}
-      <div style={{ height: 1, background: "#E8E9EF", margin: "8px 0" }} />
+      <div style={{ height: 1, background: "#E8E9EF", margin: "14px 0" }} />
 
       {/* Enterprise Identity Landscape */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Enterprise Identity Landscape
       </p>
-      <div className="flex items-start justify-center" style={{ marginBottom: 8 }}>
+      <div className="flex items-start justify-center" style={{ marginBottom: 12 }}>
         {[
           { icon: vector4,      label: "AI Agents",        value: 200, format: (v) => String(v) },
           { icon: dubleUser,    label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
@@ -360,10 +360,10 @@ function IdentityCombinedSection({ isActive }) {
       <InlineTooltip text="Unified visibility across AI, human, and machine identities." />
 
       {/* Divider */}
-      <div style={{ height: 1, background: "#E8E9EF", margin: "8px 0" }} />
+      <div style={{ height: 1, background: "#E8E9EF", margin: "14px 0" }} />
 
       {/* Identity Risk & Exposure Analysis */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
         Identity Risk &amp; Exposure Analysis
       </p>
       <div className="relative rounded-[6px] overflow-hidden" style={{ height: 28, marginBottom: 8 }}>
@@ -382,7 +382,7 @@ function IdentityCombinedSection({ isActive }) {
           ))}
         </div>
       </div>
-      <div className="flex items-center justify-between" style={{ marginBottom: 6 }}>
+      <div className="flex items-center justify-between" style={{ marginBottom: 12 }}>
         {[
           { color: "#A70808", label: "Critical" },
           { color: "#C62828", label: "High" },
