@@ -329,18 +329,18 @@ function IdentityCombinedSection({ isActive }) {
       <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 10 }}>
         Enterprise Identity Landscape
       </p>
-      <div className="flex items-start gap-[20px] justify-center" style={{ marginBottom: 18 }}>
+      <div className="flex items-start justify-center" style={{ marginBottom: 18 }}>
         {[
           { icon: vector4,      label: "AI Agents",        value: 200, format: (v) => String(v) },
           { icon: dubleUser,    label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
           { icon: groupMachine, label: "Machine Identity", value: 30,  format: (v) => `${v}K` },
         ].map((item, i) => (
-          <div key={i} className="flex flex-col items-center gap-[4px]">
-            <img src={item.icon} alt="" style={{ width: 26, height: 26 }} />
-            <span className="font-bold text-[#111]" style={{ fontSize: 28 }}>
+          <div key={i} className="flex flex-col items-center" style={{ width: "33.33%" }}>
+            <img src={item.icon} alt="" style={{ width: 26, height: 26, marginBottom: 4 }} />
+            <span className="font-bold text-[#111]" style={{ fontSize: 28, lineHeight: 1, height: 28 }}>
               {item.format(Math.round(lerp(0, item.value, p)))}
             </span>
-            <span className="text-[#111]" style={{ fontSize: 9 }}>{item.label}</span>
+            <span className="text-[#111]" style={{ fontSize: 9, marginTop: 4 }}>{item.label}</span>
           </div>
         ))}
       </div>
