@@ -189,6 +189,9 @@ function AgenticSection({ isActive }) {
           </motion.div>
         ))}
       </div>
+      <div style={{ marginTop: 10 }}>
+        <InlineTooltip text="Track every agent session from prompt to action." />
+      </div>
     </div>
   );
 }
@@ -289,6 +292,9 @@ function ForensicSection({ isActive }) {
         <button className="rounded-full px-[18px] py-[6px] text-[10px] text-white font-semibold" style={{ background: "#05D9C2" }}>Kill Switch</button>
         <button className="rounded-full px-[18px] py-[6px] text-[10px] font-medium" style={{ background: "#fff", border: "1px solid #FD2B11", color: "#FD2B11" }}>Revoke Lease</button>
       </motion.div>
+      <div style={{ marginTop: 12 }}>
+        <InlineTooltip text="See exactly why agent actions were blocked by policy." />
+      </div>
     </div>
   );
 }
@@ -515,6 +521,9 @@ function CertSection({ isActive }) {
           ))}
         </div>
       </div>
+      <div style={{ marginTop: 10 }}>
+        <InlineTooltip text="Prevent outages with automated certificate lifecycle monitoring." />
+      </div>
     </div>
   );
 }
@@ -690,7 +699,7 @@ export default function MobileDashboard() {
           top: 0,
           left: 0,
           right: 0,
-          bottom: SECTIONS[activeIndex].description.length > 1 ? 56 : 80,
+          bottom: 32,
           width: `${SECTIONS.length * 100}%`,
           transform: `translateX(calc(-${activeIndex * (100 / SECTIONS.length)}% + ${dragOffset}px))`,
           transition: isDragging ? "none" : "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -703,45 +712,11 @@ export default function MobileDashboard() {
         ))}
       </div>
 
-      {/* Fixed description bar at bottom */}
+      {/* Fixed dot indicators at very bottom */}
       <div
-        className="absolute left-0 right-0 bottom-0 flex flex-col items-center"
-        style={{
-          background: "transparent",
-          padding: SECTIONS[activeIndex].description.length > 1 ? "8px 20px 10px" : "16px 20px 14px",
-        }}
+        className="absolute left-0 right-0 bottom-0 flex items-center justify-center"
+        style={{ height: 32 }}
       >
-        {/* Only show bottom tooltip for non-identity slides (identity has inline tooltips) */}
-        {SECTIONS[activeIndex].description.length === 1 && (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
-              className="flex items-center rounded-[10px]"
-              style={{
-                marginBottom: 12,
-                maxWidth: 340,
-                padding: "8px 14px",
-                background: "linear-gradient(135deg, rgba(5,217,194,0.08) 0%, rgba(92,127,198,0.08) 100%)",
-                border: "1px solid rgba(5,217,194,0.2)",
-              }}
-            >
-              <p className="text-center" style={{
-                fontSize: 12,
-                lineHeight: 1.4,
-                color: "#444",
-                fontWeight: 500,
-              }}>
-                {SECTIONS[activeIndex].description[0]}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-        )}
-
-        {/* Dot indicators */}
         <div className="flex gap-[8px]">
           {SECTIONS.map((_, i) => (
             <button
