@@ -638,7 +638,7 @@ export default function MobileDashboard() {
       className="relative overflow-hidden"
       style={{
         width: "100%",
-        height: "50vh",
+        height: "75vh",
         borderRadius: 16,
         background: "rgba(252,252,252,0.96)",
         backdropFilter: "blur(14px)",
