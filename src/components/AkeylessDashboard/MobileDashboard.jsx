@@ -667,6 +667,9 @@ export default function MobileDashboard() {
       style={{
         width: "100%",
         height: "75vh",
+        borderRadius: 16,
+        background: "#fff",
+        boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
         fontFamily: "'Poppins', sans-serif",
         touchAction: "pan-y",
         userSelect: "none",
