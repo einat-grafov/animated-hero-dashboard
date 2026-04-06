@@ -76,11 +76,11 @@ function useOnceAnimation(isActive, duration = 1200) {
 
 // ─── TABLE DATA ───
 const TABLE_ROWS = [
-  { id: "AAM-HS-1776673121", user: "testuser@example.com", risk: 9,  target: "HubSpot",  logo: hubspotLogo,   status: "Active",   date: "Mar 17, 2026" },
-  { id: "AAM-HS-1778673100", user: "testuser@example.com", risk: 54, target: "HubSpot",  logo: hubspotLogo,   status: "Blocked",  date: "Mar 17, 2026" },
-  { id: "AAM-HS-1773673074", user: "testuser@example.com", risk: 17, target: "MYSQL",    logo: mysqlLogo,     status: "Active",   date: "Mar 17, 2026" },
-  { id: "AAM-HS-1773678924", user: "testuser@example.com", risk: 25, target: "K8s",      logo: k8sLogoCorrect,status: "Inactive", date: "Mar 16, 2026" },
-  { id: "AAM-HS-1773678905", user: "testuser@example.com", risk: 45, target: "Postgres", logo: postgresSvg,   status: "Blocked",  date: "Mar 16, 2026" },
+  { id: "AAM-HS-1776673121", user: "testuser@example.com", risk: 9,  target: "HubSpot",  logo: hubspotLogo,   status: "Active",   date: "Mar 17, 2026 17:58:41" },
+  { id: "AAM-HS-1778673100", user: "testuser@example.com", risk: 54, target: "HubSpot",  logo: hubspotLogo,   status: "Blocked",  date: "Mar 17, 2026 17:58:20" },
+  { id: "AAM-HS-1773673074", user: "testuser@example.com", risk: 17, target: "MYSQL",    logo: mysqlLogo,     status: "Active",   date: "Mar 17, 2026 17:57:54" },
+  { id: "AAM-HS-1773678924", user: "testuser@example.com", risk: 25, target: "K8s",      logo: k8sLogoCorrect,status: "Inactive", date: "Mar 16, 2026 18:35:24" },
+  { id: "AAM-HS-1773678905", user: "testuser@example.com", risk: 45, target: "Postgres", logo: postgresSvg,   status: "Blocked",  date: "Mar 16, 2026 18:17:49" },
 ];
 
 // ═══════════════════════════════════════════════
@@ -144,29 +144,33 @@ function AgenticSection({ isActive }) {
       {/* Table */}
       <div className="flex-1 overflow-auto rounded-[8px]" style={{ background: "#fff", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
         {/* Header */}
-        <div className="flex items-center px-[10px] py-[6px]" style={{ borderBottom: "1px solid #EDEDF0" }}>
-          <span className="font-semibold text-[#ADAEB0] flex-1" style={{ fontSize: 9 }}>Session ID</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: 50 }}>Risk</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: 70 }}>Target</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: 60 }}>Status</span>
+        <div className="flex items-center px-[6px] py-[6px]" style={{ borderBottom: "1px solid #EDEDF0" }}>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "22%", flexShrink: 0 }}>Session ID</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "22%", flexShrink: 0 }}>User</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "10%", flexShrink: 0 }}>Risk</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "14%", flexShrink: 0 }}>Target</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "12%", flexShrink: 0 }}>Status</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 8, width: "20%", flexShrink: 0 }}>Date</span>
         </div>
         {TABLE_ROWS.map((row, i) => (
           <motion.div
             key={row.id}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: p > i / 5 ? 1 : 0, x: p > i / 5 ? 0 : -10 }}
-            className="flex items-center px-[10px] py-[8px]"
+            className="flex items-center px-[6px] py-[6px]"
             style={{ borderBottom: "1px solid #F5F5F7" }}
           >
-            <span className="text-[#111] truncate flex-1 pr-[4px]" style={{ fontSize: 9 }}>{row.id}</span>
-            <span className="text-[#111] font-medium" style={{ fontSize: 9, width: 50 }}>{row.risk}</span>
-            <div className="flex items-center gap-[4px]" style={{ width: 70 }}>
-              <img src={row.logo} alt="" style={{ width: 14, height: 14 }} />
-              <span className="text-[#111]" style={{ fontSize: 9 }}>{row.target}</span>
+            <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 7.5, width: "22%", flexShrink: 0 }}>{row.id}</span>
+            <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 7.5, width: "22%", flexShrink: 0 }}>{row.user}</span>
+            <span className="text-[#111] font-medium" style={{ fontSize: 7.5, width: "10%", flexShrink: 0 }}>{row.risk}</span>
+            <div className="flex items-center gap-[2px]" style={{ width: "14%", flexShrink: 0 }}>
+              <img src={row.logo} alt="" style={{ width: 12, height: 12 }} />
+              <span className="text-[#111]" style={{ fontSize: 7.5 }}>{row.target}</span>
             </div>
-            <div style={{ width: 60 }}>
+            <div style={{ width: "12%", flexShrink: 0 }}>
               <StatusBadge status={row.status} />
             </div>
+            <span className="text-[#111] truncate" style={{ fontSize: 7, width: "20%", flexShrink: 0 }}>{row.date}</span>
           </motion.div>
         ))}
       </div>
