@@ -796,7 +796,7 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.65 }}
         className="absolute rounded-[11px]"
         style={{ left: 362, top: 422, width: 333, height: 89,
-          background: "#fff", boxShadow: hoveredSection === "risk" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "risk" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
+          background: "#fff", boxShadow: hoveredSection === "risk" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "risk" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer", opacity: boxOpacity("risk") }}
         onMouseEnter={() => setHoveredSection("risk")}
         onMouseLeave={() => setHoveredSection(null)}
       >
