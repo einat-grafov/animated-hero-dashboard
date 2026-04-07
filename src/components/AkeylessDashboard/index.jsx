@@ -395,13 +395,6 @@ export default function AkeylessDashboard() {
 
   const FORENSIC_STAGE = progress < 0.3 ? 0 : progress < 0.55 ? 1 : 2;
 
-  // Determine if ANY card is hovered (unified: agenticHovered OR hoveredSection)
-  const anyHovered = agenticHovered || hoveredSection !== null;
-  const activeSection = agenticHovered ? "agentic" : hoveredSection;
-  const cardOpacity = (sectionName) => anyHovered
-    ? (activeSection === sectionName ? 1 : 0.3)
-    : 1;
-
   return (
     <div
       className="relative overflow-hidden"
@@ -422,9 +415,9 @@ export default function AkeylessDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         className="absolute"
-        style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer", opacity: cardOpacity("agentic"), transition: "opacity 250ms ease-in-out" }}
-        onMouseEnter={() => { setAgenticHovered(true); setHoveredSection("agentic"); }}
-        onMouseLeave={() => { setAgenticHovered(false); setHoveredSection(null); }}
+        style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer" }}
+        onMouseEnter={() => { setAgenticHovered(true); }}
+        onMouseLeave={() => setAgenticHovered(false)}
       >
         <AnimatePresence>
           {agenticHovered && (
@@ -574,7 +567,7 @@ export default function AkeylessDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
         className="absolute"
-        style={{ left: 559, top: 18, width: 480, height: 292, cursor: "pointer", opacity: cardOpacity("forensic"), transition: "opacity 250ms ease-in-out" }}
+        style={{ left: 559, top: 18, width: 480, height: 292, cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("forensic")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -702,7 +695,7 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.5 }}
         className="absolute rounded-[11px]"
         style={{ left: 18, top: 322, width: 332, height: 189,
-          background: "#fff", boxShadow: hoveredSection === "identity" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "identity" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 250ms ease-in-out", cursor: "pointer", opacity: cardOpacity("identity") }}
+          background: "#fff", boxShadow: hoveredSection === "identity" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "identity" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("identity")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -757,7 +750,7 @@ export default function AkeylessDashboard() {
         style={{ left: 362, top: 322, width: 333, height: 89,
           background: "#fff", boxShadow: hoveredSection === "landscape" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)",
           border: hoveredSection === "landscape" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent",
-          transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 250ms ease-in-out", cursor: "pointer", opacity: cardOpacity("landscape") }}
+          transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("landscape")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -798,7 +791,7 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.65 }}
         className="absolute rounded-[11px]"
         style={{ left: 362, top: 422, width: 333, height: 89,
-          background: "#fff", boxShadow: hoveredSection === "risk" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "risk" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 250ms ease-in-out", cursor: "pointer", opacity: cardOpacity("risk") }}
+          background: "#fff", boxShadow: hoveredSection === "risk" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "risk" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("risk")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -851,7 +844,7 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.7 }}
         className="absolute rounded-[11px]"
         style={{ left: 706, top: 322, width: 333, height: 190,
-          background: "#fff", boxShadow: hoveredSection === "vault" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "vault" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 250ms ease-in-out", cursor: "pointer", opacity: cardOpacity("vault") }}
+          background: "#fff", boxShadow: hoveredSection === "vault" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "vault" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("vault")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -919,7 +912,7 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.75 }}
         className="absolute rounded-[11px]"
         style={{ left: 18, top: 523, width: 250, height: 170,
-          background: "#fff", boxShadow: hoveredSection === "cert" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "cert" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 250ms ease-in-out", cursor: "pointer", opacity: cardOpacity("cert") }}
+          background: "#fff", boxShadow: hoveredSection === "cert" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "cert" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("cert")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -971,7 +964,7 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.8 }}
         className="absolute rounded-[11px]"
         style={{ left: 280, top: 523, width: 250, height: 170,
-          background: "#fff", boxShadow: hoveredSection === "secrets" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "secrets" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 250ms ease-in-out", cursor: "pointer", opacity: cardOpacity("secrets") }}
+          background: "#fff", boxShadow: hoveredSection === "secrets" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "secrets" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("secrets")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -1037,7 +1030,7 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.85 }}
         className="absolute rounded-[11px]"
         style={{ left: 542, top: 523, width: 250, height: 170,
-          background: "#fff", boxShadow: hoveredSection === "encryption" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "encryption" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 250ms ease-in-out", cursor: "pointer", opacity: cardOpacity("encryption") }}
+          background: "#fff", boxShadow: hoveredSection === "encryption" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "encryption" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("encryption")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -1086,7 +1079,7 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.9 }}
         className="absolute rounded-[11px]"
         style={{ left: 804, top: 523, width: 235, height: 170,
-          background: "#fff", boxShadow: hoveredSection === "password" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "password" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 250ms ease-in-out", cursor: "pointer", opacity: cardOpacity("password") }}
+          background: "#fff", boxShadow: hoveredSection === "password" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "password" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("password")}
         onMouseLeave={() => setHoveredSection(null)}
       >
