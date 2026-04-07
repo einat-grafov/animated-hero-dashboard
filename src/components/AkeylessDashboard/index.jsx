@@ -138,7 +138,7 @@ function Tooltip({ text, style, position = "top" }) {
 
 export default function AkeylessDashboard() {
   const [progress, setProgress] = useState(0);
-  const [agenticHovered, setAgenticHovered] = useState(false);
+  const agenticHovered = hoveredSection === "agentic";
   const [kpiHoverProgress, setKpiHoverProgress] = useState(-1);
   const [hoveredSection, setHoveredSection] = useState(null);
   const [forensicHoverProgress, setForensicHoverProgress] = useState(null);
