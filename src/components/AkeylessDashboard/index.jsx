@@ -423,8 +423,8 @@ export default function AkeylessDashboard() {
         transition={{ duration: 0.6, delay: 0.1 }}
         className="absolute"
         style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer", opacity: cardOpacity("agentic"), transition: "opacity 250ms ease-in-out" }}
-        onMouseEnter={() => { setAgenticHovered(true); }}
-        onMouseLeave={() => setAgenticHovered(false)}
+        onMouseEnter={() => { setAgenticHovered(true); setHoveredSection("agentic"); }}
+        onMouseLeave={() => { setAgenticHovered(false); setHoveredSection(null); }}
       >
         <AnimatePresence>
           {agenticHovered && (
