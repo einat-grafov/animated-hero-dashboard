@@ -395,6 +395,11 @@ export default function AkeylessDashboard() {
 
   const FORENSIC_STAGE = progress < 0.3 ? 0 : progress < 0.55 ? 1 : 2;
 
+  // Determine which box is hovered (unified key)
+  const activeBox = agenticHovered ? "agentic" : hoveredSection;
+  const anyBoxHovered = !!activeBox;
+  const boxOpacity = (key) => anyBoxHovered && activeBox !== key ? 0.5 : 1;
+
   return (
     <div
       className="relative overflow-hidden"
