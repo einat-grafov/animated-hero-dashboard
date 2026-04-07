@@ -395,7 +395,9 @@ export default function AkeylessDashboard() {
 
   const FORENSIC_STAGE = progress < 0.3 ? 0 : progress < 0.55 ? 1 : 2;
 
-  return (
+  // Dimming helper: when any section is hovered, all others dim to 30% opacity
+  const sectionOpacity = (sectionName) => hoveredSection && hoveredSection !== sectionName ? 0.3 : 1;
+
     <div
       className="relative overflow-hidden"
       style={{
