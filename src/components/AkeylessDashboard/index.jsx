@@ -422,7 +422,7 @@ export default function AkeylessDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         className="absolute"
-        style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer" }}
+        style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer", opacity: cardOpacity("agentic"), transition: "opacity 250ms ease-in-out" }}
         onMouseEnter={() => { setAgenticHovered(true); }}
         onMouseLeave={() => setAgenticHovered(false)}
       >
