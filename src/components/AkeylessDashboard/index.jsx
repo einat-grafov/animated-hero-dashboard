@@ -395,6 +395,13 @@ export default function AkeylessDashboard() {
 
   const FORENSIC_STAGE = progress < 0.3 ? 0 : progress < 0.55 ? 1 : 2;
 
+  // Determine if ANY card is hovered (unified: agenticHovered OR hoveredSection)
+  const anyHovered = agenticHovered || hoveredSection !== null;
+  const activeSection = agenticHovered ? "agentic" : hoveredSection;
+  const cardOpacity = (sectionName) => anyHovered
+    ? (activeSection === sectionName ? 1 : 0.3)
+    : 1;
+
   return (
     <div
       className="relative overflow-hidden"
