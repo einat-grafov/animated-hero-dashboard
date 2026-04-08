@@ -694,11 +694,11 @@ export default function AkeylessDashboard() {
       {/* ─── MIDDLE LEFT: Identity Authentication ─── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 18, top: 322, width: 332, height: 189,
-          opacity: sectionOpacity("identity"), background: "#fff", boxShadow: hoveredSection === "identity" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "identity" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
+          background: "#fff", boxShadow: hoveredSection === "identity" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "identity" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("identity")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -747,11 +747,11 @@ export default function AkeylessDashboard() {
       {/* ─── MIDDLE CENTER: Enterprise Identity Landscape ─── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 362, top: 322, width: 333, height: 89,
-          opacity: sectionOpacity("landscape"), background: "#fff", boxShadow: hoveredSection === "landscape" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)",
+          background: "#fff", boxShadow: hoveredSection === "landscape" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)",
           border: hoveredSection === "landscape" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent",
           transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("landscape")}
@@ -790,11 +790,11 @@ export default function AkeylessDashboard() {
       {/* ─── MIDDLE CENTER: Identity Risk & Exposure Analysis ─── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.65 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 362, top: 422, width: 333, height: 89,
-          opacity: sectionOpacity("risk"), background: "#fff", boxShadow: hoveredSection === "risk" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "risk" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
+          background: "#fff", boxShadow: hoveredSection === "risk" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "risk" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("risk")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -843,11 +843,11 @@ export default function AkeylessDashboard() {
       {/* ─── MIDDLE RIGHT: External Vault & Secrets ─── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.7 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 706, top: 322, width: 333, height: 190,
-          opacity: sectionOpacity("vault"), background: "#fff", boxShadow: hoveredSection === "vault" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "vault" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
+          background: "#fff", boxShadow: hoveredSection === "vault" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "vault" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("vault")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -911,11 +911,11 @@ export default function AkeylessDashboard() {
       {/* Certificate Lifecycle Health */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.75 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 18, top: 523, width: 250, height: 170,
-          opacity: sectionOpacity("cert"), background: "#fff", boxShadow: hoveredSection === "cert" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "cert" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
+          background: "#fff", boxShadow: hoveredSection === "cert" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "cert" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("cert")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -963,11 +963,11 @@ export default function AkeylessDashboard() {
       {/* Dynamic Secrets Issued */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 280, top: 523, width: 250, height: 170,
-          opacity: sectionOpacity("secrets"), background: "#fff", boxShadow: hoveredSection === "secrets" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "secrets" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
+          background: "#fff", boxShadow: hoveredSection === "secrets" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "secrets" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("secrets")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -1029,11 +1029,11 @@ export default function AkeylessDashboard() {
       {/* Enterprise Encryption & Key Operations */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.85 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 542, top: 523, width: 250, height: 170,
-          opacity: sectionOpacity("encryption"), background: "#fff", boxShadow: hoveredSection === "encryption" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "encryption" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
+          background: "#fff", boxShadow: hoveredSection === "encryption" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "encryption" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("encryption")}
         onMouseLeave={() => setHoveredSection(null)}
       >
@@ -1078,11 +1078,11 @@ export default function AkeylessDashboard() {
       {/* Password Health */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.9 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 804, top: 523, width: 235, height: 170,
-          opacity: sectionOpacity("password"), background: "#fff", boxShadow: hoveredSection === "password" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "password" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
+          background: "#fff", boxShadow: hoveredSection === "password" ? "0 8px 40px rgba(0,0,0,0.14)" : "0 4px 27px rgba(0,0,0,0.07)", border: hoveredSection === "password" ? "1.5px solid rgba(5,217,194,0.4)" : "1.5px solid transparent", transition: "box-shadow 0.3s ease, border-color 0.3s ease, opacity 0.3s ease", cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("password")}
         onMouseLeave={() => setHoveredSection(null)}
       >
