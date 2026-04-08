@@ -567,10 +567,10 @@ export default function AkeylessDashboard() {
       {/* ─── FORENSIC TRACEABILITY (top right) ─── */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
+        animate={{ opacity: sectionOpacity("forensic"), y: 0 }}
+        transition={{ duration: 0.3 }}
         className="absolute"
-        style={{ left: 559, top: 18, width: 480, height: 292, cursor: "pointer", opacity: sectionOpacity("forensic"), transition: "opacity 0.3s ease" }}
+        style={{ left: 559, top: 18, width: 480, height: 292, cursor: "pointer" }}
         onMouseEnter={() => setHoveredSection("forensic")}
         onMouseLeave={() => setHoveredSection(null)}
       >
