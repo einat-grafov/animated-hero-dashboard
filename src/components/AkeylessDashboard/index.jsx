@@ -694,7 +694,7 @@ export default function AkeylessDashboard() {
       {/* ─── MIDDLE LEFT: Identity Authentication ─── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ y: 0 }}
+        animate={{ opacity: sectionOpacity("identity"), y: 0 }}
         transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 18, top: 322, width: 332, height: 189,
@@ -747,7 +747,7 @@ export default function AkeylessDashboard() {
       {/* ─── MIDDLE CENTER: Enterprise Identity Landscape ─── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ y: 0 }}
+        animate={{ opacity: sectionOpacity("landscape"), y: 0 }}
         transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 362, top: 322, width: 333, height: 89,
@@ -790,7 +790,7 @@ export default function AkeylessDashboard() {
       {/* ─── MIDDLE CENTER: Identity Risk & Exposure Analysis ─── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ y: 0 }}
+        animate={{ opacity: sectionOpacity("risk"), y: 0 }}
         transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 362, top: 422, width: 333, height: 89,
@@ -843,7 +843,7 @@ export default function AkeylessDashboard() {
       {/* ─── MIDDLE RIGHT: External Vault & Secrets ─── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ y: 0 }}
+        animate={{ opacity: sectionOpacity("vault"), y: 0 }}
         transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 706, top: 322, width: 333, height: 190,
@@ -911,7 +911,7 @@ export default function AkeylessDashboard() {
       {/* Certificate Lifecycle Health */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ y: 0 }}
+        animate={{ opacity: sectionOpacity("cert"), y: 0 }}
         transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 18, top: 523, width: 250, height: 170,
@@ -963,7 +963,7 @@ export default function AkeylessDashboard() {
       {/* Dynamic Secrets Issued */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ y: 0 }}
+        animate={{ opacity: sectionOpacity("secrets"), y: 0 }}
         transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 280, top: 523, width: 250, height: 170,
@@ -1029,7 +1029,7 @@ export default function AkeylessDashboard() {
       {/* Enterprise Encryption & Key Operations */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ y: 0 }}
+        animate={{ opacity: sectionOpacity("encryption"), y: 0 }}
         transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 542, top: 523, width: 250, height: 170,
@@ -1078,7 +1078,7 @@ export default function AkeylessDashboard() {
       {/* Password Health */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ y: 0 }}
+        animate={{ opacity: sectionOpacity("password"), y: 0 }}
         transition={{ duration: 0.3 }}
         className="absolute rounded-[11px]"
         style={{ left: 804, top: 523, width: 235, height: 170,
