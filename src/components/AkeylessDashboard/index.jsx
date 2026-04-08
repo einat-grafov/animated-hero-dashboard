@@ -415,10 +415,10 @@ export default function AkeylessDashboard() {
       {/* ─── TOP SECTION: Stat cards + table ─── */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
+        animate={{ opacity: sectionOpacity("agentic"), y: 0 }}
+        transition={{ duration: 0.3 }}
         className="absolute"
-        style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer", opacity: sectionOpacity("agentic"), transition: "opacity 0.3s ease" }}
+        style={{ left: 18, top: 18, width: 527, height: 292, cursor: "pointer" }}
         onMouseEnter={() => { setHoveredSection("agentic"); }}
         onMouseLeave={() => setHoveredSection(null)}
       >
