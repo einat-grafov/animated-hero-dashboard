@@ -621,7 +621,7 @@ export default function AkeylessDashboard() {
             <span className="font-bold text-white tracking-wide">INTERCEPTED</span>
           </div>
           <p className="font-semibold text-[#111] mb-[1px]" style={{ fontSize: 7.5 }}>Raw Prompt</p>
-          <p className="text-gray-500" style={{ fontSize: 6, lineHeight: 1.3 }}>"What is the Walmart deal ARR?"</p>
+          <p className="text-gray-500" style={{ fontSize: 6, lineHeight: 1.3 }}>"What is the ACME deal ARR?"</p>
         </motion.div>
 
         {/* Node 1: IDENTIFIED - card ABOVE, timestamp BELOW dot */}
@@ -644,7 +644,7 @@ export default function AkeylessDashboard() {
             <span className="font-bold text-white tracking-wide">IDENTIFIED</span>
           </div>
           <p className="font-semibold text-[#111] mb-[1px]" style={{ fontSize: 7.5 }}>User</p>
-          <p className="text-gray-500" style={{ fontSize: 6, lineHeight: 1.3 }}>'testuser@example.com' accessing HubSpot 'Walmart'.</p>
+          <p className="text-gray-500" style={{ fontSize: 6, lineHeight: 1.3 }}>'testuser@example.com' accessing HubSpot 'ACME'.</p>
         </motion.div>
 
         {/* Node 2: BLOCKED - card BELOW, timestamp ABOVE dot */}
@@ -685,7 +685,7 @@ export default function AkeylessDashboard() {
         >
           <button className="rounded-full border border-gray-300 px-[14px] py-[4px] text-[7px] text-gray-600 font-medium" style={{ background: "#fff" }}>Cancel</button>
           <button className="rounded-full px-[14px] py-[4px] text-[7px] text-white font-semibold"
-            style={{ background: "#05D9C2" }}>Kill Switch</button>
+            style={{ background: "#E53E3E" }}>Kill Switch</button>
           <button className="rounded-full px-[14px] py-[4px] text-[7px] font-medium"
             style={{ background: "#fff", border: "1px solid #FD2B11", color: "#FD2B11" }}>Revoke Lease</button>
         </motion.div>

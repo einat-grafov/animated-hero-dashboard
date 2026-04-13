@@ -231,7 +231,7 @@ function ForensicSection({ isActive }) {
               <span className="font-bold text-white" style={{ fontSize: 8 }}>INTERCEPTED</span>
             </div>
             <p className="font-semibold text-[#111]" style={{ fontSize: 11 }}>Raw Prompt</p>
-            <p className="text-gray-500" style={{ fontSize: 9, lineHeight: 1.4 }}>"What is the Walmart deal ARR?"</p>
+            <p className="text-gray-500" style={{ fontSize: 9, lineHeight: 1.4 }}>"What is the ACME deal ARR?"</p>
           </div>
         </motion.div>
 
@@ -251,7 +251,7 @@ function ForensicSection({ isActive }) {
               <span className="font-bold text-white" style={{ fontSize: 8 }}>IDENTIFIED</span>
             </div>
             <p className="font-semibold text-[#111]" style={{ fontSize: 11 }}>User</p>
-            <p className="text-gray-500" style={{ fontSize: 9, lineHeight: 1.4 }}>'testuser@example.com' accessing HubSpot 'Walmart'.</p>
+            <p className="text-gray-500" style={{ fontSize: 9, lineHeight: 1.4 }}>'testuser@example.com' accessing HubSpot 'ACME'.</p>
           </div>
         </motion.div>
 
@@ -289,7 +289,7 @@ function ForensicSection({ isActive }) {
       {/* Action buttons */}
       <motion.div animate={{ opacity: p > 0.9 ? 1 : 0 }} className="flex gap-[10px] justify-center" style={{ marginTop: 16 }}>
         <button className="rounded-full border border-gray-300 px-[18px] py-[6px] text-[10px] text-gray-600 font-medium" style={{ background: "#fff" }}>Cancel</button>
-        <button className="rounded-full px-[18px] py-[6px] text-[10px] text-white font-semibold" style={{ background: "#05D9C2" }}>Kill Switch</button>
+        <button className="rounded-full px-[18px] py-[6px] text-[10px] text-white font-semibold" style={{ background: "#E53E3E" }}>Kill Switch</button>
         <button className="rounded-full px-[18px] py-[6px] text-[10px] font-medium" style={{ background: "#fff", border: "1px solid #FD2B11", color: "#FD2B11" }}>Revoke Lease</button>
       </motion.div>
       <div style={{ marginTop: 12 }}>
