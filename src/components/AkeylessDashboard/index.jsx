@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { m, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // SVG assets from Figma
 import iconSession from "../../assets/svg/icon-session.svg";
@@ -108,7 +108,7 @@ function Tooltip({ text, style, position = "top" }) {
   const alignItems = "center";
 
   return (
-    <m.div
+    <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
@@ -132,7 +132,7 @@ function Tooltip({ text, style, position = "top" }) {
           <path d="M0 0 L8 8 L16 0" fill="#111" />
         </svg>
       )}
-    </m.div>
+    </motion.div>
   );
 }
 
@@ -408,11 +408,12 @@ export default function AkeylessDashboard() {
         background: "rgba(252,252,252,0.96)",
         backdropFilter: "blur(14px)",
         border: "1px solid rgba(255,255,255,0.3)",
+        boxShadow: "0 20px 80px rgba(0,0,0,0.15)",
         fontFamily: "'Poppins', sans-serif",
       }}
     >
       {/* ─── TOP SECTION: Stat cards + table ─── */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: sectionOpacity("agentic"), y: 0 }}
         transition={{ duration: 0.3 }}
@@ -456,7 +457,7 @@ export default function AkeylessDashboard() {
             { icon: iconActions,  value: 23,  label: "Total Actions",          color: "#05D9C2" },
             { icon: iconRisk,     value: 31,  label: "Average Risk Score",     color: "#F3982E", sub: "9 - 54" },
           ].map((card, i) => (
-            <m.div
+            <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -474,7 +475,7 @@ export default function AkeylessDashboard() {
                   {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 6 }}>{card.sub}</span>}
                 </div>
               </div>
-            </m.div>
+            </motion.div>
           ))}
         </div>
 
@@ -538,7 +539,7 @@ export default function AkeylessDashboard() {
 
         {/* Table rows */}
         {TABLE_ROWS.map((row, i) => (
-          <m.div
+          <motion.div
             key={row.id}
             initial={{ opacity: 0, x: -8 }}
             animate={{ opacity: p.table > i / 5 ? 1 : 0, x: p.table > i / 5 ? 0 : -8 }}
@@ -558,13 +559,13 @@ export default function AkeylessDashboard() {
             </div>
             <span className="text-[#111] tracking-[-0.16px]" style={{ fontSize: 7.5, width: "20%", flexShrink: 0, textAlign: "left" }}>{row.date}</span>
             <img src={dotsIcon} alt="" style={{ width: 10, height: 10, opacity: 0.5, flexShrink: 0 }} />
-          </m.div>
+          </motion.div>
         ))}
 
-      </m.div>
+      </motion.div>
 
       {/* ─── FORENSIC TRACEABILITY (top right) ─── */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: sectionOpacity("forensic"), y: 0 }}
         transition={{ duration: 0.3 }}
@@ -592,7 +593,7 @@ export default function AkeylessDashboard() {
 
         {/* Timeline line */}
         <div className="absolute" style={{ left: 30, top: 130, right: 30, height: 2, background: "#E8E9EF", borderRadius: 2 }}>
-          <m.div
+          <motion.div
             className="h-full rounded-full"
             style={{ background: "#05D9C2" }}
             animate={{ width: `${fp * 100}%` }}
@@ -610,9 +611,9 @@ export default function AkeylessDashboard() {
         }}>
           <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
         </div>
-        <m.div animate={{ opacity: fp > 0.1 ? 1 : 0 }}
+        <motion.div animate={{ opacity: fp > 0.1 ? 1 : 0 }}
           className="absolute" style={{ left: 67.25, top: 139, width: 1.5, height: 14, background: "#05D9C2" }} />
-        <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: fp > 0.1 ? 1 : 0, y: fp > 0.1 ? 0 : 8 }}
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: fp > 0.1 ? 1 : 0, y: fp > 0.1 ? 0 : 8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 8, top: 153, width: 120,
             background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
@@ -621,7 +622,7 @@ export default function AkeylessDashboard() {
           </div>
           <p className="font-semibold text-[#111] mb-[1px]" style={{ fontSize: 7.5 }}>Raw Prompt</p>
           <p className="text-gray-500" style={{ fontSize: 6, lineHeight: 1.3 }}>"What is the ACME deal ARR?"</p>
-        </m.div>
+        </motion.div>
 
         {/* Node 1: IDENTIFIED - card ABOVE, timestamp BELOW dot */}
         <div className="absolute rounded-full" style={{
@@ -633,9 +634,9 @@ export default function AkeylessDashboard() {
           <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
         </div>
         <span className="absolute text-gray-400" style={{ fontSize: 7, left: 208, top: 142, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.171</span>
-        <m.div animate={{ opacity: fp > 0.35 ? 1 : 0 }}
+        <motion.div animate={{ opacity: fp > 0.35 ? 1 : 0 }}
           className="absolute" style={{ left: 207.25, top: 109, width: 1.5, height: 14, background: "#05D9C2" }} />
-        <m.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: fp > 0.35 ? 1 : 0, y: fp > 0.35 ? 0 : -8 }}
+        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: fp > 0.35 ? 1 : 0, y: fp > 0.35 ? 0 : -8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 148, bottom: 178, width: 120,
             background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
@@ -644,7 +645,7 @@ export default function AkeylessDashboard() {
           </div>
           <p className="font-semibold text-[#111] mb-[1px]" style={{ fontSize: 7.5 }}>User</p>
           <p className="text-gray-500" style={{ fontSize: 6, lineHeight: 1.3 }}>'testuser@example.com' accessing HubSpot 'ACME'.</p>
-        </m.div>
+        </motion.div>
 
         {/* Node 2: BLOCKED - card BELOW, timestamp ABOVE dot */}
         <span className="absolute text-gray-400" style={{ fontSize: 7, left: 358, top: 112, transform: "translateX(-50%)", whiteSpace: "nowrap" }}>17:58:20.176</span>
@@ -656,9 +657,9 @@ export default function AkeylessDashboard() {
         }}>
           <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
         </div>
-        <m.div animate={{ opacity: fp > 0.65 ? 1 : 0 }}
+        <motion.div animate={{ opacity: fp > 0.65 ? 1 : 0 }}
           className="absolute" style={{ left: 357.25, top: 139, width: 1.5, height: 14, background: "#05D9C2" }} />
-        <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: fp > 0.65 ? 1 : 0, y: fp > 0.65 ? 0 : 8 }}
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: fp > 0.65 ? 1 : 0, y: fp > 0.65 ? 0 : 8 }}
           className="absolute rounded-[6px] p-[3px] pt-[2px]"
           style={{ left: 293, top: 153, width: 140,
             background: "rgba(253,43,17,0.04)", border: "1px solid rgba(253,43,17,0.15)", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
@@ -674,10 +675,10 @@ export default function AkeylessDashboard() {
             <p className="uppercase text-gray-400" style={{ fontSize: 4.5, lineHeight: 1.2, letterSpacing: "0.3px" }}>MATCHED TERM</p>
             <p className="text-[#FD2B11] font-medium" style={{ fontSize: 6 }}>arr</p>
           </div>
-        </m.div>
+        </motion.div>
 
         {/* Action buttons */}
-        <m.div
+        <motion.div
           animate={{ opacity: fp > 0.8 ? 1 : 0 }}
           className="absolute flex gap-[10px] items-center justify-end"
           style={{ right: 14, bottom: 10 }}
@@ -687,11 +688,11 @@ export default function AkeylessDashboard() {
             style={{ background: "#E53E3E" }}>Kill Switch</button>
           <button className="rounded-full px-[14px] py-[4px] text-[7px] font-medium"
             style={{ background: "#fff", border: "1px solid #FD2B11", color: "#FD2B11" }}>Revoke Lease</button>
-        </m.div>
-      </m.div>
+        </motion.div>
+      </motion.div>
 
       {/* ─── MIDDLE LEFT: Identity Authentication ─── */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: sectionOpacity("identity"), y: 0 }}
         transition={{ duration: 0.3 }}
@@ -741,10 +742,10 @@ export default function AkeylessDashboard() {
             </div>
           ))}
         </div>
-      </m.div>
+      </motion.div>
 
       {/* ─── MIDDLE CENTER: Enterprise Identity Landscape ─── */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: sectionOpacity("landscape"), y: 0 }}
         transition={{ duration: 0.3 }}
@@ -784,10 +785,10 @@ export default function AkeylessDashboard() {
             </div>
           ))}
         </div>
-      </m.div>
+      </motion.div>
 
       {/* ─── MIDDLE CENTER: Identity Risk & Exposure Analysis ─── */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: sectionOpacity("risk"), y: 0 }}
         transition={{ duration: 0.3 }}
@@ -837,10 +838,10 @@ export default function AkeylessDashboard() {
             </div>
           ))}
         </div>
-      </m.div>
+      </motion.div>
 
       {/* ─── MIDDLE RIGHT: External Vault & Secrets ─── */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: sectionOpacity("vault"), y: 0 }}
         transition={{ duration: 0.3 }}
@@ -903,12 +904,12 @@ export default function AkeylessDashboard() {
             </div>
           ))}
         </div>
-      </m.div>
+      </motion.div>
 
       {/* ─── BOTTOM ROW ─── */}
 
       {/* Certificate Lifecycle Health */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: sectionOpacity("cert"), y: 0 }}
         transition={{ duration: 0.3 }}
@@ -948,7 +949,7 @@ export default function AkeylessDashboard() {
               { label: "90-180 Days", gradient: "linear-gradient(180deg, #05D9C2 0%, #5DE8D6 100%)", heightPct: 100 },
             ].map((bar, i) => (
               <div key={i} className="flex flex-col items-center justify-end gap-[4px]" style={{ height: "100%" }}>
-                <m.div
+                <motion.div
                   className="rounded-t-[4px]"
                   style={{ background: bar.gradient, height: `${bar.heightPct * (certHoverProgress !== null ? certHoverProgress : p.certchart)}%`, width: 28 }}
                 />
@@ -957,10 +958,10 @@ export default function AkeylessDashboard() {
             ))}
           </div>
         </div>
-      </m.div>
+      </motion.div>
 
       {/* Dynamic Secrets Issued */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: sectionOpacity("secrets"), y: 0 }}
         transition={{ duration: 0.3 }}
@@ -1023,10 +1024,10 @@ export default function AkeylessDashboard() {
             </div>
           ))}
         </div>
-      </m.div>
+      </motion.div>
 
       {/* Enterprise Encryption & Key Operations */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: sectionOpacity("encryption"), y: 0 }}
         transition={{ duration: 0.3 }}
@@ -1072,10 +1073,10 @@ export default function AkeylessDashboard() {
             </div>
           )})}
         </div>
-      </m.div>
+      </motion.div>
 
       {/* Password Health */}
-      <m.div
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: sectionOpacity("password"), y: 0 }}
         transition={{ duration: 0.3 }}
@@ -1123,7 +1124,7 @@ export default function AkeylessDashboard() {
             </div>
           </div>
         </div>
-      </m.div>
+      </motion.div>
 
       {/* Decorative background gradient */}
       <div

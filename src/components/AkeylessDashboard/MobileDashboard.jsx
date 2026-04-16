@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { m as motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // SVG assets
 import iconSession from "../../assets/svg/icon-session.svg";
@@ -692,7 +692,7 @@ export default function MobileDashboard() {
       className="relative overflow-hidden"
       style={{
         width: "100%",
-        height: 500,
+        height: "85vh",
         borderRadius: 16,
         background: "#fff",
         border: "1px solid #E8E9EF",
