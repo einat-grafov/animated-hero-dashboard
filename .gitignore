@@ -1,5 +1,7 @@
 node_modules/
 dist/
 dist-widget/
+dist-akeyless-hero/
+*.zip
 .DS_Store
 *.local

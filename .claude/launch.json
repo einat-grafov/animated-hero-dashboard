@@ -2,10 +2,34 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "hero-app",
+      "name": "akeyless-hero-widget-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "5180", "dist-akeyless-hero"],
+      "port": 5180
+    },
+    {
+      "name": "main-app-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--prefix", "hero-app"],
+      "runtimeArgs": ["run", "dev", "--", "--port", "5173"],
       "port": 5173
+    },
+    {
+      "name": "main-app-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "preview", "--", "--port", "4173"],
+      "port": 4173
+    },
+    {
+      "name": "hero-app-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "hero-app", "run", "dev", "--", "--port", "5174"],
+      "port": 5174
+    },
+    {
+      "name": "hero-app-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "hero-app", "run", "preview", "--", "--port", "4174"],
+      "port": 4174
     }
   ]
 }
