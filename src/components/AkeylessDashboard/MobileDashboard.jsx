@@ -397,23 +397,23 @@ function VaultSecretsCombinedSection({ isActive }) {
   return (
     <div className="flex flex-col h-full justify-center gap-[12px]" style={{ padding: 12 }}>
       <div>
-        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
+        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
           External Vault &amp; Secrets Integrations
         </p>
-        <div className="flex items-center gap-[12px]" style={{ marginBottom: 6 }}>
-          <div className="relative" style={{ width: 100, height: 100, flexShrink: 0 }}>
+        <div className="flex items-center gap-[14px]" style={{ marginBottom: 6 }}>
+          <div className="relative" style={{ width: 110, height: 110, flexShrink: 0 }}>
             <div className="absolute inset-0 rounded-full"
               style={{ background: "conic-gradient(from -90deg, #F3982E 0% 35.96%, #5C7FC6 35.96% 57.30%, #111111 57.30% 77.53%, #05D9C2 77.53% 88.76%, #275AC2 88.76% 100%)" }} />
             <div className="absolute inset-[12%] rounded-full overflow-hidden"
               style={{ background: "radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.95) 0%, rgba(230,235,245,0.7) 50%, rgba(200,210,230,0.5) 100%)", backdropFilter: "blur(8px)" }} />
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="font-semibold text-[#111]" style={{ fontSize: 22 }}>
+              <span className="font-semibold text-[#111]" style={{ fontSize: 24 }}>
                 <AnimatedNumber value={89} progress={p} />
               </span>
-              <span className="text-[#111]" style={{ fontSize: 8 }}>Total Items</span>
+              <span className="text-[#111]" style={{ fontSize: 9 }}>Total Items</span>
             </div>
           </div>
-          <div className="flex flex-col gap-[4px]">
+          <div className="flex flex-col gap-[5px]">
             {[
               { color: "#F3982E", label: "AWS", val: 32 },
               { color: "#5C7FC6", label: "Azure", val: 19 },
@@ -423,8 +423,8 @@ function VaultSecretsCombinedSection({ isActive }) {
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-[6px]">
                 <div className="rounded-[2px] flex-shrink-0" style={{ width: 10, height: 10, background: item.color }} />
-                <span className="text-[#555]" style={{ fontSize: 10, width: 90 }}>{item.label}</span>
-                <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 10, width: 24, textAlign: "right" }}>
+                <span className="text-[#555]" style={{ fontSize: 11, width: 95 }}>{item.label}</span>
+                <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 11, width: 26, textAlign: "right" }}>
                   <AnimatedNumber value={item.val} progress={p} />
                 </span>
               </div>
@@ -437,23 +437,23 @@ function VaultSecretsCombinedSection({ isActive }) {
       <div style={{ height: 1, background: "#E8E9EF" }} />
 
       <div>
-        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
+        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 8 }}>
           Dynamic Secrets Issued
         </p>
-        <div className="flex items-center gap-[12px]" style={{ marginBottom: 6 }}>
-          <div className="relative" style={{ width: 100, height: 100, flexShrink: 0 }}>
+        <div className="flex items-center gap-[14px]" style={{ marginBottom: 6 }}>
+          <div className="relative" style={{ width: 110, height: 110, flexShrink: 0 }}>
             <div className="absolute inset-0 rounded-full"
               style={{ background: "conic-gradient(from -90deg, #F3982E 0% 30%, #275AC2 30% 50%, #5C7FC6 50% 65%, #05D9C2 65% 78.333%, #111111 78.333% 90%, #4A8FF0 90% 100%)" }} />
             <div className="absolute inset-[12%] rounded-full overflow-hidden"
               style={{ background: "radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.97) 0%, rgba(240,242,248,0.85) 60%, rgba(220,225,238,0.7) 100%)", backdropFilter: "blur(8px)" }} />
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="font-semibold text-[#111]" style={{ fontSize: 20 }}>
+              <span className="font-semibold text-[#111]" style={{ fontSize: 22 }}>
                 <AnimatedNumber value={60} progress={p} />K
               </span>
-              <span className="text-[#111] text-center leading-tight" style={{ fontSize: 8 }}>Total Dynamic<br/>Secrets</span>
+              <span className="text-[#111] text-center leading-tight" style={{ fontSize: 9 }}>Total Dynamic<br/>Secrets</span>
             </div>
           </div>
-          <div className="flex flex-col gap-[4px]">
+          <div className="flex flex-col gap-[5px]">
             {[
               { color: "#F3982E", label: "AWS", val: 18 },
               { color: "#275AC2", label: "GCP", val: 12 },
@@ -464,8 +464,8 @@ function VaultSecretsCombinedSection({ isActive }) {
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-[6px]">
                 <div className="rounded-[2px] flex-shrink-0" style={{ width: 10, height: 10, background: item.color }} />
-                <span className="text-[#111]" style={{ fontSize: 10, width: 90 }}>{item.label}</span>
-                <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 10, width: 24, textAlign: "right" }}>
+                <span className="text-[#111]" style={{ fontSize: 11, width: 95 }}>{item.label}</span>
+                <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 11, width: 26, textAlign: "right" }}>
                   <AnimatedNumber value={item.val} progress={p} />K
                 </span>
               </div>
