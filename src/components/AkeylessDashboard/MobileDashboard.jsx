@@ -518,26 +518,24 @@ function EncryptionPasswordCombinedSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1200);
 
   return (
-    <div className="flex flex-col h-full justify-evenly" style={{ padding: 16 }}>
-      {/* Section 1 title */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 15 }}>
+    <div className="flex flex-col h-full justify-evenly" style={{ padding: 10 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13 }}>
         Enterprise Encryption &amp; Key Operations
       </p>
 
-      {/* Section 1 bars */}
-      <div className="flex flex-col gap-[14px]">
+      <div className="flex flex-col gap-[8px]">
         {[
           { label: "Transactions",   barPct: 90, value: 2, suffix: "M" },
           { label: "Tokenizers",     barPct: 35, value: 50, suffix: "" },
           { label: "Cloud Accounts", barPct: 30, value: 45, suffix: "" },
         ].map((item, i) => (
-          <div key={i} className="flex flex-col gap-[4px]">
-            <span className="text-[#111]" style={{ fontSize: 12 }}>{item.label}</span>
-            <div className="flex items-center gap-[8px]">
-              <div className="flex-1 h-[14px] rounded-[4px] bg-gray-100 overflow-hidden">
-                <div className="h-full rounded-[4px]" style={{ width: `${item.barPct * p}%`, backgroundColor: "#1ADDC7" }} />
+          <div key={i} className="flex flex-col gap-[2px]">
+            <span className="text-[#111]" style={{ fontSize: 10 }}>{item.label}</span>
+            <div className="flex items-center gap-[6px]">
+              <div className="flex-1 h-[10px] rounded-[3px] bg-gray-100 overflow-hidden">
+                <div className="h-full rounded-[3px]" style={{ width: `${item.barPct * p}%`, backgroundColor: "#1ADDC7" }} />
               </div>
-              <span className="font-medium text-[#111] flex-shrink-0" style={{ fontSize: 12, minWidth: 24 }}>
+              <span className="font-medium text-[#111] flex-shrink-0" style={{ fontSize: 10, minWidth: 22 }}>
                 <AnimatedNumber value={item.value} progress={p} />{item.suffix}
               </span>
             </div>
@@ -545,35 +543,30 @@ function EncryptionPasswordCombinedSection({ isActive }) {
         ))}
       </div>
 
-      {/* Section 1 tooltip */}
       <InlineTooltip text="Centralized encryption and key management across cloud platforms." />
 
-      {/* Divider */}
       <div style={{ height: 1, background: "#E8E9EF" }} />
 
-      {/* Section 2 title */}
-      <p className="font-semibold text-[#111]" style={{ fontSize: 15 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 13 }}>
         Password Health
       </p>
 
-      {/* Section 2 gauge */}
       <div className="flex flex-col items-center justify-center">
-        <div className="relative" style={{ width: 200, height: 110 }}>
-          <svg viewBox="0 0 190 105" width="200" height="110">
+        <div className="relative" style={{ width: 160, height: 88 }}>
+          <svg viewBox="0 0 190 105" width="160" height="88">
             <path d="M 18 97 A 77 77 0 0 1 172 97" fill="none" stroke="#EBEBEB" strokeWidth="13" strokeLinecap="round" />
             <path d="M 18 97 A 77 77 0 0 1 172 97" fill="none" stroke="#1ADDC7" strokeWidth="13" strokeLinecap="round"
               strokeDasharray={`${242 * 0.92 * p} 242`} />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-end" style={{ paddingBottom: 0 }}>
-            <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 38 }}>
+            <span className="font-semibold text-[#111] leading-none" style={{ fontSize: 30 }}>
               <AnimatedNumber value={92} progress={p} />
             </span>
-            <span className="text-[#111]" style={{ fontSize: 8, marginTop: 2 }}>Out of 100</span>
+            <span className="text-[#111]" style={{ fontSize: 7, marginTop: 1 }}>Out of 100</span>
           </div>
         </div>
       </div>
 
-      {/* Section 2 tooltip */}
       <InlineTooltip text="Real-time evaluation of password and credential security posture." />
     </div>
   );
