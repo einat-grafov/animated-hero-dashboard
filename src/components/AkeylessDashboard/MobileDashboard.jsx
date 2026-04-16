@@ -198,99 +198,81 @@ function ForensicSection({ isActive }) {
   const p = useOnceAnimation(isActive, 2000);
 
   return (
-    <div className="flex flex-col h-full" style={{ padding: 20 }}>
-      <p className="font-semibold text-[#111]" style={{ fontSize: 16, marginBottom: 4 }}>
+    <div className="flex flex-col h-full" style={{ padding: 12 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 14, marginBottom: 2 }}>
         Forensic Traceability
       </p>
-      <p className="text-gray-400" style={{ fontSize: 10, marginBottom: 20 }}>
+      <p className="text-gray-400" style={{ fontSize: 9, marginBottom: 10 }}>
         Incident Investigation: Session AAM-HS-177367110
       </p>
 
-      {/* Vertical timeline for mobile */}
-      <div className="flex-1 flex flex-col gap-[24px] relative" style={{ paddingLeft: 30 }}>
-        {/* Vertical line */}
-        <div className="absolute" style={{ left: 14, top: 8, bottom: 8, width: 2, background: "#E8E9EF" }}>
+      <div className="flex-1 flex flex-col gap-[14px] relative" style={{ paddingLeft: 26 }}>
+        <div className="absolute" style={{ left: 12, top: 6, bottom: 6, width: 2, background: "#E8E9EF" }}>
           <motion.div className="w-full rounded-full" style={{ background: "#05D9C2", height: `${p * 100}%` }} />
         </div>
 
-        {/* Node 0: INTERCEPTED */}
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: p > 0.1 ? 1 : 0, y: p > 0.1 ? 0 : 10 }}
-          className="relative">
-          <div className="absolute rounded-full" style={{
-            left: -24, top: 4, width: 16, height: 16, zIndex: 2,
-            border: "2.5px solid #05D9C2", background: "#fff",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
+        {/* INTERCEPTED */}
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p > 0.1 ? 1 : 0, y: p > 0.1 ? 0 : 8 }} className="relative">
+          <div className="absolute rounded-full" style={{ left: -20, top: 3, width: 14, height: 14, zIndex: 2, border: "2px solid #05D9C2", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div className="rounded-full" style={{ width: 6, height: 6, background: "#05D9C2" }} />
           </div>
-          <span className="text-gray-400 block" style={{ fontSize: 9, marginBottom: 4 }}>17:58:20.171</span>
-          <div className="rounded-[8px] p-[10px]" style={{ background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-            <div className="inline-flex items-center px-[8px] py-[2px] rounded-[4px] mb-[4px]" style={{ background: "#05D9C2" }}>
-              <span className="font-bold text-white" style={{ fontSize: 8 }}>INTERCEPTED</span>
+          <span className="text-gray-400 block" style={{ fontSize: 8, marginBottom: 2 }}>17:58:20.171</span>
+          <div className="rounded-[6px] p-[8px]" style={{ background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 1px 8px rgba(0,0,0,0.05)" }}>
+            <div className="inline-flex items-center px-[6px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#05D9C2" }}>
+              <span className="font-bold text-white" style={{ fontSize: 7 }}>INTERCEPTED</span>
             </div>
-            <p className="font-semibold text-[#111]" style={{ fontSize: 11 }}>Raw Prompt</p>
-            <p className="text-gray-500" style={{ fontSize: 9, lineHeight: 1.4 }}>"What is the ACME deal ARR?"</p>
+            <p className="font-semibold text-[#111]" style={{ fontSize: 10 }}>Raw Prompt</p>
+            <p className="text-gray-500" style={{ fontSize: 8, lineHeight: 1.3 }}>"What is the ACME deal ARR?"</p>
           </div>
         </motion.div>
 
-        {/* Node 1: IDENTIFIED */}
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: p > 0.4 ? 1 : 0, y: p > 0.4 ? 0 : 10 }}
-          className="relative">
-          <div className="absolute rounded-full" style={{
-            left: -24, top: 4, width: 16, height: 16, zIndex: 2,
-            border: "2.5px solid #05D9C2", background: "#fff",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
+        {/* IDENTIFIED */}
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p > 0.4 ? 1 : 0, y: p > 0.4 ? 0 : 8 }} className="relative">
+          <div className="absolute rounded-full" style={{ left: -20, top: 3, width: 14, height: 14, zIndex: 2, border: "2px solid #05D9C2", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div className="rounded-full" style={{ width: 6, height: 6, background: "#05D9C2" }} />
           </div>
-          <span className="text-gray-400 block" style={{ fontSize: 9, marginBottom: 4 }}>17:58:20.171</span>
-          <div className="rounded-[8px] p-[10px]" style={{ background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-            <div className="inline-flex items-center px-[8px] py-[2px] rounded-[4px] mb-[4px]" style={{ background: "#05D9C2" }}>
-              <span className="font-bold text-white" style={{ fontSize: 8 }}>IDENTIFIED</span>
+          <span className="text-gray-400 block" style={{ fontSize: 8, marginBottom: 2 }}>17:58:20.171</span>
+          <div className="rounded-[6px] p-[8px]" style={{ background: "#fff", border: "1px solid #E8E9EF", boxShadow: "0 1px 8px rgba(0,0,0,0.05)" }}>
+            <div className="inline-flex items-center px-[6px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#05D9C2" }}>
+              <span className="font-bold text-white" style={{ fontSize: 7 }}>IDENTIFIED</span>
             </div>
-            <p className="font-semibold text-[#111]" style={{ fontSize: 11 }}>User</p>
-            <p className="text-gray-500" style={{ fontSize: 9, lineHeight: 1.4 }}>'testuser@example.com' accessing HubSpot 'ACME'.</p>
+            <p className="font-semibold text-[#111]" style={{ fontSize: 10 }}>User</p>
+            <p className="text-gray-500" style={{ fontSize: 8, lineHeight: 1.3 }}>'testuser@example.com' accessing HubSpot 'ACME'.</p>
           </div>
         </motion.div>
 
-        {/* Node 2: BLOCKED */}
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: p > 0.7 ? 1 : 0, y: p > 0.7 ? 0 : 10 }}
-          className="relative">
-          <div className="absolute rounded-full" style={{
-            left: -24, top: 4, width: 16, height: 16, zIndex: 2,
-            border: "2.5px solid #05D9C2", background: "#fff",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <div className="rounded-full" style={{ width: 8, height: 8, background: "#05D9C2" }} />
+        {/* BLOCKED */}
+        <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: p > 0.7 ? 1 : 0, y: p > 0.7 ? 0 : 8 }} className="relative">
+          <div className="absolute rounded-full" style={{ left: -20, top: 3, width: 14, height: 14, zIndex: 2, border: "2px solid #05D9C2", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div className="rounded-full" style={{ width: 6, height: 6, background: "#05D9C2" }} />
           </div>
-          <span className="text-gray-400 block" style={{ fontSize: 9, marginBottom: 4 }}>17:58:20.176</span>
-          <div className="rounded-[8px] p-[10px]" style={{ background: "rgba(253,43,17,0.04)", border: "1px solid rgba(253,43,17,0.15)", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-            <div className="inline-flex items-center px-[8px] py-[2px] rounded-[4px] mb-[4px]" style={{ background: "#FD2B11" }}>
-              <span className="font-bold text-white" style={{ fontSize: 8 }}>BLOCKED</span>
+          <span className="text-gray-400 block" style={{ fontSize: 8, marginBottom: 2 }}>17:58:20.176</span>
+          <div className="rounded-[6px] p-[8px]" style={{ background: "rgba(253,43,17,0.04)", border: "1px solid rgba(253,43,17,0.15)", boxShadow: "0 1px 8px rgba(0,0,0,0.05)" }}>
+            <div className="inline-flex items-center px-[6px] py-[1px] rounded-[3px] mb-[3px]" style={{ background: "#FD2B11" }}>
+              <span className="font-bold text-white" style={{ fontSize: 7 }}>BLOCKED</span>
             </div>
-            <p className="mb-[4px]" style={{ fontSize: 10, lineHeight: 1.4 }}>
+            <p className="mb-[2px]" style={{ fontSize: 9, lineHeight: 1.3 }}>
               <span className="font-semibold text-[#111]">Access Denied:</span>{" "}
               <span className="text-gray-500">Command not allowed by policy.</span>
             </p>
-            <div className="rounded-[4px] p-[6px] mb-[4px]" style={{ background: "rgba(253,43,17,0.06)", borderLeft: "2px solid #FD2B11" }}>
-              <p className="uppercase text-gray-400" style={{ fontSize: 7, letterSpacing: "0.3px" }}>POLICY THAT BLOCKED</p>
-              <p className="text-[#FD2B11] font-medium" style={{ fontSize: 9 }}>ForbiddenTerm</p>
+            <div className="rounded-[3px] p-[4px] mb-[3px]" style={{ background: "rgba(253,43,17,0.06)", borderLeft: "2px solid #FD2B11" }}>
+              <p className="uppercase text-gray-400" style={{ fontSize: 6, letterSpacing: "0.3px" }}>POLICY THAT BLOCKED</p>
+              <p className="text-[#FD2B11] font-medium" style={{ fontSize: 8 }}>ForbiddenTerm</p>
             </div>
-            <div className="rounded-[4px] p-[6px]" style={{ background: "rgba(253,43,17,0.06)", borderLeft: "2px solid #F3C623" }}>
-              <p className="uppercase text-gray-400" style={{ fontSize: 7, letterSpacing: "0.3px" }}>MATCHED TERM</p>
-              <p className="text-[#FD2B11] font-medium" style={{ fontSize: 9 }}>arr</p>
+            <div className="rounded-[3px] p-[4px]" style={{ background: "rgba(253,43,17,0.06)", borderLeft: "2px solid #F3C623" }}>
+              <p className="uppercase text-gray-400" style={{ fontSize: 6, letterSpacing: "0.3px" }}>MATCHED TERM</p>
+              <p className="text-[#FD2B11] font-medium" style={{ fontSize: 8 }}>arr</p>
             </div>
           </div>
         </motion.div>
       </div>
 
-      {/* Action buttons */}
-      <motion.div animate={{ opacity: p > 0.9 ? 1 : 0 }} className="flex gap-[10px] justify-center" style={{ marginTop: 16 }}>
-        <button className="rounded-full border border-gray-300 px-[18px] py-[6px] text-[10px] text-gray-600 font-medium" style={{ background: "#fff" }}>Cancel</button>
-        <button className="rounded-full px-[18px] py-[6px] text-[10px] text-white font-semibold" style={{ background: "#E53E3E" }}>Kill Switch</button>
-        <button className="rounded-full px-[18px] py-[6px] text-[10px] font-medium" style={{ background: "#fff", border: "1px solid #FD2B11", color: "#FD2B11" }}>Revoke Lease</button>
+      <motion.div animate={{ opacity: p > 0.9 ? 1 : 0 }} className="flex gap-[8px] justify-center" style={{ marginTop: 10 }}>
+        <button className="rounded-full border border-gray-300 px-[14px] py-[4px] text-[9px] text-gray-600 font-medium" style={{ background: "#fff" }}>Cancel</button>
+        <button className="rounded-full px-[14px] py-[4px] text-[9px] text-white font-semibold" style={{ background: "#E53E3E" }}>Kill Switch</button>
+        <button className="rounded-full px-[14px] py-[4px] text-[9px] font-medium" style={{ background: "#fff", border: "1px solid #FD2B11", color: "#FD2B11" }}>Revoke Lease</button>
       </motion.div>
-      <div style={{ marginTop: 12 }}>
+      <div style={{ marginTop: 8 }}>
         <InlineTooltip text="See exactly why agent actions were blocked by policy." />
       </div>
     </div>
