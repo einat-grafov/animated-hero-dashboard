@@ -98,42 +98,42 @@ function AgenticSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1500);
 
   return (
-    <div className="flex flex-col h-full" style={{ padding: 20 }}>
-      <p className="font-semibold text-[#0E0D1E]" style={{ fontSize: 16, marginBottom: 12 }}>
+    <div className="flex flex-col h-full" style={{ padding: 12 }}>
+      <p className="font-semibold text-[#0E0D1E]" style={{ fontSize: 14, marginBottom: 6 }}>
         Agentic Access Overview
       </p>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-2 gap-[8px]" style={{ marginBottom: 14 }}>
+      <div className="grid grid-cols-2 gap-[6px]" style={{ marginBottom: 8 }}>
         {[
           { icon: iconSession, value: 14, label: "Active Session", color: "#05D9C2" },
           { icon: iconBlocked, value: 7,  label: "Blocked Requests", color: "#FD2B11" },
           { icon: iconActions, value: 23, label: "Total Actions", color: "#05D9C2" },
           { icon: iconRisk,    value: 31, label: "Average Risk Score", color: "#F3982E", sub: "9 - 54" },
         ].map((card, i) => (
-          <div key={i} className="rounded-[10px] p-[10px] flex items-start gap-[8px]"
-            style={{ background: "#fff", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-            <img src={card.icon} alt="" style={{ width: 24, height: 24, flexShrink: 0 }} />
+          <div key={i} className="rounded-[8px] p-[8px] flex items-start gap-[6px]"
+            style={{ background: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+            <img src={card.icon} alt="" style={{ width: 20, height: 20, flexShrink: 0 }} />
             <div className="flex flex-col">
-              <span className="font-semibold text-[#111]" style={{ fontSize: 22, lineHeight: 1 }}>
+              <span className="font-semibold text-[#111]" style={{ fontSize: 18, lineHeight: 1 }}>
                 <AnimatedNumber value={card.value} progress={p} />
               </span>
-              <span className="text-[#111]" style={{ fontSize: 10 }}>{card.label}</span>
-              {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 9 }}>{card.sub}</span>}
+              <span className="text-[#111]" style={{ fontSize: 9 }}>{card.label}</span>
+              {card.sub && <span className="font-bold text-[#111]" style={{ fontSize: 8 }}>{card.sub}</span>}
             </div>
           </div>
         ))}
       </div>
 
       {/* Filter bar */}
-      <div className="flex items-center gap-[6px] flex-wrap" style={{ marginBottom: 10 }}>
+      <div className="flex items-center gap-[4px] flex-wrap" style={{ marginBottom: 6 }}>
         <div className="flex items-center justify-center rounded-[5px] shrink-0"
-          style={{ width: 28, height: 28, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
-          <img src={filterIcon} width="12" height="12" alt="filter" />
+          style={{ width: 24, height: 24, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
+          <img src={filterIcon} width="10" height="10" alt="filter" />
         </div>
         <div className="flex items-center justify-center rounded-[5px] shrink-0"
-          style={{ width: 28, height: 28, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
-          <img src={refreshIcon} alt="refresh" style={{ width: 16, height: 16 }} />
+          style={{ width: 24, height: 24, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
+          <img src={refreshIcon} alt="refresh" style={{ width: 14, height: 14 }} />
         </div>
         {[
           { label: "MySQL", logo: mysqlLogo },
@@ -141,55 +141,53 @@ function AgenticSection({ isActive }) {
           { label: "AWS",   logo: awsLogo },
           { label: "Postgres", logo: postgresSvg },
         ].map((tab) => (
-          <div key={tab.label} className="flex items-center gap-[4px] rounded-[5px] px-[6px]"
-            style={{ height: 28, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
-            <img src={tab.logo} alt={tab.label} style={{ width: 14, height: 14, objectFit: "contain" }} />
-            <span style={{ fontSize: 10, color: "#111" }}>{tab.label}</span>
+          <div key={tab.label} className="flex items-center gap-[3px] rounded-[5px] px-[5px]"
+            style={{ height: 24, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
+            <img src={tab.logo} alt={tab.label} style={{ width: 12, height: 12, objectFit: "contain" }} />
+            <span style={{ fontSize: 9, color: "#111" }}>{tab.label}</span>
           </div>
         ))}
-        <div className="flex items-center rounded-[5px] px-[6px] gap-[4px]"
-          style={{ height: 28, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
-          <img src={searchIconSvg} alt="search" style={{ width: 14, height: 14, opacity: 0.5 }} />
-          <span style={{ fontSize: 10, color: "#999" }}>Search</span>
+        <div className="flex items-center rounded-[5px] px-[5px] gap-[3px]"
+          style={{ height: 24, background: "rgba(42,56,63,0.05)", border: "1px solid #EBECF3" }}>
+          <img src={searchIconSvg} alt="search" style={{ width: 12, height: 12, opacity: 0.5 }} />
+          <span style={{ fontSize: 9, color: "#999" }}>Search</span>
         </div>
       </div>
 
       {/* Table */}
-      <div className="flex-1 flex flex-col rounded-[8px]" style={{ background: "#fff", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+      <div className="flex-1 flex flex-col rounded-[8px]" style={{ background: "#fff", boxShadow: "0 2px 12px rgba(0,0,0,0.04)", minHeight: 0 }}>
         {/* Header */}
-        <div className="flex items-center px-[8px] py-[8px]" style={{ borderBottom: "1px solid #EDEDF0" }}>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 10, width: "28%", flexShrink: 0 }}>Session ID</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 10, width: "32%", flexShrink: 0 }}>User</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 10, width: "12%", flexShrink: 0 }}>Risk</span>
-          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 10, width: "28%", flexShrink: 0 }}>Target</span>
+        <div className="flex items-center px-[6px] py-[5px]" style={{ borderBottom: "1px solid #EDEDF0" }}>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>Session ID</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "32%", flexShrink: 0 }}>User</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "12%", flexShrink: 0 }}>Risk</span>
+          <span className="font-semibold text-[#ADAEB0]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>Target</span>
         </div>
         {TABLE_ROWS.map((row, i) => (
           <motion.div
             key={row.id}
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: p > i / 5 ? 1 : 0, x: p > i / 5 ? 0 : -10 }}
-            className="flex flex-col px-[8px] flex-1 justify-center"
+            className="flex flex-col px-[6px] flex-1 justify-center"
             style={{ borderBottom: "1px solid #F5F5F7" }}
           >
-            {/* Row 1: Session ID, User, Risk, Target */}
             <div className="flex items-center">
-              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 10, width: "28%", flexShrink: 0 }}>{row.id}</span>
-              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 10, width: "32%", flexShrink: 0 }}>{row.user}</span>
-              <span className="text-[#111] font-medium" style={{ fontSize: 10, width: "12%", flexShrink: 0 }}>{row.risk}</span>
+              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 9, width: "28%", flexShrink: 0 }}>{row.id}</span>
+              <span className="text-[#111] truncate pr-[2px]" style={{ fontSize: 9, width: "32%", flexShrink: 0 }}>{row.user}</span>
+              <span className="text-[#111] font-medium" style={{ fontSize: 9, width: "12%", flexShrink: 0 }}>{row.risk}</span>
               <div className="flex items-center gap-[3px]" style={{ width: "28%", flexShrink: 0 }}>
-                <img src={row.logo} alt="" style={{ width: 16, height: 16 }} />
-                <span className="text-[#111]" style={{ fontSize: 10 }}>{row.target}</span>
+                <img src={row.logo} alt="" style={{ width: 14, height: 14 }} />
+                <span className="text-[#111]" style={{ fontSize: 9 }}>{row.target}</span>
               </div>
             </div>
-            {/* Row 2: Status + Date */}
-            <div className="flex items-center gap-[8px]" style={{ marginTop: 4 }}>
+            <div className="flex items-center gap-[6px]" style={{ marginTop: 2 }}>
               <StatusBadge status={row.status} />
-              <span className="text-[#888]" style={{ fontSize: 9 }}>{row.date}</span>
+              <span className="text-[#888]" style={{ fontSize: 8 }}>{row.date}</span>
             </div>
           </motion.div>
         ))}
       </div>
-      <div style={{ marginTop: 10 }}>
+      <div style={{ marginTop: 6 }}>
         <InlineTooltip text="Track every agent session from prompt to action." />
       </div>
     </div>
