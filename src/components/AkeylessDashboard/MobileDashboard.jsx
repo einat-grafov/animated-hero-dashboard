@@ -483,31 +483,31 @@ function CertSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1200);
 
   return (
-    <div className="flex flex-col h-full" style={{ padding: 20 }}>
-      <p className="font-semibold text-[#111]" style={{ fontSize: 16, marginBottom: 16 }}>
+    <div className="flex flex-col h-full" style={{ padding: 12 }}>
+      <p className="font-semibold text-[#111]" style={{ fontSize: 14, marginBottom: 8 }}>
         Certificate Lifecycle Health
       </p>
-      <div className="flex-1 relative" style={{ minHeight: 200 }}>
-        <div className="absolute left-0 top-0 flex flex-col justify-between items-end" style={{ height: "calc(100% - 30px)", width: 30 }}>
+      <div className="flex-1 relative" style={{ minHeight: 0 }}>
+        <div className="absolute left-0 top-0 flex flex-col justify-between items-end" style={{ height: "calc(100% - 24px)", width: 28 }}>
           {["1000","750","500","250","0"].map((v) => (
-            <span key={v} className="text-[#888]" style={{ fontSize: 9 }}>{v}</span>
+            <span key={v} className="text-[#888]" style={{ fontSize: 8 }}>{v}</span>
           ))}
         </div>
-        <div className="absolute flex items-end justify-around" style={{ left: 36, top: 0, right: 0, bottom: 30 }}>
+        <div className="absolute flex items-end justify-around" style={{ left: 34, top: 0, right: 0, bottom: 24 }}>
           {[
             { label: "Expired",     gradient: "linear-gradient(180deg, #FD2B11 0%, #E8837A 100%)", heightPct: 23 },
             { label: "0-30 Days",   gradient: "linear-gradient(180deg, #F3982E 0%, #F5BC73 100%)", heightPct: 58 },
             { label: "60-90 Days",  gradient: "linear-gradient(180deg, #5C7FC6 0%, #8BA5D8 100%)", heightPct: 82 },
             { label: "90-180 Days", gradient: "linear-gradient(180deg, #05D9C2 0%, #5DE8D6 100%)", heightPct: 100 },
           ].map((bar, i) => (
-            <div key={i} className="flex flex-col items-center justify-end gap-[6px]" style={{ height: "100%", flex: 1 }}>
-              <div className="rounded-t-[4px]" style={{ background: bar.gradient, height: `${bar.heightPct * p}%`, width: "60%", maxWidth: 50 }} />
-              <span className="text-[#555] whitespace-nowrap" style={{ fontSize: 8 }}>{bar.label}</span>
+            <div key={i} className="flex flex-col items-center justify-end gap-[4px]" style={{ height: "100%", flex: 1 }}>
+              <div className="rounded-t-[4px]" style={{ background: bar.gradient, height: `${bar.heightPct * p}%`, width: "60%", maxWidth: 44 }} />
+              <span className="text-[#555] whitespace-nowrap" style={{ fontSize: 7 }}>{bar.label}</span>
             </div>
           ))}
         </div>
       </div>
-      <div style={{ marginTop: 10 }}>
+      <div style={{ marginTop: 6 }}>
         <InlineTooltip text="Prevent outages with automated certificate lifecycle monitoring." />
       </div>
     </div>
