@@ -298,10 +298,10 @@ function IdentityCombinedSection({ isActive }) {
     <div className="flex flex-col h-full justify-center gap-[10px]" style={{ padding: 12 }}>
       {/* Identity Authentication Methods in Use */}
       <div>
-        <p className="font-semibold text-[#111]" style={{ fontSize: 12, marginBottom: 5 }}>
+        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
           Identity Authentication Methods in Use
         </p>
-        <div className="flex flex-col gap-[4px]" style={{ marginBottom: 5 }}>
+        <div className="flex flex-col gap-[5px]" style={{ marginBottom: 6 }}>
           {[
             { logo: awsLogo,     name: "AWS",     val: 200, max: 200, color: "#F3982E" },
             { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
@@ -309,12 +309,12 @@ function IdentityCombinedSection({ isActive }) {
             { logo: windowsLogo, name: "Windows", val: 60,  max: 200, color: "#5C7FC6" },
           ].map((item) => (
             <div key={item.name} className="flex items-center gap-[6px]">
-              <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0, objectFit: "contain" }} />
-              <span className="text-[#111] flex-shrink-0" style={{ fontSize: 9, width: 42 }}>{item.name}</span>
-              <div className="flex-1 h-[6px] rounded-full bg-gray-100 overflow-hidden">
+              <img src={item.logo} alt={item.name} style={{ width: 18, height: 18, flexShrink: 0, objectFit: "contain" }} />
+              <span className="text-[#111] flex-shrink-0" style={{ fontSize: 10, width: 46 }}>{item.name}</span>
+              <div className="flex-1 h-[7px] rounded-full bg-gray-100 overflow-hidden">
                 <div className="h-full rounded-full" style={{ width: `${(item.val / item.max) * 100 * p}%`, backgroundColor: item.color }} />
               </div>
-              <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 9, width: 24, textAlign: "right" }}>
+              <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 10, width: 26, textAlign: "right" }}>
                 <AnimatedNumber value={item.val} progress={p} />
               </span>
             </div>
