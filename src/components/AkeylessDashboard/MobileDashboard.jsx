@@ -352,11 +352,11 @@ function IdentityCombinedSection({ isActive }) {
 
       {/* Identity Risk & Exposure Analysis */}
       <div>
-        <p className="font-semibold text-[#111]" style={{ fontSize: 12, marginBottom: 5 }}>
+        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
           Identity Risk &amp; Exposure Analysis
         </p>
-        <div style={{ marginBottom: 5 }}>
-          <div className="flex rounded-[6px] overflow-hidden" style={{ height: 14, background: "#F3F4F6", border: "1px solid #E8E9EF" }}>
+        <div style={{ marginBottom: 6 }}>
+          <div className="flex rounded-[6px] overflow-hidden" style={{ height: 16, background: "#F3F4F6", border: "1px solid #E8E9EF" }}>
             {[
               { color: "#A70808", width: 5 * p },
               { color: "#C62828", width: 8 * p },
@@ -368,20 +368,20 @@ function IdentityCombinedSection({ isActive }) {
           </div>
           <div className="flex items-center justify-between" style={{ marginTop: 4, padding: "0 2px" }}>
             {["120", "450", "2200", "8000"].map((label) => (
-              <span key={label} className="font-semibold text-[#111]" style={{ fontSize: 8 }}>{label}</span>
+              <span key={label} className="font-semibold text-[#111]" style={{ fontSize: 9 }}>{label}</span>
             ))}
           </div>
         </div>
-        <div className="flex items-center justify-between" style={{ marginBottom: 5 }}>
+        <div className="flex items-center justify-between" style={{ marginBottom: 6 }}>
           {[
             { color: "#A70808", label: "Critical" },
             { color: "#C62828", label: "High" },
             { color: "#F3982E", label: "Medium" },
             { color: "#1ADDC7", label: "Low" },
           ].map((l) => (
-            <div key={l.label} className="flex items-center gap-[3px]">
-              <div className="rounded-[2px]" style={{ width: 8, height: 8, background: l.color }} />
-              <span style={{ fontSize: 8 }}>{l.label}</span>
+            <div key={l.label} className="flex items-center gap-[4px]">
+              <div className="rounded-[2px]" style={{ width: 9, height: 9, background: l.color }} />
+              <span style={{ fontSize: 9 }}>{l.label}</span>
             </div>
           ))}
         </div>
