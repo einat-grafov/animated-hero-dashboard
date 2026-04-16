@@ -295,7 +295,7 @@ function IdentityCombinedSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1500);
 
   return (
-    <div className="flex flex-col h-full justify-between" style={{ padding: 10 }}>
+    <div className="flex flex-col h-full justify-center gap-[10px]" style={{ padding: 12 }}>
       {/* Identity Authentication Methods in Use */}
       <div>
         <p className="font-semibold text-[#111]" style={{ fontSize: 12, marginBottom: 5 }}>
