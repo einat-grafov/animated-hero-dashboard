@@ -395,7 +395,7 @@ function VaultSecretsCombinedSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1500);
 
   return (
-    <div className="flex flex-col h-full justify-between" style={{ padding: 10 }}>
+    <div className="flex flex-col h-full justify-center gap-[12px]" style={{ padding: 12 }}>
       <div>
         <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
           External Vault &amp; Secrets Integrations
