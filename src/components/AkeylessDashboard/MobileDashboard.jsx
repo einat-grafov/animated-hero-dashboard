@@ -295,13 +295,13 @@ function IdentityCombinedSection({ isActive }) {
   const p = useOnceAnimation(isActive, 1500);
 
   return (
-    <div className="flex flex-col h-full justify-between" style={{ padding: 10 }}>
+    <div className="flex flex-col h-full justify-center gap-[10px]" style={{ padding: 12 }}>
       {/* Identity Authentication Methods in Use */}
       <div>
-        <p className="font-semibold text-[#111]" style={{ fontSize: 12, marginBottom: 5 }}>
+        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
           Identity Authentication Methods in Use
         </p>
-        <div className="flex flex-col gap-[4px]" style={{ marginBottom: 5 }}>
+        <div className="flex flex-col gap-[5px]" style={{ marginBottom: 6 }}>
           {[
             { logo: awsLogo,     name: "AWS",     val: 200, max: 200, color: "#F3982E" },
             { logo: mssqlLogo,   name: "MSSQL",   val: 90,  max: 200, color: "#FF2B10" },
@@ -309,12 +309,12 @@ function IdentityCombinedSection({ isActive }) {
             { logo: windowsLogo, name: "Windows", val: 60,  max: 200, color: "#5C7FC6" },
           ].map((item) => (
             <div key={item.name} className="flex items-center gap-[6px]">
-              <img src={item.logo} alt={item.name} style={{ width: 16, height: 16, flexShrink: 0, objectFit: "contain" }} />
-              <span className="text-[#111] flex-shrink-0" style={{ fontSize: 9, width: 42 }}>{item.name}</span>
-              <div className="flex-1 h-[6px] rounded-full bg-gray-100 overflow-hidden">
+              <img src={item.logo} alt={item.name} style={{ width: 18, height: 18, flexShrink: 0, objectFit: "contain" }} />
+              <span className="text-[#111] flex-shrink-0" style={{ fontSize: 10, width: 46 }}>{item.name}</span>
+              <div className="flex-1 h-[7px] rounded-full bg-gray-100 overflow-hidden">
                 <div className="h-full rounded-full" style={{ width: `${(item.val / item.max) * 100 * p}%`, backgroundColor: item.color }} />
               </div>
-              <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 9, width: 24, textAlign: "right" }}>
+              <span className="text-[#111] font-medium flex-shrink-0" style={{ fontSize: 10, width: 26, textAlign: "right" }}>
                 <AnimatedNumber value={item.val} progress={p} />
               </span>
             </div>
@@ -327,21 +327,21 @@ function IdentityCombinedSection({ isActive }) {
 
       {/* Enterprise Identity Landscape */}
       <div>
-        <p className="font-semibold text-[#111]" style={{ fontSize: 12, marginBottom: 5 }}>
+        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
           Enterprise Identity Landscape
         </p>
-        <div className="flex items-start justify-center" style={{ marginBottom: 5 }}>
+        <div className="flex items-start justify-center" style={{ marginBottom: 6 }}>
           {[
             { icon: vector4,      label: "AI Agents",        value: 200, format: (v) => String(v) },
             { icon: dubleUser,    label: "Human Identity",   value: 8,   format: (v) => `${v}K` },
             { icon: groupMachine, label: "Machine Identity", value: 30,  format: (v) => `${v}K` },
           ].map((item, i) => (
             <div key={i} className="flex flex-col items-center" style={{ width: "33.33%" }}>
-              <img src={item.icon} alt="" style={{ width: 22, height: 22, marginBottom: 2 }} />
+              <img src={item.icon} alt="" style={{ width: 24, height: 24, marginBottom: 3 }} />
               <span className="font-bold text-[#111]" style={{ fontSize: 22, lineHeight: 1, height: 22 }}>
                 {item.format(Math.round(lerp(0, item.value, p)))}
               </span>
-              <span className="text-[#111]" style={{ fontSize: 8, marginTop: 2 }}>{item.label}</span>
+              <span className="text-[#111]" style={{ fontSize: 9, marginTop: 3 }}>{item.label}</span>
             </div>
           ))}
         </div>
@@ -352,11 +352,11 @@ function IdentityCombinedSection({ isActive }) {
 
       {/* Identity Risk & Exposure Analysis */}
       <div>
-        <p className="font-semibold text-[#111]" style={{ fontSize: 12, marginBottom: 5 }}>
+        <p className="font-semibold text-[#111]" style={{ fontSize: 13, marginBottom: 6 }}>
           Identity Risk &amp; Exposure Analysis
         </p>
-        <div style={{ marginBottom: 5 }}>
-          <div className="flex rounded-[6px] overflow-hidden" style={{ height: 14, background: "#F3F4F6", border: "1px solid #E8E9EF" }}>
+        <div style={{ marginBottom: 6 }}>
+          <div className="flex rounded-[6px] overflow-hidden" style={{ height: 16, background: "#F3F4F6", border: "1px solid #E8E9EF" }}>
             {[
               { color: "#A70808", width: 5 * p },
               { color: "#C62828", width: 8 * p },
@@ -368,20 +368,20 @@ function IdentityCombinedSection({ isActive }) {
           </div>
           <div className="flex items-center justify-between" style={{ marginTop: 4, padding: "0 2px" }}>
             {["120", "450", "2200", "8000"].map((label) => (
-              <span key={label} className="font-semibold text-[#111]" style={{ fontSize: 8 }}>{label}</span>
+              <span key={label} className="font-semibold text-[#111]" style={{ fontSize: 9 }}>{label}</span>
             ))}
           </div>
         </div>
-        <div className="flex items-center justify-between" style={{ marginBottom: 5 }}>
+        <div className="flex items-center justify-between" style={{ marginBottom: 6 }}>
           {[
             { color: "#A70808", label: "Critical" },
             { color: "#C62828", label: "High" },
             { color: "#F3982E", label: "Medium" },
             { color: "#1ADDC7", label: "Low" },
           ].map((l) => (
-            <div key={l.label} className="flex items-center gap-[3px]">
-              <div className="rounded-[2px]" style={{ width: 8, height: 8, background: l.color }} />
-              <span style={{ fontSize: 8 }}>{l.label}</span>
+            <div key={l.label} className="flex items-center gap-[4px]">
+              <div className="rounded-[2px]" style={{ width: 9, height: 9, background: l.color }} />
+              <span style={{ fontSize: 9 }}>{l.label}</span>
             </div>
           ))}
         </div>
